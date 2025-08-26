@@ -1,0 +1,33 @@
+// API Configuration
+export const API_CONFIG = {
+  BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000',
+  ENDPOINTS: {
+    // Auth endpoints
+    LOGIN: '/api/auth/login',
+    REGISTER: '/api/auth/register',
+    FORGOT_PASSWORD: '/api/auth/forgot-password',
+    VERIFY_RESET_TOKEN: '/api/auth/verify-reset-token',
+    RESET_PASSWORD: '/api/auth/reset-password',
+    
+    // User endpoints
+    USER_ASK: '/api/user/ask',
+    USER_CREDITS: '/api/user/credits',
+    USER_PROFILE: '/api/user/profile',
+    USER_FEEDBACK: '/api/user/feedback',
+    USER_FEEDBACK_SEARCH: '/api/user/feedback/search',
+    USER_FEEDBACK_DELETE: '/api/user/feedback',
+    USER_FEEDBACK_HISTORY: '/api/user/feedback/my',
+    USER_SEARCH_HISTORY: '/api/user/search-history',
+    USER_SEARCH_HISTORY_STATS: '/api/user/search-history/stats',
+    USER_TICKETS: '/api/user/tickets',
+    
+    // System endpoints
+    MAINTENANCE_STATUS: '/api/maintenance/status',
+    HEALTH: '/health'
+  }
+}
+
+// Helper function to build full URL
+export const buildApiUrl = (endpoint: string): string => {
+  return `${API_CONFIG.BASE_URL}${endpoint}`
+}
