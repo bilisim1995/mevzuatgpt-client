@@ -184,7 +184,8 @@ export default function DashboardPage() {
             month: 'long',
             year: 'numeric',
             hour: '2-digit',
-            minute: '2-digit'
+            minute: '2-digit',
+            timeZone: 'Europe/Istanbul'
           }),
           reliabilityData: response.data.confidence_breakdown || null,
           performanceData: { search_stats: response.data.search_stats },

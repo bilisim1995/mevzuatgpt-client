@@ -136,7 +136,8 @@ export function TicketDetailModal({ open, onOpenChange, ticketId, onTicketUpdate
       month: 'long',
       year: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
+      timeZone: 'Europe/Istanbul'
     })
   }
 
@@ -145,7 +146,8 @@ export function TicketDetailModal({ open, onOpenChange, ticketId, onTicketUpdate
       day: 'numeric',
       month: 'short',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
+      timeZone: 'Europe/Istanbul'
     })
   }
 

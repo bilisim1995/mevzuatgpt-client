@@ -116,6 +116,7 @@ export function QuestionAnswerCard({
   const [performanceModalOpen, setPerformanceModalOpen] = useState(false)
   const [creditInfoModalOpen, setCreditInfoModalOpen] = useState(false)
   const [fullscreenModalOpen, setFullscreenModalOpen] = useState(false)
+  const [showBlurWarning, setShowBlurWarning] = useState(true)
 
   // Güvenirlik skorunu tutarlı hale getir - önce reliabilityData'dan al, yoksa reliability prop'unu kullan
   const actualReliabilityScore = reliabilityData?.overall_score ?? reliability
@@ -309,117 +310,144 @@ export function QuestionAnswerCard({
               </button>
             </div>
           </div>
-          <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-4 mt-3 shadow-inner border border-gray-200/50 dark:border-gray-700/30 h-48 overflow-y-auto">
-            <div className="prose prose-sm max-w-none dark:prose-invert 
-                          prose-headings:text-gray-900 dark:prose-headings:text-white 
-                          prose-p:text-gray-800 dark:prose-p:text-gray-200 
-                          prose-strong:text-gray-900 dark:prose-strong:text-white 
-                          prose-code:text-blue-600 dark:prose-code:text-blue-400 
-                          prose-code:bg-blue-100 dark:prose-code:bg-blue-900/30 
-                          prose-code:px-1 prose-code:py-0.5 prose-code:rounded 
-                          prose-pre:bg-gray-800 dark:prose-pre:bg-gray-900 
-                          prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-lg
-                          prose-blockquote:border-l-blue-500 prose-blockquote:bg-blue-50 
-                          dark:prose-blockquote:bg-blue-900/20 prose-blockquote:pl-4 
-                          prose-blockquote:py-2 prose-blockquote:rounded-r-lg
-                          prose-ul:text-gray-800 dark:prose-ul:text-gray-200 
-                          prose-ol:text-gray-800 dark:prose-ol:text-gray-200 
-                          prose-li:text-gray-800 dark:prose-li:text-gray-200
-                          prose-a:text-blue-600 dark:prose-a:text-blue-400
-                          prose-a:underline hover:prose-a:text-blue-500">
-              <ReactMarkdown 
-                remarkPlugins={[remarkGfm]}
-                components={{
-                  // Özel bileşen render'ları
-                  h1: ({children}) => <h1 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{children}</h1>,
-                  h2: ({children}) => <h2 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{children}</h2>,
-                  h3: ({children}) => <h3 className="text-base font-medium mb-2 text-gray-900 dark:text-white">{children}</h3>,
-                  p: ({children}) => <p className="mb-3 text-gray-800 dark:text-gray-200 leading-relaxed">{children}</p>,
-                  ul: ({children}) => <ul className="mb-3 pl-4 space-y-1 text-gray-800 dark:text-gray-200">{children}</ul>,
-                  ol: ({children}) => <ol className="mb-3 pl-4 space-y-1 text-gray-800 dark:text-gray-200">{children}</ol>,
-                  li: ({children}) => <li className="text-gray-800 dark:text-gray-200">{children}</li>,
-                  strong: ({children}) => <strong className="font-semibold text-gray-900 dark:text-white">{children}</strong>,
-                  em: ({children}) => <em className="italic text-gray-800 dark:text-gray-200">{children}</em>,
-                  code: ({children}) => <code className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-1 py-0.5 rounded text-sm font-mono">{children}</code>,
-                  pre: ({children}) => <pre className="bg-gray-800 dark:bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-3 text-sm">{children}</pre>,
-                  blockquote: ({children}) => <blockquote className="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 pl-4 py-2 mb-3 rounded-r-lg">{children}</blockquote>,
-                  a: ({href, children}) => <a href={href} className="text-blue-600 dark:text-blue-400 underline hover:text-blue-500 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">{children}</a>,
-                }}
-              >
-                {answer}
-              </ReactMarkdown>
+          <div className="relative">
+            {/* Blur Warning Overlay */}
+            {showBlurWarning && (
+              <div className="absolute inset-0 z-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center">
+                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700/30 rounded-lg p-4 max-w-sm mx-4">
+                  <p className="text-xs text-yellow-700 dark:text-yellow-300 leading-relaxed mb-3">
+                    MevzuatGPT hata yapabilir. Cevabın kesinlik içermediğini unutmayın. 
+                    Bilgileri kontrol edin ve doğrulayın.
+                  </p>
+                  <Button
+                    onClick={() => setShowBlurWarning(false)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded text-xs font-medium transition-colors w-full"
+                  >
+                    Tamam, Anladım
+                  </Button>
+                </div>
+              </div>
+            )}
+            
+            <div className={`bg-gray-100 dark:bg-gray-800/50 rounded-xl p-4 mt-3 shadow-inner border border-gray-200/50 dark:border-gray-700/30 h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-800 hover:scrollbar-thumb-gray-500 dark:hover:scrollbar-thumb-gray-500 ${showBlurWarning ? 'blur-sm' : ''}`}>
+              <div className="prose prose-sm max-w-none dark:prose-invert 
+                            prose-headings:text-gray-900 dark:prose-headings:text-white 
+                            prose-p:text-gray-800 dark:prose-p:text-gray-200 
+                            prose-strong:text-gray-900 dark:prose-strong:text-white 
+                            prose-code:text-blue-600 dark:prose-code:text-blue-400 
+                            prose-code:bg-blue-100 dark:prose-code:bg-blue-900/30 
+                            prose-code:px-1 prose-code:py-0.5 prose-code:rounded 
+                            prose-pre:bg-gray-800 dark:prose-pre:bg-gray-900 
+                            prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-lg
+                            prose-blockquote:border-l-blue-500 prose-blockquote:bg-blue-50 
+                            dark:prose-blockquote:bg-blue-900/20 prose-blockquote:pl-4 
+                            prose-blockquote:py-2 prose-blockquote:rounded-r-lg
+                            prose-ul:text-gray-800 dark:prose-ul:text-gray-200 
+                            prose-ol:text-gray-800 dark:prose-ol:text-gray-200 
+                            prose-li:text-gray-800 dark:prose-li:text-gray-200
+                            prose-a:text-blue-600 dark:prose-a:text-blue-400
+                            prose-a:underline hover:prose-a:text-blue-500">
+                <ReactMarkdown 
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    // Özel bileşen render'ları
+                    h1: ({children}) => <h1 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{children}</h1>,
+                    h2: ({children}) => <h2 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{children}</h2>,
+                    h3: ({children}) => <h3 className="text-base font-medium mb-2 text-gray-900 dark:text-white">{children}</h3>,
+                    p: ({children}) => <p className="mb-3 text-gray-800 dark:text-gray-200 leading-relaxed">{children}</p>,
+                    ul: ({children}) => <ul className="mb-3 pl-4 space-y-1 text-gray-800 dark:text-gray-200">{children}</ul>,
+                    ol: ({children}) => <ol className="mb-3 pl-4 space-y-1 text-gray-800 dark:text-gray-200">{children}</ol>,
+                    li: ({children}) => <li className="text-gray-800 dark:text-gray-200">{children}</li>,
+                    strong: ({children}) => <strong className="font-semibold text-gray-900 dark:text-white">{children}</strong>,
+                    em: ({children}) => <em className="italic text-gray-800 dark:text-gray-200">{children}</em>,
+                    code: ({children}) => <code className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-1 py-0.5 rounded text-sm font-mono">{children}</code>,
+                    pre: ({children}) => <pre className="bg-gray-800 dark:bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-3 text-sm">{children}</pre>,
+                    blockquote: ({children}) => <blockquote className="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 pl-4 py-2 mb-3 rounded-r-lg">{children}</blockquote>,
+                    a: ({href, children}) => <a href={href} className="text-blue-600 dark:text-blue-400 underline hover:text-blue-500 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">{children}</a>,
+                  }}
+                >
+                  {answer}
+                </ReactMarkdown>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Alt Bilgiler ve Aksiyonlar */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700/40">
-          <div className="flex items-center text-xs text-gray-900 dark:text-gray-400">
-            <button 
-              onClick={() => setCreditInfoModalOpen(true)}
-              className="flex items-center hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
-            >
-              <Coins className="h-3 w-3 mr-1" />
-              <span className="font-light">{creditsUsed} Kredi Kullanıldı</span>
-            </button>
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleLikeClick}
-              disabled={feedbackLoading}
-              data-feedback="like"
-              className={`h-8 w-8 p-0 rounded-md ${liked === true ? 'text-green-400 bg-green-900/20' : 'text-gray-600 dark:text-gray-400 hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700/50'} ${feedbackLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-            >
-              <ThumbsUp className="h-4 w-4" />
-            </Button>
+        <div className="pt-4 border-t border-gray-200 dark:border-gray-700/40">
+          {/* Mobil: Kredi üstte, butonlar altta */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+            {/* Kredi Bilgisi */}
+            <div className="flex items-center justify-center lg:justify-start mb-3 lg:mb-0">
+              <button 
+                onClick={() => setCreditInfoModalOpen(true)}
+                className="flex items-center text-xs text-gray-900 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
+              >
+                <Coins className="h-3 w-3 mr-1" />
+                <span className="font-light">{creditsUsed} Kredi Kullanıldı</span>
+              </button>
+            </div>
             
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleDislikeClick}
-              disabled={feedbackLoading}
-              data-feedback="dislike"
-              className={`h-8 w-8 p-0 rounded-md ${liked === false ? 'text-red-400 bg-red-900/20' : 'text-gray-600 dark:text-gray-400 hover:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700/50'} ${feedbackLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-            >
-              <ThumbsDown className="h-4 w-4" />
-            </Button>
-            
-            <div className="h-5 w-px bg-gray-300 dark:bg-slate-600/40"></div>
-            
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleCopy}
-              className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
-            >
-              <Copy className="h-4 w-4 mr-1" />
-              Kopyala
-            </Button>
-            
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setFullscreenModalOpen(true)}
-              className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
-            >
-              <Search className="h-4 w-4 mr-1" />
-              Büyüt
-            </Button>
-            
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+            {/* Butonlar - Geniş ekranda tek satırda */}
+            <div className="flex items-center justify-center lg:justify-end space-x-2">
+              <div className="flex items-center space-x-2">
                 <Button
                   variant="ghost"
                   size="sm"
+                  onClick={handleLikeClick}
+                  disabled={feedbackLoading}
+                  data-feedback="like"
+                  className={`h-8 w-8 p-0 rounded-md ${liked === true ? 'text-green-400 bg-green-900/20' : 'text-gray-600 dark:text-gray-400 hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700/50'} ${feedbackLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                  <ThumbsUp className="h-4 w-4" />
+                </Button>
+                
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleDislikeClick}
+                  disabled={feedbackLoading}
+                  data-feedback="dislike"
+                  className={`h-8 w-8 p-0 rounded-md ${liked === false ? 'text-red-400 bg-red-900/20' : 'text-gray-600 dark:text-gray-400 hover:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700/50'} ${feedbackLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                  <ThumbsDown className="h-4 w-4" />
+                </Button>
+              </div>
+              
+              <div className="h-5 w-px bg-gray-300 dark:bg-slate-600/40"></div>
+              
+              <div className="flex items-center space-x-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleCopy}
                   className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
                 >
-                  <Share2 className="h-4 w-4 mr-1" />
-                  Paylaş
+                  <Copy className="h-4 w-4 mr-1" />
+                  Kopyala
                 </Button>
-              </DropdownMenuTrigger>
+                
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setFullscreenModalOpen(true)}
+                  className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
+                >
+                  <Search className="h-4 w-4 mr-1" />
+                  Büyüt
+                </Button>
+                
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
+                    >
+                      <Share2 className="h-4 w-4 mr-1" />
+                      Paylaş
+                    </Button>
+                  </DropdownMenuTrigger>
               <DropdownMenuContent 
                 align="end" 
                 className="w-48 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white"
@@ -439,7 +467,9 @@ export function QuestionAnswerCard({
                   WhatsApp ile Gönder
                 </DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+              </DropdownMenu>
+              </div>
+            </div>
           </div>
         </div>
       </CardContent>

@@ -47,6 +47,7 @@ export function MessageInputFooter({
   const [message, setMessage] = useState('')
   const [showExamples, setShowExamples] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
+  const [animationPosition, setAnimationPosition] = useState(0)
   const [healthStatus, setHealthStatus] = useState<HealthStatus>({
     isHealthy: false,
     lastChecked: null
@@ -59,6 +60,8 @@ export function MessageInputFooter({
   })
   const inputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const animationRef = useRef<HTMLDivElement>(null)
+  const animationIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
   // Health check fonksiyonu
   const checkHealth = async () => {
@@ -110,6 +113,7 @@ export function MessageInputFooter({
   const handleInputFocus = () => {
     setShowExamples(true)
     setIsPaused(false)
+    setAnimationPosition(0)
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,8 +128,41 @@ export function MessageInputFooter({
     setMessage(question)
     setShowExamples(false)
     setIsPaused(false)
+    setAnimationPosition(0)
     inputRef.current?.focus()
   }
+
+  // Animasyon kontrolü
+  useEffect(() => {
+    if (showExamples && !isPaused) {
+      // Animasyonu başlat
+      animationIntervalRef.current = setInterval(() => {
+        setAnimationPosition(prev => {
+          const containerWidth = animationRef.current?.parentElement?.offsetWidth || 0
+          const contentWidth = animationRef.current?.scrollWidth || 0
+          const maxPosition = contentWidth - containerWidth
+          
+          if (prev >= maxPosition) {
+            return 0 // Başa dön
+          }
+          return prev + 1 // 1px ilerle
+        })
+      }, 20) // 20ms = 50fps
+    } else {
+      // Animasyonu durdur
+      if (animationIntervalRef.current) {
+        clearInterval(animationIntervalRef.current)
+        animationIntervalRef.current = null
+      }
+    }
+
+    return () => {
+      if (animationIntervalRef.current) {
+        clearInterval(animationIntervalRef.current)
+        animationIntervalRef.current = null
+      }
+    }
+  }, [showExamples, isPaused])
 
   // Dışarı tıklama kontrolü
   useEffect(() => {
@@ -133,6 +170,7 @@ export function MessageInputFooter({
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setShowExamples(false)
         setIsPaused(false)
+        setAnimationPosition(0)
       }
     }
 
@@ -185,7 +223,14 @@ export function MessageInputFooter({
             
             <div className="py-3">
               <div 
-                className={`flex space-x-6 ${isPaused ? '' : 'animate-scroll'}`}
+                ref={animationRef}
+                className="flex space-x-6"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+                style={{
+                  transform: `translateX(-${animationPosition}px)`,
+                  transition: isPaused ? 'none' : 'transform 0.02s linear'
+                }}
               >
                 {/* İlk set */}
                 <div className="flex space-x-6 whitespace-nowrap">
@@ -193,8 +238,6 @@ export function MessageInputFooter({
                     <button
                       key={`first-${index}`}
                       onClick={() => handleExampleClick(question)}
-                      onMouseEnter={() => setIsPaused(true)}
-                      onMouseLeave={() => setIsPaused(false)}
                       className="px-3 py-1.5 bg-white dark:bg-slate-700/30 hover:bg-blue-50 dark:hover:bg-slate-600/50 text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-white text-xs rounded-md transition-all duration-200 border border-gray-300 dark:border-slate-600/30 hover:border-blue-300 dark:hover:border-slate-500/50 whitespace-nowrap flex-shrink-0 cursor-pointer relative z-20 shadow-sm"
                     >
                       {question}
@@ -207,8 +250,6 @@ export function MessageInputFooter({
                     <button
                       key={`second-${index}`}
                       onClick={() => handleExampleClick(question)}
-                      onMouseEnter={() => setIsPaused(true)}
-                      onMouseLeave={() => setIsPaused(false)}
                       className="px-3 py-1.5 bg-white dark:bg-slate-700/30 hover:bg-blue-50 dark:hover:bg-slate-600/50 text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-white text-xs rounded-md transition-all duration-200 border border-gray-300 dark:border-slate-600/30 hover:border-blue-300 dark:hover:border-slate-500/50 whitespace-nowrap flex-shrink-0 cursor-pointer relative z-20 shadow-sm"
                     >
                       {question}
