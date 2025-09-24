@@ -5,20 +5,27 @@ import { Card } from "@/components/ui/card";
 
 export function AIChatInterface() {
   return (
-    <div className="flex-1 flex items-center justify-center p-4 sm:p-8">
+    <div className="flex-1 flex items-center justify-center p-4 sm:p-8 h-full overflow-hidden">
+      {/* Tüm kart yoruma dönüştürüldü */}
+      {/*
       <Card className="relative w-full max-w-xl mx-auto bg-transparent border-0 shadow-none">
         <div className="w-full max-w-lg mx-auto transition-all duration-500 transform hover:scale-[1.02]">
           <div className="relative bg-gradient-to-b from-primary/5 via-primary/10 to-transparent p-8 rounded-3xl">
-            {/* Üst Dekoratif Elementler */}
             <div className="absolute top-4 right-4 flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-primary/20 animate-pulse" />
               <div className="w-3 h-3 rounded-full bg-primary/30 animate-pulse delay-75" />
               <div className="w-3 h-3 rounded-full bg-primary/40 animate-pulse delay-150" />
             </div>
 
-            {/* Sohbet Arayüzü */}
+            <div className="flex items-center justify-center mb-8">
+              <img 
+                src="/o3.svg" 
+                alt="O3 Logo" 
+                className="h-24 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
+
             <div className="space-y-6 mb-12">
-              {/* Bot Mesajı */}
               <div className="flex items-start gap-3 max-w-[80%]">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Bot className="w-5 h-5 text-primary" />
@@ -30,7 +37,6 @@ export function AIChatInterface() {
                 </div>
               </div>
 
-              {/* Kullanıcı Mesajı */}
               <div className="flex items-start gap-3 max-w-[80%] ml-auto">
                 <div className="bg-primary/10 rounded-2xl rounded-tr-none p-4">
                   <p className="text-sm text-gray-800 dark:text-gray-100">
@@ -42,7 +48,6 @@ export function AIChatInterface() {
                 </div>
               </div>
 
-              {/* Bot Yanıtı */}
               <div className="flex items-start gap-3 max-w-[80%] group">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Bot className="w-5 h-5 text-primary" />
@@ -56,7 +61,6 @@ export function AIChatInterface() {
               </div>
             </div>
 
-            {/* Alt Dekoratif Elementler */}
             <div className="absolute bottom-6 left-4 flex items-center gap-2">
               <MessageSquare className="w-5 h-5 text-primary/40" />
               <div className="text-xs text-primary/40">Yapay Zeka Destekli Mevzuat Asistanı</div>
@@ -64,6 +68,16 @@ export function AIChatInterface() {
           </div>
         </div>
       </Card>
+      */}
+      
+      {/* Sadece O3 Logo - Büyütülmüş ve Ortalanmış */}
+      <div className="flex items-center justify-center h-full">
+        <img 
+          src="/o3.svg" 
+          alt="O3 Logo" 
+          className="h-80 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+        />
+      </div>
     </div>
   );
 }
