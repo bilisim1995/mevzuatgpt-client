@@ -104,17 +104,38 @@ export function CreditPurchaseModal({ open, onOpenChange }: CreditPurchaseModalP
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl">
         {/* Header */}
-        <DialogHeader className="text-center pb-3 border-b border-gray-200/30 dark:border-gray-700/30">
-          <DialogTitle className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-            Kredi Paketleri
-          </DialogTitle>
-          <p className="text-gray-600 dark:text-gray-400 text-xs">
-            İhtiyacınıza uygun paketi seçin ve hizmetlerimizden yararlanmaya başlayın
-          </p>
+        <DialogHeader className="pb-3 border-b border-gray-200/30 dark:border-gray-700/30">
+          <div className="flex items-center justify-between">
+            <DialogTitle className="text-xl font-bold text-gray-900 dark:text-white">
+              Kredi Paketleri
+            </DialogTitle>
+            
+            {/* Security info */}
+            <div className="flex items-center gap-4 text-xs text-gray-600 dark:text-gray-400">
+              <div className="flex items-center space-x-1">
+                <div className="w-4 h-4 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                  <Shield className="w-2.5 h-2.5 text-green-600 dark:text-green-400" />
+                </div>
+                <span className="font-medium">256-bit SSL</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <div className="w-4 h-4 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  <Zap className="w-2.5 h-2.5 text-blue-600 dark:text-blue-400" />
+                </div>
+                <span className="font-medium">Anında Aktivasyon</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <div className="w-4 h-4 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
+                  <Clock className="w-2.5 h-2.5 text-purple-600 dark:text-purple-400" />
+                </div>
+                <span className="font-medium">7/24 Destek</span>
+              </div>
+            </div>
+          </div>
         </DialogHeader>
 
         <div className="py-3 px-1">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 items-stretch">
             {CREDIT_PACKAGES.map((pkg) => {
               const IconComponent = pkg.icon
               const isSelected = selectedPackage === pkg.id
@@ -149,7 +170,7 @@ export function CreditPurchaseModal({ open, onOpenChange }: CreditPurchaseModalP
                     {/* Shine effect */}
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
-                    <div className="relative z-10">
+                    <div className="relative z-10 flex flex-col h-full">
                       <div className="text-center mb-4">
                         <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${pkg.gradient} shadow-lg mb-2 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
                           <IconComponent className="w-6 h-6 text-white drop-shadow-lg" />
@@ -181,7 +202,7 @@ export function CreditPurchaseModal({ open, onOpenChange }: CreditPurchaseModalP
                         </div>
                       </div>
 
-                      <div className="space-y-1 mb-4 flex-grow">
+                      <div className="space-y-1 mb-4 flex-1">
                         {pkg.features.map((feature, index) => (
                           <div key={index} className="flex items-start space-x-2 text-xs text-gray-700 dark:text-gray-300">
                             <div className="w-4 h-4 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -223,30 +244,8 @@ export function CreditPurchaseModal({ open, onOpenChange }: CreditPurchaseModalP
           </div>
         </div>
 
-        {/* Security info */}
+        {/* Payment methods */}
         <div className="border-t border-gray-200/40 dark:border-gray-700/40 pt-3 bg-gray-50/50 dark:bg-gray-800/30 rounded-b-xl">
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-600 dark:text-gray-400 mb-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                <Shield className="w-3 h-3 text-green-600 dark:text-green-400" />
-              </div>
-              <span className="font-medium">256-bit SSL Şifreleme</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                <Zap className="w-3 h-3 text-blue-600 dark:text-blue-400" />
-              </div>
-              <span className="font-medium">Anında Aktivasyon</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                <Clock className="w-3 h-3 text-purple-600 dark:text-purple-400" />
-              </div>
-              <span className="font-medium">7/24 Müşteri Desteği</span>
-            </div>
-          </div>
-          
-          {/* Payment methods */}
           <div className="flex items-center justify-center">
             <img 
               src="./logo_band_colored.svg" 
