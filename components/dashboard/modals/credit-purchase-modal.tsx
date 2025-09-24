@@ -225,7 +225,7 @@ export function CreditPurchaseModal({ open, onOpenChange }: CreditPurchaseModalP
 
         {/* Security info */}
         <div className="border-t border-gray-200/40 dark:border-gray-700/40 pt-3 bg-gray-50/50 dark:bg-gray-800/30 rounded-b-xl">
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-600 dark:text-gray-400 mb-4">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
                 <Shield className="w-3 h-3 text-green-600 dark:text-green-400" />
@@ -244,6 +244,15 @@ export function CreditPurchaseModal({ open, onOpenChange }: CreditPurchaseModalP
               </div>
               <span className="font-medium">7/24 Müşteri Desteği</span>
             </div>
+          </div>
+          
+          {/* Payment methods */}
+          <div className="flex items-center justify-center">
+            <img 
+              src="./logo_band_colored.svg" 
+              alt="Ödeme Yöntemleri" 
+              className="h-8 opacity-80 hover:opacity-100 transition-opacity duration-300"
+            />
           </div>
         </div>
       </DialogContent>
