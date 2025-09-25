@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Turnstile } from '@marsidev/react-turnstile'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -13,6 +13,7 @@ import { loginSchema, LoginFormData } from '@/lib/validations/auth'
 import { authService } from '@/services/auth'
 import { Eye, EyeOff, Loader2, Mail, ArrowLeft } from 'lucide-react'
 import { toast } from 'sonner'
+import { useTheme } from 'next-themes'
 
 export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -22,6 +23,13 @@ export function LoginForm() {
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState('')
   const [forgotPasswordLoading, setForgotPasswordLoading] = useState(false)
   const [forgotPasswordSent, setForgotPasswordSent] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const { theme, resolvedTheme } = useTheme()
+
+  // Hydration sorununu önlemek için mounted kontrolü
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   
   const {
     register,
@@ -32,9 +40,21 @@ export function LoginForm() {
   })
 
   const onSubmit = async (data: LoginFormData) => {
+    // Turnstile token kontrolü
+    if (!turnstileToken) {
+      toast.error('Lütfen güvenlik doğrulamasını tamamlayın.')
+      return
+    }
+
     setIsLoading(true)
     try {
-      const response = await authService.login(data)
+      // Turnstile token'ı ile birlikte login verilerini gönder
+      const loginData = {
+        ...data,
+        turnstile_token: turnstileToken
+      }
+      
+      const response = await authService.login(loginData)
       console.log('Giriş başarılı:', response)
       toast.success('Giriş başarılı!')
       // Başarılı giriş sonrası dashboard'a yönlendir
@@ -82,12 +102,19 @@ export function LoginForm() {
   return (
     <Card className="w-full max-w-lg shadow-xl border-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
       <CardHeader>
-        <CardTitle className="text-2xl font-semibold text-center text-gray-900 dark:text-white mb-2 tracking-tight">
-          Giriş Yap
-        </CardTitle>
-        <p className="text-center text-gray-600 dark:text-gray-400 text-xs font-medium">
-          Hesabınıza güvenli giriş yapın
-        </p>
+        {/* Logo */}
+        <div className="flex justify-center mb-4">
+          {mounted ? (
+            <img 
+              src={resolvedTheme === 'dark' ? '/Logo (2).png' : '/Logo-Siyah.png'} 
+              alt="Logo" 
+              className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+            />
+          ) : (
+            <div className="h-12 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+          )}
+        </div>
+        
       </CardHeader>
       <CardContent className="space-y-6 px-8 pb-8">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -100,6 +127,7 @@ export function LoginForm() {
                 id="email"
                 type="email"
                 placeholder="ornek@email.com"
+                autoComplete="email"
                 className="h-12 px-4 text-base border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50/50 dark:bg-gray-800/50 backdrop-blur-sm focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white dark:focus:bg-gray-800 transition-all duration-300 placeholder:text-gray-400 dark:placeholder:text-gray-500 shadow-sm hover:shadow-md focus:shadow-lg"
                 {...register('email')}
               />
@@ -146,8 +174,18 @@ export function LoginForm() {
             )}
           </div>
 
-          {/* Şifremi Unuttum Linki */}
-          <div className="text-right">
+          {/* Şifremi Unuttum ve Kayıt Ol Linkleri */}
+          <div className="flex justify-between items-center">
+            <span className="text-sm text-gray-600 dark:text-gray-400">
+              Hesabınız yok mu?{' '}
+              <a
+                href="/register"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium underline decoration-2 underline-offset-2 transition-colors"
+              >
+                Kayıt olun
+              </a>
+            </span>
+            
             <Dialog open={forgotPasswordModalOpen} onOpenChange={(open) => {
               setForgotPasswordModalOpen(open)
               if (!open) resetForgotPasswordModal()
@@ -254,20 +292,35 @@ export function LoginForm() {
             <Label className="text-sm font-semibold text-gray-800 dark:text-gray-200 tracking-wide">
               Güvenlik Doğrulaması
             </Label>
-            <div className="bg-gray-50/50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
+            <div className="bg-gray-50/50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-600 flex flex-col items-center">
               <Turnstile
-                siteKey="1x00000000000000000000AA" // Test site key
-                onSuccess={(token) => setTurnstileToken(token)}
-                onError={() => setTurnstileToken(null)}
-                onExpire={() => setTurnstileToken(null)}
+                siteKey="0x4AAAAAAB3TQTCwwiPkpkO7" // Test site key
+                onSuccess={(token) => {
+                  setTurnstileToken(token)
+                  toast.success('Güvenlik doğrulaması tamamlandı')
+                }}
+                onError={() => {
+                  setTurnstileToken(null)
+                  toast.error('Güvenlik doğrulaması başarısız. Lütfen tekrar deneyin.')
+                }}
+                onExpire={() => {
+                  setTurnstileToken(null)
+                  toast.warning('Güvenlik doğrulaması süresi doldu. Lütfen tekrar doğrulayın.')
+                }}
               />
+              {!turnstileToken && (
+                <p className="text-xs text-amber-600 dark:text-amber-400 mt-2 flex items-center">
+                  <span className="mr-1">⚠</span>
+                  Güvenlik doğrulamasını tamamlamanız gerekiyor
+                </p>
+              )}
             </div>
           </div>
 
           <Button 
             type="submit" 
             className="w-full h-12 text-base font-semibold bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-8 tracking-wide relative overflow-hidden group" 
-            disabled={isLoading}
+            disabled={isLoading || !turnstileToken}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative z-10 flex items-center justify-center">

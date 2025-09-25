@@ -32,7 +32,7 @@ import { maintenanceService } from './maintenance'
 import { buildApiUrl, API_CONFIG } from '@/lib/config'
 
 export const authService = {
-  async login(data: { email: string; password: string }): Promise<LoginResponse> {
+  async login(data: { email: string; password: string; turnstile_token?: string }): Promise<LoginResponse> {
     try {
       // Bakım durumu kontrolü (hata durumunda devam et)
       const maintenanceStatus = await maintenanceService.checkMaintenanceStatus()
@@ -55,7 +55,11 @@ export const authService = {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          turnstile_token: data.turnstile_token
+        }),
         signal: controller.signal,
       })
       

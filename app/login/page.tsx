@@ -9,20 +9,8 @@ export default function LoginPage() {
         <ThemeToggle />
       </div>
       
-      <div className="max-w-lg w-full space-y-8">
+      <div className="max-w-lg w-full">
         <LoginForm />
-        
-        <div className="text-center">
-          <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-            Hesabınız yok mu?{' '}
-            <Link 
-              href="/register" 
-              className="text-primary hover:text-primary/80 font-medium underline decoration-2 underline-offset-2 transition-colors"
-            >
-              Kayıt olun
-            </Link>
-          </p>
-        </div>
       </div>
     </div>
   )
