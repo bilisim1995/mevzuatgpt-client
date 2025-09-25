@@ -102,6 +102,89 @@ export default function DashboardPage() {
     setLoading(false)
   }, [])
 
+  // Modal state'lerini temizle
+  useEffect(() => {
+    if (!creditPurchaseModalOpen) {
+      // Modal kapatıldığında tüm kısıtlamaları kaldır
+      document.body.style.overflow = 'unset'
+      document.body.style.pointerEvents = 'auto'
+      document.documentElement.style.pointerEvents = 'auto'
+      
+      // Tüm modal elementlerini kaldır
+      setTimeout(() => {
+        const overlays = document.querySelectorAll('[data-radix-dialog-overlay]')
+        overlays.forEach(overlay => overlay.remove())
+        
+        const portals = document.querySelectorAll('[data-radix-portal]')
+        portals.forEach(portal => {
+          if (portal.querySelector('[data-radix-dialog-content]')) {
+            portal.remove()
+          }
+        })
+        
+        // Body'den tüm modal class'larını kaldır
+        document.body.classList.remove('overflow-hidden')
+        document.documentElement.classList.remove('overflow-hidden')
+      }, 100)
+    } else {
+      // Modal açıldığında body scroll'unu devre dışı bırak
+      document.body.style.overflow = 'hidden'
+    }
+
+    // Cleanup function
+    return () => {
+      document.body.style.overflow = 'unset'
+      document.body.style.pointerEvents = 'auto'
+      document.documentElement.style.pointerEvents = 'auto'
+    }
+  }, [creditPurchaseModalOpen])
+
+  // Modal kapatma fonksiyonu
+  const handleCreditPurchaseModalClose = (open: boolean) => {
+    if (!open) {
+      // Modal kapatıldığında tüm state'leri temizle
+      setCreditPurchaseModalOpen(false)
+      
+      // Body scroll'unu ve pointer events'i geri yükle
+      document.body.style.overflow = 'unset'
+      document.body.style.pointerEvents = 'auto'
+      document.documentElement.style.pointerEvents = 'auto'
+      
+      // Tüm modal elementlerini kaldır
+      setTimeout(() => {
+        // Backdrop elementlerini kaldır
+        const overlays = document.querySelectorAll('[data-radix-dialog-overlay]')
+        overlays.forEach(overlay => overlay.remove())
+        
+        // Portal elementlerini kaldır
+        const portals = document.querySelectorAll('[data-radix-portal]')
+        portals.forEach(portal => {
+          if (portal.querySelector('[data-radix-dialog-content]')) {
+            portal.remove()
+          }
+        })
+        
+        // Body'den tüm modal class'larını kaldır
+        document.body.classList.remove('overflow-hidden')
+        document.documentElement.classList.remove('overflow-hidden')
+        
+        // Z-index'i sıfırla
+        document.body.style.zIndex = 'auto'
+        document.documentElement.style.zIndex = 'auto'
+        
+        // Event listener'ları temizle
+        document.removeEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            e.preventDefault()
+            e.stopPropagation()
+          }
+        })
+      }, 100)
+    } else {
+      setCreditPurchaseModalOpen(open)
+    }
+  }
+
   const checkMaintenanceStatus = async () => {
     try {
       const maintenanceStatus = await maintenanceService.checkMaintenanceStatus()
@@ -465,7 +548,7 @@ export default function DashboardPage() {
                   
                   <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
                     <span className="text-sm font-medium text-gray-900 dark:text-gray-200">
-                      Kredi
+                      Kalan Hizmet Hakkı
                     </span>
                   </div>
                   
@@ -569,7 +652,7 @@ export default function DashboardPage() {
       {/* Credit Purchase Modal */}
       <CreditPurchaseModal
         open={creditPurchaseModalOpen}
-        onOpenChange={setCreditPurchaseModalOpen}
+        onOpenChange={handleCreditPurchaseModalClose}
       />
 
       {/* Announcements Modal */}

@@ -28,8 +28,7 @@ const CREDIT_PACKAGES = [
     features: [
       'Temel sorgulama hizmetleri',
       'Standart güvenilirlik analizi',
-      'E-posta desteği',
-      '30 gün geçerlilik süresi'
+      'E-posta desteği'
     ]
   },
   {
@@ -48,7 +47,6 @@ const CREDIT_PACKAGES = [
       'Gelişmiş sorgulama özellikleri',
       'Detaylı güvenilirlik raporları',
       'Öncelikli telefon desteği',
-      '90 gün geçerlilik süresi',
       'Özel filtreler ve arama seçenekleri'
     ]
   },
@@ -68,7 +66,6 @@ const CREDIT_PACKAGES = [
       'Sınırsız sorgulama özellikleri',
       'Kapsamlı analiz raporları',
       'Özel hesap yöneticisi',
-      '180 gün geçerlilik süresi',
       'Kurumsal entegrasyon desteği',
       'Özelleştirilmiş çözümler'
     ]
@@ -90,7 +87,7 @@ export function CreditPurchaseModal({ open, onOpenChange }: CreditPurchaseModalP
       // Simulated purchase process
       await new Promise(resolve => setTimeout(resolve, 2000))
       
-      toast.success(`${pkg.name} başarıyla satın alındı! ${pkg.credits.toLocaleString()} kredi hesabınıza eklendi.`)
+      toast.success(`${pkg.name} başarıyla satın alındı! ${pkg.credits.toLocaleString()} hizmet hakkı hesabınıza eklendi.`)
       onOpenChange(false)
     } catch (error) {
       toast.error('Satın alma işlemi başarısız oldu. Lütfen tekrar deneyin.')
@@ -100,18 +97,61 @@ export function CreditPurchaseModal({ open, onOpenChange }: CreditPurchaseModalP
     }
   }
 
+  // Modal kapatıldığında state'i temizle
+  const handleOpenChange = (newOpen: boolean) => {
+    if (!newOpen) {
+      setSelectedPackage(null)
+      setPurchasing(false)
+      
+      // Body scroll'unu geri yükle
+      document.body.style.overflow = 'unset'
+      document.body.style.pointerEvents = 'auto'
+      
+      // Tüm backdrop ve overlay elementlerini kaldır
+      setTimeout(() => {
+        const overlays = document.querySelectorAll('[data-radix-dialog-overlay]')
+        overlays.forEach(overlay => overlay.remove())
+        
+        const portals = document.querySelectorAll('[data-radix-portal]')
+        portals.forEach(portal => {
+          if (portal.querySelector('[data-radix-dialog-content]')) {
+            portal.remove()
+          }
+        })
+        
+        // Body'den tüm modal class'larını kaldır
+        document.body.classList.remove('overflow-hidden')
+        document.documentElement.classList.remove('overflow-hidden')
+        
+        // Pointer events'i geri yükle
+        document.body.style.pointerEvents = 'auto'
+        document.documentElement.style.pointerEvents = 'auto'
+      }, 50)
+    }
+    onOpenChange(newOpen)
+  }
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl">
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl rounded-3xl">
+        {/* Kapat Butonu */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => handleOpenChange(false)}
+          className="absolute right-4 top-4 z-50 h-8 w-16 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+        >
+          Kapat
+        </Button>
         {/* Header */}
         <DialogHeader className="pb-3 border-b border-gray-200/30 dark:border-gray-700/30">
-          <div className="flex items-center justify-between">
-            <DialogTitle className="text-xl font-bold text-gray-900 dark:text-white">
-              Kredi Paketleri
+          <div className="text-center">
+            <DialogTitle className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              Hizmet Satın Al
             </DialogTitle>
             
             {/* Security info */}
-            <div className="flex items-center gap-4 text-xs text-gray-600 dark:text-gray-400">
+            <div className="flex items-center justify-center gap-4 text-xs text-gray-600 dark:text-gray-400">
               <div className="flex items-center space-x-1">
                 <div className="w-4 h-4 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
                   <Shield className="w-2.5 h-2.5 text-green-600 dark:text-green-400" />
@@ -184,7 +224,7 @@ export function CreditPurchaseModal({ open, onOpenChange }: CreditPurchaseModalP
                             {pkg.credits.toLocaleString()}
                           </div>
                           <div className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                            Kredi
+                            Hizmet Hakkı
                           </div>
                         </div>
 
@@ -198,7 +238,7 @@ export function CreditPurchaseModal({ open, onOpenChange }: CreditPurchaseModalP
                           </span>
                         </div>
                         <div className="text-xs text-gray-600 dark:text-gray-400 mb-3 font-medium">
-                          Kredi başına ₺{pkg.pricePerCredit.toFixed(2)}
+                          Hizmet Hakkı başına ₺{pkg.pricePerCredit.toFixed(2)}
                         </div>
                       </div>
 
@@ -245,7 +285,7 @@ export function CreditPurchaseModal({ open, onOpenChange }: CreditPurchaseModalP
         </div>
 
         {/* Payment methods */}
-        <div className="border-t border-gray-200/40 dark:border-gray-700/40 pt-3 bg-gray-50/50 dark:bg-gray-800/30 rounded-b-xl">
+        <div className="border-t border-gray-200/40 dark:border-gray-700/40 pt-3 bg-gray-50/50 dark:bg-gray-800/30 rounded-b-3xl">
           <div className="flex items-center justify-center">
             <img 
               src="./logo_band_colored.svg" 
