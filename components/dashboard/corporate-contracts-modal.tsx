@@ -98,7 +98,7 @@ export function CorporateContractsModal({ open, onOpenChange }: CorporateContrac
           variant="ghost"
           size="sm"
           onClick={() => handleOpenChange(false)}
-                    className="h-8 px-3 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+          className="h-8 px-3 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
         >
           Kapat
         </Button>

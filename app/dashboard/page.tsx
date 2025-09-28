@@ -20,6 +20,7 @@ import { LoadingIndicator } from '@/components/dashboard/loading-indicator'
 import { AIAnalysisAnimation } from '@/components/dashboard/ai-analysis-animation'
 import { AnnouncementsModal } from '@/components/dashboard/announcements-modal'
 import { CorporateContractsModal } from '@/components/dashboard/corporate-contracts-modal'
+import { ContactModal } from '@/components/dashboard/contact-modal'
 import { toast } from 'sonner'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
@@ -79,6 +80,7 @@ export default function DashboardPage() {
   const [creditPurchaseModalOpen, setCreditPurchaseModalOpen] = useState(false)
   const [announcementsModalOpen, setAnnouncementsModalOpen] = useState(false)
   const [corporateContractsModalOpen, setCorporateContractsModalOpen] = useState(false)
+  const [contactModalOpen, setContactModalOpen] = useState(false)
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -418,6 +420,14 @@ export default function DashboardPage() {
                     Kurumsal Sözleşmeler
                   </DropdownMenuItem>
                   
+                  <DropdownMenuItem 
+                    onClick={() => setContactModalOpen(true)}
+                    className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 text-gray-900 dark:text-gray-200"
+                  >
+                    <Mail className="h-4 w-4 mr-2" />
+                    İletişim
+                  </DropdownMenuItem>
+                  
                   <DropdownMenuSeparator className="bg-gray-200 dark:bg-gray-700" />
                   
                   <DropdownMenuItem 
@@ -614,6 +624,12 @@ export default function DashboardPage() {
       <CorporateContractsModal
         open={corporateContractsModalOpen}
         onOpenChange={setCorporateContractsModalOpen}
+      />
+
+      {/* Contact Modal */}
+      <ContactModal
+        open={contactModalOpen}
+        onOpenChange={setContactModalOpen}
       />
     </div>
   )
