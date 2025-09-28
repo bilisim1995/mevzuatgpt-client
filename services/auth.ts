@@ -32,6 +32,42 @@ import { maintenanceService } from './maintenance'
 import { buildApiUrl, API_CONFIG } from '@/lib/config'
 
 export const authService = {
+  translateErrorMessage(message: string): string {
+    const translations: { [key: string]: string } = {
+      'String should have at least 8 characters': 'Şifre en az 8 karakter olmalıdır',
+      'String should have at most 50 characters': 'En fazla 50 karakter olmalıdır',
+      'Invalid email format': 'Geçersiz e-posta formatı',
+      'Email already exists': 'Bu e-posta adresi zaten kullanılıyor',
+      'Passwords do not match': 'Şifreler eşleşmiyor',
+      'Invalid password': 'Geçersiz şifre',
+      'User not found': 'Kullanıcı bulunamadı',
+      'Invalid credentials': 'Geçersiz kimlik bilgileri',
+      'Account is disabled': 'Hesap devre dışı',
+      'Too many login attempts': 'Çok fazla giriş denemesi',
+      'Token expired': 'Token süresi dolmuş',
+      'Invalid token': 'Geçersiz token',
+      'Field required': 'Bu alan zorunludur',
+      'Invalid input': 'Geçersiz giriş',
+      'Server error': 'Sunucu hatası',
+      'Network error': 'Ağ hatası',
+      'Timeout': 'Zaman aşımı'
+    }
+    
+    // Tam eşleşme kontrolü
+    if (translations[message]) {
+      return translations[message]
+    }
+    
+    // Kısmi eşleşme kontrolü
+    for (const [key, value] of Object.entries(translations)) {
+      if (message.toLowerCase().includes(key.toLowerCase())) {
+        return value
+      }
+    }
+    
+    // Eşleşme bulunamazsa orijinal mesajı döndür
+    return message
+  },
   async login(data: { email: string; password: string; turnstile_token?: string }): Promise<LoginResponse> {
     try {
       // Bakım durumu kontrolü (hata durumunda devam et)
@@ -155,12 +191,12 @@ export const authService = {
       const result = await response.json()
       
       if (!response.ok) {
-        // API'den gelen hata mesajını kullan
+        // API'den gelen hata mesajını kullan ve Türkçe'ye çevir
         if (result.detail) {
           if (typeof result.detail === 'string') {
-            throw new Error(result.detail)
+            throw new Error(this.translateErrorMessage(result.detail))
           } else if (Array.isArray(result.detail)) {
-            const errorMsg = result.detail.map((err: any) => err.msg).join(', ')
+            const errorMsg = result.detail.map((err: any) => this.translateErrorMessage(err.msg)).join(', ')
             throw new Error(errorMsg)
           }
         }

@@ -37,12 +37,14 @@ interface MessageInputFooterProps {
   onSendMessage?: (message: string, filters?: FilterSettings) => void
   disabled?: boolean
   placeholder?: string
+  hideFooter?: boolean
 }
 
 export function MessageInputFooter({
   onSendMessage,
   disabled = false,
-  placeholder = "Mesajınızı yazın..."
+  placeholder = "Mesajınızı yazın...",
+  hideFooter = false
 }: MessageInputFooterProps) {
   const [message, setMessage] = useState('')
   const [showExamples, setShowExamples] = useState(false)
@@ -318,41 +320,43 @@ export function MessageInputFooter({
           </div>
         </form>
         
-        {/* Orbit İnovasyon Footer */}
-        <div className="text-center mt-4">
-          <div className="flex items-center justify-between text-xs text-gray-400">
-            <div className="flex-1 text-left">
-              <a
-                href="https://orbitinovasyon.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
-              >
-                Orbit İnovasyon Ltd.
-              </a>
-              {' '}tarafından geliştirildi - v0.1
-            </div>
-            <div className="flex items-center space-x-2">
-              <span>Durum:</span>
-              <div className="flex items-center space-x-1">
-                <Circle 
-                  className={`w-2 h-2 ${
+        {/* Orbit İnovasyon Footer - Test ekranı açıkken gizle */}
+        {!hideFooter && (
+          <div className="text-center mt-4">
+            <div className="flex items-center justify-between text-xs text-gray-400">
+              <div className="flex-1 text-left">
+                <a
+                  href="https://orbitinovasyon.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                >
+                  Orbit İnovasyon Ltd.
+                </a>
+                {' '}tarafından geliştirildi - v0.1
+              </div>
+              <div className="flex items-center space-x-2">
+                <span>Durum:</span>
+                <div className="flex items-center space-x-1">
+                  <Circle 
+                    className={`w-2 h-2 ${
+                      healthStatus.isHealthy 
+                        ? 'text-green-400 fill-green-400' 
+                        : 'text-red-400 fill-red-400'
+                    }`} 
+                  />
+                  <span className={
                     healthStatus.isHealthy 
-                      ? 'text-green-400 fill-green-400' 
-                      : 'text-red-400 fill-red-400'
-                  }`} 
-                />
-                <span className={
-                  healthStatus.isHealthy 
-                    ? 'text-green-400' 
-                    : 'text-red-400'
-                }>
-                  {healthStatus.isHealthy ? 'Aktif' : 'Pasif'}
-                </span>
+                      ? 'text-green-400' 
+                      : 'text-red-400'
+                  }>
+                    {healthStatus.isHealthy ? 'Aktif' : 'Pasif'}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
       
       {/* Advanced Filters Modal */}

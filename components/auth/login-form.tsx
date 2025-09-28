@@ -104,7 +104,7 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-lg shadow-xl border-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
+    <Card className="w-full max-w-lg shadow-xl border-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm rounded-3xl">
       <CardHeader>
         {/* Logo */}
         <div className="flex justify-center mb-4">
@@ -308,7 +308,7 @@ export function LoginForm() {
               </Label>
               <div className="bg-gray-50/50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-600 flex flex-col items-center">
                 <Turnstile
-                  siteKey="0x4AAAAAAB3TQTCwwiPkpkO7" // Test site key
+                  siteKey="0x4AAAAAAB3TQTCwwiPkpkO7"
                   onSuccess={(token) => {
                     setTurnstileToken(token)
                   }}
@@ -331,7 +331,7 @@ export function LoginForm() {
 
           <Button 
             type="submit" 
-            className="w-full h-12 text-base font-semibold bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-8 tracking-wide relative overflow-hidden group" 
+            className="w-full h-12 text-base font-semibold bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-12 tracking-wide relative overflow-hidden group" 
             disabled={isLoading || (process.env.NODE_ENV !== 'development' && !turnstileToken)}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
