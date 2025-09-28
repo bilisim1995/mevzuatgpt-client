@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -29,6 +29,79 @@ export function ProfileModal({ open, onOpenChange, onProfileUpdated }: ProfileMo
     meslek: '',
     calistigi_yer: ''
   })
+
+  // Modal kapatıldığında tüm etkileri temizle
+  const handleOpenChange = (newOpen: boolean) => {
+    if (!newOpen) {
+      // Modal kapatıldığında tüm etkileri temizle
+      setTimeout(() => {
+        // Body'yi tamamen sıfırla
+        document.body.style.overflow = ''
+        document.body.style.pointerEvents = ''
+        document.body.style.position = ''
+        document.body.style.top = ''
+        document.body.style.left = ''
+        document.body.style.right = ''
+        document.body.style.bottom = ''
+        document.body.style.width = ''
+        document.body.style.height = ''
+        document.body.style.zIndex = ''
+        
+        document.documentElement.style.overflow = ''
+        document.documentElement.style.pointerEvents = ''
+        document.documentElement.style.position = ''
+        document.documentElement.style.zIndex = ''
+        
+        // Tüm modal class'larını kaldır
+        document.body.classList.remove('overflow-hidden', 'fixed', 'modal-open')
+        document.documentElement.classList.remove('overflow-hidden', 'fixed', 'modal-open')
+        
+        // Tüm modal elementlerini kaldır
+        const overlays = document.querySelectorAll('[data-radix-dialog-overlay]')
+        overlays.forEach(overlay => {
+          if (overlay.parentNode) {
+            overlay.parentNode.removeChild(overlay)
+          }
+        })
+        
+        const portals = document.querySelectorAll('[data-radix-portal]')
+        portals.forEach(portal => {
+          if (portal.querySelector('[data-radix-dialog-content]') && portal.parentNode) {
+            portal.parentNode.removeChild(portal)
+          }
+        })
+        
+        // Tüm yüksek z-index elementlerini sıfırla
+        const allElements = document.querySelectorAll('*')
+        allElements.forEach(el => {
+          const element = el as HTMLElement
+          if (element.style.zIndex && parseInt(element.style.zIndex) > 1000) {
+            element.style.zIndex = ''
+          }
+        })
+        
+        // Focus'u geri yükle
+        if (document.activeElement && document.activeElement !== document.body) {
+          (document.activeElement as HTMLElement).blur()
+        }
+        document.body.focus()
+        
+        // Event listener'ları temizle
+        document.removeEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            e.preventDefault()
+            e.stopPropagation()
+          }
+        })
+        
+        // Body'yi yeniden aktif hale getir
+        document.body.style.pointerEvents = 'auto'
+        document.documentElement.style.pointerEvents = 'auto'
+        
+      }, 200)
+    }
+    onOpenChange(newOpen)
+  }
 
   useEffect(() => {
     if (open) {
@@ -215,13 +288,16 @@ export function ProfileModal({ open, onOpenChange, onProfileUpdated }: ProfileMo
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] bg-white dark:bg-slate-900 border-gray-200 dark:border-slate-700">
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
             <User className="w-5 h-5 mr-2" />
             Profil Bilgileri
           </DialogTitle>
+          <DialogDescription className="text-gray-600 dark:text-gray-400">
+            Kişisel bilgilerinizi görüntüleyin ve düzenleyin
+          </DialogDescription>
         </DialogHeader>
 
         {loading ? (

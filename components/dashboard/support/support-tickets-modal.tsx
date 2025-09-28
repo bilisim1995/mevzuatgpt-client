@@ -72,6 +72,110 @@ export function SupportTicketsModal({ open, onOpenChange }: SupportTicketsModalP
     message: ''
   })
 
+  // Modal kapatıldığında tüm etkileri temizle - GÜÇLÜ VERSİYON
+  const handleOpenChange = (newOpen: boolean) => {
+    if (!newOpen) {
+      // Hemen temizlik yap
+      document.body.style.overflow = ''
+      document.body.style.pointerEvents = ''
+      document.documentElement.style.overflow = ''
+      document.documentElement.style.pointerEvents = ''
+      document.body.classList.remove('overflow-hidden')
+      document.documentElement.classList.remove('overflow-hidden')
+      
+      // Daha güçlü temizlik
+      setTimeout(() => {
+        // Body'yi tamamen sıfırla
+        document.body.style.overflow = ''
+        document.body.style.pointerEvents = ''
+        document.body.style.position = ''
+        document.body.style.top = ''
+        document.body.style.left = ''
+        document.body.style.right = ''
+        document.body.style.bottom = ''
+        document.body.style.width = ''
+        document.body.style.height = ''
+        document.body.style.zIndex = ''
+        
+        document.documentElement.style.overflow = ''
+        document.documentElement.style.pointerEvents = ''
+        document.documentElement.style.position = ''
+        document.documentElement.style.zIndex = ''
+        
+        // Tüm modal class'larını kaldır
+        document.body.classList.remove('overflow-hidden', 'fixed', 'modal-open')
+        document.documentElement.classList.remove('overflow-hidden', 'fixed', 'modal-open')
+        
+        // Tüm modal elementlerini kaldır
+        const overlays = document.querySelectorAll('[data-radix-dialog-overlay]')
+        overlays.forEach(overlay => {
+          if (overlay.parentNode) {
+            overlay.parentNode.removeChild(overlay)
+          }
+        })
+        
+        const portals = document.querySelectorAll('[data-radix-portal]')
+        portals.forEach(portal => {
+          if (portal.querySelector('[data-radix-dialog-content]') && portal.parentNode) {
+            portal.parentNode.removeChild(portal)
+          }
+        })
+        
+        // Tüm yüksek z-index elementlerini sıfırla
+        const allElements = document.querySelectorAll('*')
+        allElements.forEach(el => {
+          const element = el as HTMLElement
+          if (element.style.zIndex && parseInt(element.style.zIndex) > 1000) {
+            element.style.zIndex = ''
+          }
+        })
+        
+        // Focus'u geri yükle
+        if (document.activeElement && document.activeElement !== document.body) {
+          (document.activeElement as HTMLElement).blur()
+        }
+        document.body.focus()
+        
+        // Event listener'ları temizle
+        document.removeEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            e.preventDefault()
+            e.stopPropagation()
+          }
+        })
+        
+        // Body'yi yeniden aktif hale getir
+        document.body.style.pointerEvents = 'auto'
+        document.documentElement.style.pointerEvents = 'auto'
+        
+        // Ekstra güvenlik - tüm modal elementlerini tekrar kontrol et
+        setTimeout(() => {
+          const remainingOverlays = document.querySelectorAll('[data-radix-dialog-overlay]')
+          remainingOverlays.forEach(overlay => {
+            if (overlay.parentNode) {
+              overlay.parentNode.removeChild(overlay)
+            }
+          })
+          
+          const remainingPortals = document.querySelectorAll('[data-radix-portal]')
+          remainingPortals.forEach(portal => {
+            if (portal.querySelector('[data-radix-dialog-content]') && portal.parentNode) {
+              portal.parentNode.removeChild(portal)
+            }
+          })
+          
+          // Son kontrol - body'yi zorla aktif hale getir
+          document.body.style.pointerEvents = 'auto'
+          document.documentElement.style.pointerEvents = 'auto'
+          document.body.classList.remove('overflow-hidden', 'fixed', 'modal-open')
+          document.documentElement.classList.remove('overflow-hidden', 'fixed', 'modal-open')
+        }, 100)
+        
+      }, 300)
+    }
+    onOpenChange(newOpen)
+  }
+
   useEffect(() => {
     if (open && activeTab === 'list') {
       loadTickets()
@@ -172,13 +276,25 @@ export function SupportTicketsModal({ open, onOpenChange }: SupportTicketsModalP
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="max-w-4xl max-h-[85vh] bg-white dark:bg-slate-900 border-gray-200 dark:border-slate-700">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
-            <Ticket className="w-5 h-5 mr-2" />
-            Destek Talepleri
-          </DialogTitle>
+          <div className="flex items-center justify-between">
+            <div>
+              <DialogTitle className="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                <Ticket className="w-5 h-5 mr-2" />
+                Destek Talepleri
+              </DialogTitle>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => handleOpenChange(false)}
+              className="h-8 px-3 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+            >
+              Kapat
+            </Button>
+          </div>
         </DialogHeader>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">

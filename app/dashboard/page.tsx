@@ -19,6 +19,7 @@ import { AIChatInterface } from '@/components/dashboard/ai-chat-interface'
 import { LoadingIndicator } from '@/components/dashboard/loading-indicator'
 import { AIAnalysisAnimation } from '@/components/dashboard/ai-analysis-animation'
 import { AnnouncementsModal } from '@/components/dashboard/announcements-modal'
+import { CorporateContractsModal } from '@/components/dashboard/corporate-contracts-modal'
 import { toast } from 'sonner'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
@@ -77,8 +78,12 @@ export default function DashboardPage() {
   const [profileModalOpen, setProfileModalOpen] = useState(false)
   const [creditPurchaseModalOpen, setCreditPurchaseModalOpen] = useState(false)
   const [announcementsModalOpen, setAnnouncementsModalOpen] = useState(false)
+  const [corporateContractsModalOpen, setCorporateContractsModalOpen] = useState(false)
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+
+  // Modal açıkken dropdown menülerin focus'unu yönet - sadece kritik modallar
+  const isAnyModalOpen = creditPurchaseModalOpen
 
   useEffect(() => {
     setMounted(true)
@@ -102,87 +107,19 @@ export default function DashboardPage() {
     setLoading(false)
   }, [])
 
-  // Modal state'lerini temizle
+  // Modal state'lerini temizle - sadece gerekli temizlik
   useEffect(() => {
-    if (!creditPurchaseModalOpen) {
-      // Modal kapatıldığında tüm kısıtlamaları kaldır
-      document.body.style.overflow = 'unset'
-      document.body.style.pointerEvents = 'auto'
-      document.documentElement.style.pointerEvents = 'auto'
-      
-      // Tüm modal elementlerini kaldır
-      setTimeout(() => {
-        const overlays = document.querySelectorAll('[data-radix-dialog-overlay]')
-        overlays.forEach(overlay => overlay.remove())
-        
-        const portals = document.querySelectorAll('[data-radix-portal]')
-        portals.forEach(portal => {
-          if (portal.querySelector('[data-radix-dialog-content]')) {
-            portal.remove()
-          }
-        })
-        
-        // Body'den tüm modal class'larını kaldır
-        document.body.classList.remove('overflow-hidden')
-        document.documentElement.classList.remove('overflow-hidden')
-      }, 100)
-    } else {
-      // Modal açıldığında body scroll'unu devre dışı bırak
-      document.body.style.overflow = 'hidden'
-    }
-
     // Cleanup function
     return () => {
       document.body.style.overflow = 'unset'
       document.body.style.pointerEvents = 'auto'
       document.documentElement.style.pointerEvents = 'auto'
     }
-  }, [creditPurchaseModalOpen])
+  }, [])
 
-  // Modal kapatma fonksiyonu
+  // Basit modal kapatma fonksiyonu
   const handleCreditPurchaseModalClose = (open: boolean) => {
-    if (!open) {
-      // Modal kapatıldığında tüm state'leri temizle
-      setCreditPurchaseModalOpen(false)
-      
-      // Body scroll'unu ve pointer events'i geri yükle
-      document.body.style.overflow = 'unset'
-      document.body.style.pointerEvents = 'auto'
-      document.documentElement.style.pointerEvents = 'auto'
-      
-      // Tüm modal elementlerini kaldır
-      setTimeout(() => {
-        // Backdrop elementlerini kaldır
-        const overlays = document.querySelectorAll('[data-radix-dialog-overlay]')
-        overlays.forEach(overlay => overlay.remove())
-        
-        // Portal elementlerini kaldır
-        const portals = document.querySelectorAll('[data-radix-portal]')
-        portals.forEach(portal => {
-          if (portal.querySelector('[data-radix-dialog-content]')) {
-            portal.remove()
-          }
-        })
-        
-        // Body'den tüm modal class'larını kaldır
-        document.body.classList.remove('overflow-hidden')
-        document.documentElement.classList.remove('overflow-hidden')
-        
-        // Z-index'i sıfırla
-        document.body.style.zIndex = 'auto'
-        document.documentElement.style.zIndex = 'auto'
-        
-        // Event listener'ları temizle
-        document.removeEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            e.preventDefault()
-            e.stopPropagation()
-          }
-        })
-      }, 100)
-    } else {
-      setCreditPurchaseModalOpen(open)
-    }
+    setCreditPurchaseModalOpen(open)
   }
 
   const checkMaintenanceStatus = async () => {
@@ -407,6 +344,7 @@ export default function DashboardPage() {
                     variant="ghost"
                     size="sm"
                     className="h-9 px-3 rounded-full bg-white/70 dark:bg-slate-800/50 hover:bg-white/90 dark:hover:bg-slate-700/50 backdrop-blur-sm border border-white/30 dark:border-slate-700/30 flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300"
+                    disabled={isAnyModalOpen}
                   >
                     <div className="w-6 h-6 bg-blue-100 dark:bg-slate-600 rounded-full flex items-center justify-center">
                       <User className="w-3 h-3 text-blue-600 dark:text-gray-200" />
@@ -417,6 +355,7 @@ export default function DashboardPage() {
                 <DropdownMenuContent 
                   align="end" 
                   className="w-56 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-lg"
+                  inert={isAnyModalOpen}
                 >
                   <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
                     <div className="flex items-center space-x-2 mb-1">
@@ -471,6 +410,14 @@ export default function DashboardPage() {
                     Destek Talebi
                   </DropdownMenuItem>
                   
+                  <DropdownMenuItem 
+                    onClick={() => setCorporateContractsModalOpen(true)}
+                    className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 text-gray-900 dark:text-gray-200"
+                  >
+                    <Settings className="h-4 w-4 mr-2" />
+                    Kurumsal Sözleşmeler
+                  </DropdownMenuItem>
+                  
                   <DropdownMenuSeparator className="bg-gray-200 dark:bg-gray-700" />
                   
                   <DropdownMenuItem 
@@ -490,6 +437,7 @@ export default function DashboardPage() {
                     variant="ghost"
                     size="sm"
                     className="h-9 w-9 rounded-full bg-white/70 dark:bg-slate-800/50 hover:bg-white/90 dark:hover:bg-slate-700/50 p-0 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
+                    disabled={isAnyModalOpen}
                   >
                     <Settings className="h-4 w-4 text-slate-600 dark:text-slate-400" />
                   </Button>
@@ -497,6 +445,7 @@ export default function DashboardPage() {
                 <DropdownMenuContent 
                   align="end" 
                   className="w-64 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border-white/20 dark:border-slate-700/30 shadow-2xl rounded-xl"
+                  inert={isAnyModalOpen}
                 >
                   <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
                     <span className="text-sm font-medium text-gray-900 dark:text-gray-200">
@@ -659,6 +608,12 @@ export default function DashboardPage() {
       <AnnouncementsModal
         open={announcementsModalOpen}
         onOpenChange={setAnnouncementsModalOpen}
+      />
+
+      {/* Corporate Contracts Modal */}
+      <CorporateContractsModal
+        open={corporateContractsModalOpen}
+        onOpenChange={setCorporateContractsModalOpen}
       />
     </div>
   )

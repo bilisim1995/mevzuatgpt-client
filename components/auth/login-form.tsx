@@ -40,19 +40,23 @@ export function LoginForm() {
   })
 
   const onSubmit = async (data: LoginFormData) => {
-    // Turnstile token kontrolü
-    if (!turnstileToken) {
+    // Development modda Turnstile token kontrolünü atla
+    const isDevelopment = process.env.NODE_ENV === 'development'
+    
+    if (!isDevelopment && !turnstileToken) {
       toast.error('Lütfen güvenlik doğrulamasını tamamlayın.')
       return
     }
 
     setIsLoading(true)
     try {
-      // Turnstile token'ı ile birlikte login verilerini gönder
-      const loginData = {
-        ...data,
-        turnstile_token: turnstileToken
-      }
+      // Development modda turnstile_token'ı dahil etme
+      const loginData = isDevelopment 
+        ? data 
+        : {
+            ...data,
+            turnstile_token: turnstileToken || undefined
+          }
       
       const response = await authService.login(loginData)
       console.log('Giriş başarılı:', response)
@@ -128,6 +132,9 @@ export function LoginForm() {
                 type="email"
                 placeholder="ornek@email.com"
                 autoComplete="email"
+                autoCapitalize="off"
+                autoCorrect="off"
+                spellCheck="false"
                 className="h-12 px-4 text-base border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50/50 dark:bg-gray-800/50 backdrop-blur-sm focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white dark:focus:bg-gray-800 transition-all duration-300 placeholder:text-gray-400 dark:placeholder:text-gray-500 shadow-sm hover:shadow-md focus:shadow-lg"
                 {...register('email')}
               />
@@ -149,6 +156,7 @@ export function LoginForm() {
                 id="password"
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Şifrenizi giriniz"
+                autoComplete="current-password"
                 className="h-12 px-4 pr-12 text-base border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50/50 dark:bg-gray-800/50 backdrop-blur-sm focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white dark:focus:bg-gray-800 transition-all duration-300 placeholder:text-gray-400 dark:placeholder:text-gray-500 shadow-sm hover:shadow-md focus:shadow-lg"
                 {...register('password')}
               />
@@ -222,6 +230,10 @@ export function LoginForm() {
                         placeholder="ornek@email.com"
                         value={forgotPasswordEmail}
                         onChange={(e) => setForgotPasswordEmail(e.target.value)}
+                        autoComplete="email"
+                        autoCapitalize="off"
+                        autoCorrect="off"
+                        spellCheck="false"
                         className="h-10"
                       />
                     </div>
@@ -288,39 +300,39 @@ export function LoginForm() {
             </Dialog>
           </div>
 
-          <div className="space-y-4 pt-4">
-            <Label className="text-sm font-semibold text-gray-800 dark:text-gray-200 tracking-wide">
-              Güvenlik Doğrulaması
-            </Label>
-            <div className="bg-gray-50/50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-600 flex flex-col items-center">
-              <Turnstile
-                siteKey="0x4AAAAAAB3TQTCwwiPkpkO7" // Test site key
-                onSuccess={(token) => {
-                  setTurnstileToken(token)
-                  toast.success('Güvenlik doğrulaması tamamlandı')
-                }}
-                onError={() => {
-                  setTurnstileToken(null)
-                  toast.error('Güvenlik doğrulaması başarısız. Lütfen tekrar deneyin.')
-                }}
-                onExpire={() => {
-                  setTurnstileToken(null)
-                  toast.warning('Güvenlik doğrulaması süresi doldu. Lütfen tekrar doğrulayın.')
-                }}
-              />
-              {!turnstileToken && (
-                <p className="text-xs text-amber-600 dark:text-amber-400 mt-2 flex items-center">
-                  <span className="mr-1">⚠</span>
-                  Güvenlik doğrulamasını tamamlamanız gerekiyor
-                </p>
-              )}
+          {/* Development modda Turnstile doğrulamasını gizle */}
+          {process.env.NODE_ENV !== 'development' && (
+            <div className="space-y-4 pt-4">
+              <Label className="text-sm font-semibold text-gray-800 dark:text-gray-200 tracking-wide">
+                Güvenlik Doğrulaması
+              </Label>
+              <div className="bg-gray-50/50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-600 flex flex-col items-center">
+                <Turnstile
+                  siteKey="0x4AAAAAAB3TQTCwwiPkpkO7" // Test site key
+                  onSuccess={(token) => {
+                    setTurnstileToken(token)
+                  }}
+                  onError={() => {
+                    setTurnstileToken(null)
+                  }}
+                  onExpire={() => {
+                    setTurnstileToken(null)
+                  }}
+                />
+                {!turnstileToken && (
+                  <p className="text-xs text-amber-600 dark:text-amber-400 mt-2 flex items-center">
+                    <span className="mr-1">⚠</span>
+                    Güvenlik doğrulamasını tamamlamanız gerekiyor
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
+          )}
 
           <Button 
             type="submit" 
             className="w-full h-12 text-base font-semibold bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-8 tracking-wide relative overflow-hidden group" 
-            disabled={isLoading || !turnstileToken}
+            disabled={isLoading || (process.env.NODE_ENV !== 'development' && !turnstileToken)}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative z-10 flex items-center justify-center">
