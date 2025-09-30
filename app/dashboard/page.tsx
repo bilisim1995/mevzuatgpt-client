@@ -849,7 +849,7 @@ export default function DashboardPage() {
               <AIChatInterface />
             )}
             
-            {/* Yükleme durumu */}
+            {/* Yükleme durumu - Arama sırasında */}
             {isAsking && (
               <AIAnalysisAnimation />
             )}
