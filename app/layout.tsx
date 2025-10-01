@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Modern App',
-  description: 'Modern Next.js uygulaması',
+  title: 'Mevzuat GPT',
+  description: 'Yapay zeka destekli mevzuat asistanı',
   icons: {
     icon: '/favicon.ico',
   },

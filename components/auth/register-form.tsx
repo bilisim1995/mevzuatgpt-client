@@ -130,7 +130,7 @@ export function RegisterForm() {
       }, 1500)
       
     } catch (error: any) {
-      console.error('Kayıt hatası:', error)
+      
       toast.error(error.message || 'Kayıt işlemi başarısız oldu')
     } finally {
       setIsLoading(false)

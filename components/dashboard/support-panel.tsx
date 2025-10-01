@@ -71,7 +71,7 @@ export function SupportPanel() {
         setTickets(response.tickets)
       }
     } catch (error) {
-      console.error('Ticket yükleme hatası:', error)
+       
       toast.error('Ticket\'lar yüklenirken bir hata oluştu')
     } finally {
       setLoading(false)
@@ -104,7 +104,7 @@ export function SupportPanel() {
         toast.error(response.message || 'Destek talebi oluşturulamadı')
       }
     } catch (error) {
-      console.error('Ticket oluşturma hatası:', error)
+  
       toast.error('Destek talebi oluşturulurken bir hata oluştu')
     } finally {
       setCreating(false)

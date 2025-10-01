@@ -59,12 +59,11 @@ export function LoginForm() {
           }
       
       const response = await authService.login(loginData)
-      console.log('Giriş başarılı:', response)
       toast.success('Giriş başarılı!')
       // Başarılı giriş sonrası dashboard'a yönlendir
       window.location.href = '/dashboard'
     } catch (error) {
-      console.error('Giriş hatası:', error)
+     
       toast.error(error instanceof Error ? error.message : 'Giriş bilgileri hatalı. Lütfen tekrar deneyin.')
     } finally {
       setIsLoading(false)
@@ -90,7 +89,7 @@ export function LoginForm() {
       setForgotPasswordSent(true)
       toast.success('Şifre sıfırlama bağlantısı e-posta adresinize gönderildi.')
     } catch (error: any) {
-      console.error('Şifre sıfırlama hatası:', error)
+      
       toast.error(error.message || 'Şifre sıfırlama talebi gönderilemedi.')
     } finally {
       setForgotPasswordLoading(false)

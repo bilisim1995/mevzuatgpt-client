@@ -43,7 +43,7 @@ export default function MaintenancePage() {
         }
       }
     } catch (error) {
-      console.error('Bakım durumu kontrol hatası:', error)
+   
     } finally {
       setLoading(false)
     }
@@ -96,7 +96,7 @@ export default function MaintenancePage() {
             // --- DÜZELTİLEN BÖLÜM BAŞLANGICI ---
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              console.error('Logo yükleme hatası:', target.src);
+             
               target.src = "/Logo-Siyah.png"; // Fallback olarak her zaman çalışan bir logo ata
             }}
             // --- DÜZELTİLEN BÖLÜM SONU ---

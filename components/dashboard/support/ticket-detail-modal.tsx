@@ -76,7 +76,7 @@ export function TicketDetailModal({ open, onOpenChange, ticketId, onTicketUpdate
       const response = await supportService.getTicketDetail(ticketId)
       setTicket(response)
     } catch (error: any) {
-      console.error('Ticket detay yükleme hatası:', error)
+   
       const errorMessage = error.message && error.message !== '[object Object]' 
         ? error.message 
         : 'Sunucudan beklenmedik bir hata alındı. Lütfen daha sonra tekrar deneyin.'
@@ -100,7 +100,7 @@ export function TicketDetailModal({ open, onOpenChange, ticketId, onTicketUpdate
       loadTicketDetail() // Refresh ticket detail
       onTicketUpdated?.() // Refresh ticket list
     } catch (error: any) {
-      console.error('Mesaj gönderme hatası:', error)
+       
       toast.error(error.message || 'Mesaj gönderilirken bir hata oluştu.')
     } finally {
       setSending(false)

@@ -54,7 +54,6 @@ export function AdvancedFiltersModal({
   }, [settings])
 
   const handleSave = () => {
-    console.log('🔧 Modal: Kaydedilen ayarlar:', localSettings)
     onSettingsChange(localSettings)
     onOpenChange(false)
   }

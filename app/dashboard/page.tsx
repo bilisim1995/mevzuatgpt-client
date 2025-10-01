@@ -101,7 +101,6 @@ export default function DashboardPage() {
     }
 
     const userData = authService.getUser()
-    console.log('User data from auth service:', userData) // Debug için
     setUser(userData)
     
     // Kredi bilgilerini yükle
@@ -129,7 +128,7 @@ export default function DashboardPage() {
         return
       }
     } catch (error) {
-      console.error('Bakım durumu kontrol hatası:', error)
+     
     }
   }
 
@@ -137,12 +136,11 @@ export default function DashboardPage() {
     setCreditsLoading(true)
     try {
       const response = await apiService.getUserCredits()
-      console.log('Kredi bilgileri:', response) // Debug için
       if (response.success) {
         setUserCredits(response.data)
       }
     } catch (error) {
-      console.error('Kredi bilgileri yüklenirken hata:', error)
+  
     } finally {
       setCreditsLoading(false)
     }
@@ -158,8 +156,6 @@ export default function DashboardPage() {
     
     // Yeni arama başladığında mevcut kartı hemen temizle
     setQuestionAnswers([])
-    
-    console.log('📤 Dashboard: Gönderilen filtreler:', filters)
     
     setIsAsking(true)
     try {
@@ -186,7 +182,6 @@ export default function DashboardPage() {
       }
       
       // Kredi yeterliyse ask endpoint'ini çağır - filtreleri her zaman gönder
-      console.log('🚀 Dashboard: API\'ye gönderiliyor:', filters)
       const response = await apiService.askQuestion(message, filters)
       
       if (response.success) {
@@ -223,7 +218,7 @@ export default function DashboardPage() {
         }
       }
     } catch (error: any) {
-      console.error('Soru sorma hatası:', error)
+     
       toast.error(error.message || 'Soru sorulurken bir hata oluştu.')
       
       if (error.message.includes('Oturum süresi dolmuş')) {
@@ -324,9 +319,10 @@ export default function DashboardPage() {
                 <img 
                   src={mounted && resolvedTheme === 'dark' ? "/Logo (2).png" : "/Logo-Siyah.png"}
                   alt="Mevzuat GPT" 
-                  className="h-8 w-auto drop-shadow-sm"
+                  className="h-8 w-auto drop-shadow-sm cursor-pointer hover:opacity-80 transition-opacity"
+                  onClick={() => window.location.reload()}
                   onError={(e) => {
-                    console.error('Logo yükleme hatası:', (e.target as HTMLImageElement).src);
+                   
                     (e.target as HTMLImageElement).src = "/Logo-Siyah.png"; // Fallback
                   }}
                 />
@@ -603,7 +599,6 @@ export default function DashboardPage() {
                     <div className="grid grid-cols-3 gap-2">
                       <button
                         onClick={() => {
-                          console.log('Light theme clicked')
                           setTheme('light')
                         }}
                         className={`flex flex-col items-center p-3 rounded-lg border-2 transition-all ${
@@ -618,7 +613,6 @@ export default function DashboardPage() {
                       
                       <button
                         onClick={() => {
-                          console.log('Dark theme clicked')
                           setTheme('dark')
                         }}
                         className={`flex flex-col items-center p-3 rounded-lg border-2 transition-all ${
@@ -633,7 +627,6 @@ export default function DashboardPage() {
                       
                       <button
                         onClick={() => {
-                          console.log('System theme clicked')
                           setTheme('system')
                         }}
                         className={`flex flex-col items-center p-3 rounded-lg border-2 transition-all ${

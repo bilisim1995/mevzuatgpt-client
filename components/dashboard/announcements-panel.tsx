@@ -61,7 +61,7 @@ export function AnnouncementsPanel() {
         setAnnouncements(response.data.announcements)
       }
     } catch (error: any) {
-      console.error('Duyuru yükleme hatası:', error)
+    
       toast.error(error.message || 'Duyurular yüklenirken bir hata oluştu.')
     } finally {
       setLoading(false)

@@ -76,7 +76,7 @@ export function MessageInputFooter({
         lastChecked: new Date()
       })
     } catch (error) {
-      console.error('Health check failed:', error)
+     
       setHealthStatus({
         isHealthy: false,
         lastChecked: new Date()

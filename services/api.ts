@@ -233,7 +233,6 @@ export const apiService = {
     
     // Filtreler varsa değerlerini kontrol et ve gönder
     if (filters) {
-      console.log('API: Gelen filtreler:', filters)
       
       // Institution filter - boş ise null gönder
       if (filters.institution_filter && filters.institution_filter !== "all") {
@@ -259,11 +258,7 @@ export const apiService = {
       requestBody.use_cache = false
     }
 
-    console.log('🔍 API Request Body (FULL):', JSON.stringify(requestBody, null, 2))
-    console.log('🔍 Gönderilen limit değeri:', requestBody.limit)
-    console.log('🔍 Gönderilen similarity_threshold:', requestBody.similarity_threshold)
-    console.log('🔍 Gönderilen use_cache:', requestBody.use_cache)
-    console.log('🔍 Gönderilen institution_filter:', requestBody.institution_filter)
+  
     
     const response = await fetch(buildApiUrl(API_CONFIG.ENDPOINTS.USER_ASK), {
       method: 'POST',
@@ -274,11 +269,10 @@ export const apiService = {
       body: JSON.stringify(requestBody),
     })
     
-    console.log('Response Status:', response.status)
-    console.log('Response Headers:', Object.fromEntries(response.headers.entries()))
+  
     
     const responseText = await response.text()
-    console.log('Response Text:', responseText)
+   
     
     if (!response.ok) {
       if (response.status === 401) {
@@ -297,8 +291,7 @@ export const apiService = {
     try {
       const result = JSON.parse(responseText)
       
-      console.log('📊 API\'den dönen kaynak sayısı:', result.data?.sources?.length || 0)
-      console.log('🔍 Gönderilen limit:', requestBody.limit)
+     
       
       // Başarılı cevap sonrası bakım durumu kontrolü
       try {
@@ -310,13 +303,12 @@ export const apiService = {
           }, 2000)
         }
       } catch (maintenanceError) {
-        console.error('Bakım durumu kontrol hatası:', maintenanceError)
-        // Bakım kontrolü başarısız olursa sessizce devam et
+        
       }
       
       return result
     } catch (e) {
-      console.error('JSON Parse Error:', e)
+     
       throw new Error('Sunucudan geçersiz yanıt alındı.')
     }
   },
@@ -355,20 +347,16 @@ export const apiService = {
   async sendFeedback(searchLogId: string, isLike: boolean, comment?: string): Promise<FeedbackResponse> {
     const token = localStorage.getItem('access_token')
     
-    console.log('🔄 sendFeedback API çağrısı başladı')
-    console.log('📤 Parameters:', { searchLogId, isLike, comment })
-    console.log('🔍 searchLogId type:', typeof searchLogId, 'value:', searchLogId)
-    console.log('🔍 isLike type:', typeof isLike, 'value:', isLike)
-    console.log('🔑 Token durumu:', token ? 'Mevcut' : 'Yok')
+   
     
     if (!token) {
-      console.error('❌ Token bulunamadı')
+     
       throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
     }
 
     // searchLogId validation
     if (!searchLogId || searchLogId === 'undefined' || searchLogId === 'null') {
-      console.error('❌ Geçersiz searchLogId:', searchLogId)
+      
       throw new Error('Geçersiz arama ID\'si. Lütfen sayfayı yenileyin.')
     }
 
@@ -378,8 +366,7 @@ export const apiService = {
       "feedback_comment": comment || null
     }
     
-    console.log('📤 Request body:', JSON.stringify(requestBody, null, 2))
-    console.log('📤 Request URL:', buildApiUrl(API_CONFIG.ENDPOINTS.USER_FEEDBACK))
+  
     
     const response = await fetch(buildApiUrl(API_CONFIG.ENDPOINTS.USER_FEEDBACK), {
       method: 'POST',
@@ -390,19 +377,17 @@ export const apiService = {
       body: JSON.stringify(requestBody),
     })
     
-    console.log('📥 Response status:', response.status)
-    console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()))
+  
     
     const responseText = await response.text()
-    console.log('📄 Response text:', responseText)
+   
     
     let data
     try {
       data = JSON.parse(responseText)
-      console.log('✅ Parsed JSON data:', data)
+   
     } catch (parseError) {
-      console.error('❌ JSON parse hatası:', parseError)
-      console.error('📄 Raw response:', responseText)
+  
       if (response.ok) {
         throw new Error('Sunucudan geçersiz JSON yanıtı alındı.')
       }
@@ -411,29 +396,29 @@ export const apiService = {
     }
     
     if (!response.ok) {
-      console.error('❌ HTTP hatası:', response.status)
+       
       if (response.status === 401) {
-        console.error('🔐 Yetkilendirme hatası')
+      
         throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
       }
       if (response.status === 422) {
-        console.error('📝 Validasyon hatası:', data)
+        
         if (data.detail && Array.isArray(data.detail)) {
           const errorMessages = data.detail.map((err: any) => err.msg || err.message || String(err)).join(', ')
-          console.error('📝 Validasyon hata mesajları:', errorMessages)
+         
           throw new Error(`Doğrulama hatası: ${errorMessages}`)
         }
       }
       if (response.status === 404) {
-        console.error('🔍 Bulunamadı hatası')
+      
         throw new Error('Belirtilen sorgu bulunamadı veya size ait değil.')
       }
       const errorMessage = data?.message || data?.detail || `Değerlendirme gönderilirken bir hata oluştu. (HTTP ${response.status})`
-      console.error('📝 Error message:', errorMessage)
+    
       throw new Error(errorMessage)
     }
     
-    console.log('✅ API çağrısı başarılı')
+   
     return data
   },
 
@@ -456,7 +441,7 @@ export const apiService = {
     }
     
     if (!response.ok) {
-      console.error('Feedback kontrol hatası:', response.status)
+      
       return null
     }
     
@@ -471,7 +456,7 @@ export const apiService = {
       const data = JSON.parse(responseText)
       return data || null
     } catch (error) {
-      console.error('JSON parse hatası:', error)
+     
       return null
     }
   },
@@ -479,22 +464,19 @@ export const apiService = {
   async deleteFeedback(feedbackId: string): Promise<{ message: string }> {
     const token = localStorage.getItem('access_token')
     
-    console.log('🗑️ deleteFeedback API çağrısı başladı')
-    console.log('📤 Parameters:', { feedbackId })
-    console.log('🔑 Token durumu:', token ? 'Mevcut' : 'Yok')
+
     
     if (!token) {
-      console.error('❌ Token bulunamadı')
+      
       throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
     }
 
     // feedbackId validation
     if (!feedbackId || feedbackId === 'undefined' || feedbackId === 'null') {
-      console.error('❌ Geçersiz feedbackId:', feedbackId)
+ 
       throw new Error('Geçersiz feedback ID\'si.')
     }
 
-    console.log('📤 Request URL:', buildApiUrl(`${API_CONFIG.ENDPOINTS.USER_FEEDBACK_DELETE}/${feedbackId}`))
     
     const response = await fetch(buildApiUrl(`${API_CONFIG.ENDPOINTS.USER_FEEDBACK_DELETE}/${feedbackId}`), {
       method: 'DELETE',
@@ -503,19 +485,18 @@ export const apiService = {
       },
     })
     
-    console.log('📥 Response status:', response.status)
-    console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()))
+
     
     const responseText = await response.text()
-    console.log('📄 Response text:', responseText)
+   
     
     let data
     try {
       data = JSON.parse(responseText)
-      console.log('✅ Parsed JSON data:', data)
+     
     } catch (parseError) {
-      console.error('❌ JSON parse hatası:', parseError)
-      console.error('📄 Raw response:', responseText)
+     
+  
       if (response.ok) {
         throw new Error('Sunucudan geçersiz JSON yanıtı alındı.')
       }
@@ -523,21 +504,21 @@ export const apiService = {
     }
     
     if (!response.ok) {
-      console.error('❌ HTTP hatası:', response.status)
+       
       if (response.status === 401) {
-        console.error('🔐 Yetkilendirme hatası')
+       
         throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
       }
       if (response.status === 404) {
-        console.error('🔍 Bulunamadı hatası')
+       
         throw new Error('Belirtilen feedback bulunamadı.')
       }
       const errorMessage = data?.message || data?.detail || `Feedback silinirken bir hata oluştu. (HTTP ${response.status})`
-      console.error('📝 Error message:', errorMessage)
+      
       throw new Error(errorMessage)
     }
     
-    console.log('✅ API çağrısı başarılı')
+ 
     return data
   },
 
@@ -601,7 +582,7 @@ export const apiService = {
     }
 
     const url = buildApiUrl(`${API_CONFIG.ENDPOINTS.USER_SEARCH_HISTORY}?${searchParams.toString()}`)
-    console.log('Search history request URL:', url)
+
     
     const response = await fetch(url, {
       method: 'GET',
@@ -610,11 +591,10 @@ export const apiService = {
       },
     })
     
-    console.log('Search history response status:', response.status)
-    console.log('Search history response headers:', Object.fromEntries(response.headers.entries()))
+   
     
     const data = await response.json()
-    console.log('Search history response data:', data)
+ 
     
     if (!response.ok) {
       if (response.status === 401) {
@@ -647,7 +627,7 @@ export const apiService = {
     }
 
     const url = buildApiUrl(API_CONFIG.ENDPOINTS.USER_SEARCH_HISTORY_STATS)
-    console.log('Search history stats request URL:', url)
+   
     
     const response = await fetch(url, {
       method: 'GET',
@@ -656,11 +636,9 @@ export const apiService = {
       },
     })
     
-    console.log('Search history stats response status:', response.status)
-    console.log('Search history stats response headers:', Object.fromEntries(response.headers.entries()))
-    
+  
     const data = await response.json()
-    console.log('Search history stats response data:', data)
+  
     
     if (!response.ok) {
       if (response.status === 401) {
@@ -689,19 +667,13 @@ export const apiService = {
   async getUserProfile(): Promise<ProfileResponse> {
     const token = localStorage.getItem('access_token')
     
-    console.log('🌐 getUserProfile API çağrısı başladı')
-    console.log('🔑 Token durumu:', token ? 'Mevcut' : 'Yok')
     
     if (!token) {
-      console.error('❌ Token bulunamadı')
       throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
     }
 
     const url = buildApiUrl(API_CONFIG.ENDPOINTS.USER_PROFILE)
-    console.log('🔗 API URL:', url)
-    console.log('📤 Request headers:', {
-      'Authorization': `Bearer ${token.substring(0, 20)}...`
-    })
+ 
     
     const response = await fetch(url, {
       method: 'GET',
@@ -710,55 +682,47 @@ export const apiService = {
       },
     })
     
-    console.log('📥 Response status:', response.status)
-    console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()))
+ 
     
     const responseText = await response.text()
-    console.log('📄 Response text:', responseText)
+ 
     
     let data
     try {
       data = JSON.parse(responseText)
-      console.log('✅ Parsed JSON data:', data)
+   
     } catch (parseError) {
-      console.error('❌ JSON parse hatası:', parseError)
-      console.error('📄 Raw response:', responseText)
+   
       throw new Error('Sunucudan geçersiz JSON yanıtı alındı.')
     }
     
     if (!response.ok) {
-      console.error('❌ HTTP hatası:', response.status)
+      
       if (response.status === 401) {
-        console.error('🔐 Yetkilendirme hatası')
+      
         throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
       }
       const errorMessage = data?.message || data?.detail || data?.error || `Profil bilgileri alınırken bir hata oluştu. (HTTP ${response.status})`
-      console.error('📝 Error message:', errorMessage)
+     
       throw new Error(errorMessage)
     }
     
-    console.log('✅ API çağrısı başarılı')
+   
     return { success: true, data: data }
   },
 
   async updateUserProfile(profileData: UpdateProfileRequest): Promise<UpdateProfileResponse> {
     const token = localStorage.getItem('access_token')
     
-    console.log('🌐 updateUserProfile API çağrısı başladı')
-    console.log('📤 Gönderilecek veri:', profileData)
-    console.log('🔑 Token durumu:', token ? 'Mevcut' : 'Yok')
+  
     
     if (!token) {
-      console.error('❌ Token bulunamadı')
+      
       throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
     }
 
     const url = buildApiUrl(API_CONFIG.ENDPOINTS.USER_PROFILE)
-    console.log('🔗 API URL:', url)
-    console.log('📤 Request headers:', {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token.substring(0, 20)}...`
-    })
+   
     
     const response = await fetch(url, {
       method: 'PUT',
@@ -769,42 +733,40 @@ export const apiService = {
       body: JSON.stringify(profileData),
     })
     
-    console.log('📥 Response status:', response.status)
-    console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()))
+  
     
     const responseText = await response.text()
-    console.log('📄 Response text:', responseText)
+  
     
     let data
     try {
       data = JSON.parse(responseText)
-      console.log('✅ Parsed JSON data:', data)
+     
     } catch (parseError) {
-      console.error('❌ JSON parse hatası:', parseError)
-      console.error('📄 Raw response:', responseText)
+     
       throw new Error('Sunucudan geçersiz JSON yanıtı alındı.')
     }
     
     if (!response.ok) {
-      console.error('❌ HTTP hatası:', response.status)
+      
       if (response.status === 401) {
-        console.error('🔐 Yetkilendirme hatası')
+       
         throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
       }
       if (response.status === 422) {
-        console.error('📝 Validasyon hatası:', data)
+       
         if (data.detail && Array.isArray(data.detail)) {
           const errorMessages = data.detail.map((err: any) => err.msg || err.message || String(err)).join(', ')
-          console.error('📝 Validasyon hata mesajları:', errorMessages)
+         
           throw new Error(`Doğrulama hatası: ${errorMessages}`)
         }
       }
       const errorMessage = data?.message || data?.detail || data?.error || `Profil güncellenirken bir hata oluştu. (HTTP ${response.status})`
-      console.error('📝 Error message:', errorMessage)
+     
       throw new Error(errorMessage)
     }
     
-    console.log('✅ API çağrısı başarılı')
+  
     return { success: true, data: data }
   },
 }

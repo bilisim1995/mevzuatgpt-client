@@ -111,7 +111,7 @@ export function ResetPasswordForm() {
       await authService.verifyResetToken(token)
       setTokenValid(true)
     } catch (error: any) {
-      console.error('Token doğrulama hatası:', error)
+      
       setTokenValid(false)
       toast.error(error.message || 'Geçersiz veya süresi dolmuş token.')
     } finally {
@@ -131,7 +131,7 @@ export function ResetPasswordForm() {
       setResetSuccess(true)
       toast.success('Şifreniz başarıyla değiştirildi!')
     } catch (error: any) {
-      console.error('Şifre sıfırlama hatası:', error)
+     
       toast.error(error.message || 'Şifre sıfırlanırken bir hata oluştu.')
     } finally {
       setIsLoading(false)

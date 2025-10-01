@@ -24,7 +24,7 @@ interface PerformanceModalProps {
 export function PerformanceModal({ open, onOpenChange, performanceData, sourcesData }: PerformanceModalProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto bg-white dark:bg-slate-900 border-gray-200 dark:border-slate-700">
+      <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto bg-white dark:bg-slate-900 border-gray-200 dark:border-slate-700 rounded-3xl">
         <DialogHeader>
           <DialogTitle className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
             <Activity className="inline-block w-5 h-5 mr-2" />

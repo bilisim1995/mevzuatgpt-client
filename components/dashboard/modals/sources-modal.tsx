@@ -47,7 +47,6 @@ export function SourcesModal({ open, onOpenChange, sources, sourcesData }: Sourc
                     <button
                       onClick={() => {
                         if (source.pdf_url) {
-                          console.log('PDF açılıyor:', source.pdf_url)
                           window.open(source.pdf_url, '_blank', 'noopener,noreferrer')
                         } else {
                           console.warn('PDF URL bulunamadı:', source)
@@ -88,7 +87,6 @@ export function SourcesModal({ open, onOpenChange, sources, sourcesData }: Sourc
                   {source.pdf_url && (
                     <button
                       onClick={() => {
-                        console.log('PDF açılıyor (alt buton):', source.pdf_url)
                         window.open(source.pdf_url, '_blank', 'noopener,noreferrer')
                       }}
                       className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors flex items-center"

@@ -80,8 +80,6 @@ export const supportService = {
   async createTicket(data: CreateTicketRequest): Promise<CreateTicketResponse> {
     const token = localStorage.getItem('access_token')
     
-    console.log('Creating ticket with data:', data)
-    console.log('Using token:', token ? 'Token exists' : 'No token')
     
     if (!token) {
       throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
@@ -96,11 +94,7 @@ export const supportService = {
       body: JSON.stringify(data),
     })
     
-    console.log('Create ticket response status:', response.status)
-    console.log('Create ticket response headers:', Object.fromEntries(response.headers.entries()))
-    
     const responseText = await response.text()
-    console.log('Create ticket response text:', responseText)
     
     if (!response.ok) {
       if (response.status === 401) {
@@ -124,7 +118,7 @@ export const supportService = {
     try {
       return JSON.parse(responseText)
     } catch (e) {
-      console.error('JSON Parse Error:', e)
+   
       throw new Error('Sunucudan geçersiz yanıt alındı.')
     }
   },
@@ -152,7 +146,6 @@ export const supportService = {
     if (params?.search) searchParams.append('search', params.search)
 
     const requestUrl = buildApiUrl(`${API_CONFIG.ENDPOINTS.USER_TICKETS}?${searchParams}`)
-    console.log('Get tickets request URL:', requestUrl)
 
     const response = await fetch(requestUrl, {
       method: 'GET',
@@ -161,11 +154,7 @@ export const supportService = {
       },
     })
     
-    console.log('Get tickets response status:', response.status)
-    console.log('Get tickets response headers:', Object.fromEntries(response.headers.entries()))
-    
     const responseText = await response.text()
-    console.log('Get tickets response text:', responseText)
     
     if (!response.ok) {
       if (response.status === 401) {
@@ -184,7 +173,7 @@ export const supportService = {
     try {
       return JSON.parse(responseText)
     } catch (e) {
-      console.error('JSON Parse Error:', e)
+     
       throw new Error('Sunucudan geçersiz yanıt alındı.')
     }
   },
@@ -192,15 +181,12 @@ export const supportService = {
   async getTicketDetail(ticketId: string): Promise<TicketDetailResponse> {
     const token = localStorage.getItem('access_token')
     
-    console.log('Getting ticket detail for ID:', ticketId)
-    console.log('Using token:', token ? 'Token exists' : 'No token')
     
     if (!token) {
       throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
     }
 
     const requestUrl = buildApiUrl(`${API_CONFIG.ENDPOINTS.USER_TICKETS}/${ticketId}`)
-    console.log('Get ticket detail request URL:', requestUrl)
 
     const response = await fetch(requestUrl, {
       method: 'GET',
@@ -209,11 +195,7 @@ export const supportService = {
       },
     })
     
-    console.log('Get ticket detail response status:', response.status)
-    console.log('Get ticket detail response headers:', Object.fromEntries(response.headers.entries()))
-    
     const responseText = await response.text()
-    console.log('Get ticket detail response text:', responseText)
     
     if (!response.ok) {
       if (response.status === 401) {
@@ -241,7 +223,7 @@ export const supportService = {
           errorMessage = 'Sunucudan beklenmedik yanıt alındı.'
         }
       } catch (e) {
-        console.error('Error parsing response:', e)
+      
         errorMessage = responseText && responseText.length < 200 ? responseText : 'Sunucu hatası oluştu.'
       }
       throw new Error(`${errorMessage} (Status: ${response.status})`)
@@ -250,7 +232,7 @@ export const supportService = {
     try {
       return JSON.parse(responseText)
     } catch (e) {
-      console.error('JSON Parse Error:', e)
+   
       throw new Error('Sunucudan geçersiz yanıt alındı.')
     }
   },

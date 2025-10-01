@@ -93,7 +93,7 @@ export function SearchHistoryPanel() {
         setHasMore(response.data.has_more)
       }
     } catch (error: any) {
-      console.error('Sorgu geçmişi yükleme hatası:', error)
+    
       toast.error(error.message || 'Sorgu geçmişi yüklenirken bir hata oluştu.')
     } finally {
       if (reset) {
@@ -112,7 +112,7 @@ export function SearchHistoryPanel() {
         setStats(response.data)
       }
     } catch (error: any) {
-      console.error('İstatistik yükleme hatası:', error)
+    
       toast.error(error.message || 'İstatistikler yüklenirken bir hata oluştu.')
     } finally {
       setStatsLoading(false)

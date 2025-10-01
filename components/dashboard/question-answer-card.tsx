@@ -136,7 +136,7 @@ export function QuestionAnswerCard({
         setLiked(feedback.feedback_type === 'like')
       }
     } catch (error) {
-      console.error('Feedback kontrol hatası:', error)
+      
     }
   }
 
@@ -162,7 +162,7 @@ export function QuestionAnswerCard({
       
       toast.success(isLike ? 'Beğeni kaydedildi!' : 'Geri bildiriminiz kaydedildi.')
     } catch (error: any) {
-      console.error('Feedback gönderme hatası:', error)
+    
       toast.error(error.message || 'Değerlendirme gönderilirken bir hata oluştu.')
     } finally {
       setFeedbackLoading(false)
@@ -232,7 +232,7 @@ export function QuestionAnswerCard({
           text: `Soru: ${question}\n\nCevap: ${answer}`
         })
       } catch (error) {
-        console.log('Paylaşım iptal edildi', error);
+        // Paylaşım iptal edildi
       }
     } else {
       handleCopy()
