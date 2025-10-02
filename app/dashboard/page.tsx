@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { authService } from '@/services/auth'
 import { apiService, SearchStats } from '@/services/api'
@@ -67,6 +68,7 @@ interface QuestionAnswer {
 }
 
 export default function DashboardPage() {
+  const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [userCredits, setUserCredits] = useState<UserCredits | null>(null)
@@ -96,7 +98,7 @@ export default function DashboardPage() {
     
     // Oturum kontrolü
     if (!authService.isAuthenticated()) {
-      window.location.href = '/login'
+      router.push('/login')
       return
     }
 
@@ -124,7 +126,7 @@ export default function DashboardPage() {
     try {
       const maintenanceStatus = await maintenanceService.checkMaintenanceStatus()
       if (maintenanceStatus.success && maintenanceStatus.data.is_enabled) {
-        window.location.href = '/maintenance'
+        router.push('/maintenance')
         return
       }
     } catch (error) {
@@ -148,7 +150,7 @@ export default function DashboardPage() {
 
   const handleLogout = () => {
     authService.logout()
-    window.location.href = '/login'
+    router.push('/login')
   }
 
   const handleSendMessage = async (message: string, filters?: any) => {
@@ -224,7 +226,7 @@ export default function DashboardPage() {
       if (error.message.includes('Oturum süresi dolmuş')) {
         setTimeout(() => {
           authService.logout()
-          window.location.href = '/login'
+          router.push('/login')
         }, 2000)
       }
     } finally {

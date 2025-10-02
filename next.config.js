@@ -4,6 +4,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
+  outputFileTracingRoot: __dirname,
   async redirects() {
     return [
       {

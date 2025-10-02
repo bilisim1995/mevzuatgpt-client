@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { Turnstile } from '@marsidev/react-turnstile'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -16,6 +17,7 @@ import { toast } from 'sonner'
 import { useTheme } from 'next-themes'
 
 export function LoginForm() {
+  const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
@@ -61,7 +63,7 @@ export function LoginForm() {
       const response = await authService.login(loginData)
       toast.success('Giriş başarılı!')
       // Başarılı giriş sonrası dashboard'a yönlendir
-      window.location.href = '/dashboard'
+      router.push('/dashboard')
     } catch (error) {
      
       toast.error(error instanceof Error ? error.message : 'Giriş bilgileri hatalı. Lütfen tekrar deneyin.')

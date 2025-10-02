@@ -73,7 +73,6 @@ export const authService = {
       // Bakım durumu kontrolü (hata durumunda devam et)
       const maintenanceStatus = await maintenanceService.checkMaintenanceStatus()
       if (maintenanceStatus.success && maintenanceStatus.data.is_enabled) {
-        window.location.href = '/maintenance'
         throw new Error('Sistem bakımda. Bakım sayfasına yönlendiriliyorsunuz.')
       }
     } catch (maintenanceError) {
@@ -155,7 +154,6 @@ export const authService = {
       // Bakım durumu kontrolü (hata durumunda devam et)
       const maintenanceStatus = await maintenanceService.checkMaintenanceStatus()
       if (maintenanceStatus.success && maintenanceStatus.data.is_enabled) {
-        window.location.href = '/maintenance'
         throw new Error('Sistem bakımda. Bakım sayfasına yönlendiriliyorsunuz.')
       }
     } catch (maintenanceError) {
