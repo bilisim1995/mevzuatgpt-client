@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { CreditCard, Shield, Zap, Clock, Check, Building, Users, Award } from 'lucide-react'
 import { toast } from 'sonner'
+import { IyzicoPaymentModal } from './modals/iyzico-payment-modal'
 
 const CREDIT_PACKAGES = [
   {
@@ -69,25 +70,21 @@ const CREDIT_PACKAGES = [
 export function CreditPurchasePanel() {
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null)
   const [purchasing, setPurchasing] = useState(false)
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
+  const [selectedPackageData, setSelectedPackageData] = useState<any>(null)
 
   const handlePurchase = async (packageId: string) => {
     const pkg = CREDIT_PACKAGES.find(p => p.id === packageId)
     if (!pkg) return
 
-    setSelectedPackage(packageId)
-    setPurchasing(true)
+    setSelectedPackageData(pkg)
+    setShowPaymentModal(true)
+  }
 
-    try {
-      // Simulated purchase process
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      toast.success(`${pkg.name} başarıyla satın alındı! ${pkg.credits.toLocaleString()} hizmet hakkı hesabınıza eklendi.`)
-    } catch (error) {
-      toast.error('Satın alma işlemi başarısız oldu. Lütfen tekrar deneyin.')
-    } finally {
-      setPurchasing(false)
-      setSelectedPackage(null)
-    }
+  const handlePaymentSuccess = (credits: number) => {
+    toast.success(`${selectedPackageData?.name} başarıyla satın alındı! ${credits.toLocaleString()} hizmet hakkı hesabınıza eklendi.`)
+    setShowPaymentModal(false)
+    setSelectedPackageData(null)
   }
 
   return (
@@ -174,24 +171,12 @@ export function CreditPurchasePanel() {
                   <div className="mt-auto">
                     <Button
                       onClick={() => handlePurchase(pkg.id)}
-                      disabled={purchasing}
-                      className={`w-full h-10 rounded-xl font-bold text-white shadow-lg transition-all duration-500 transform ${
-                        isPurchasing
-                          ? 'bg-gray-400 cursor-not-allowed scale-95'
-                          : `bg-gradient-to-r ${pkg.gradient} hover:shadow-2xl hover:scale-105 hover:-translate-y-1 active:scale-95 active:translate-y-0`
-                      }`}
+                      className={`w-full h-10 rounded-xl font-bold text-white shadow-lg transition-all duration-500 transform bg-gradient-to-r ${pkg.gradient} hover:shadow-2xl hover:scale-105 hover:-translate-y-1 active:scale-95 active:translate-y-0`}
                     >
-                      {isPurchasing ? (
-                        <div className="flex items-center justify-center space-x-2">
-                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          <span className="text-xs">İşleniyor...</span>
-                        </div>
-                      ) : (
-                        <div className="flex items-center justify-center space-x-2">
-                          <CreditCard className="w-4 h-4 drop-shadow-sm" />
-                          <span className="text-xs tracking-wide">Satın Al</span>
-                        </div>
-                      )}
+                      <div className="flex items-center justify-center space-x-2">
+                        <CreditCard className="w-4 h-4 drop-shadow-sm" />
+                        <span className="text-xs tracking-wide">Satın Al</span>
+                      </div>
                     </Button>
                   </div>
                 </div>
@@ -211,6 +196,16 @@ export function CreditPurchasePanel() {
           />
         </div>
       </div>
+
+      {/* İyzico Payment Modal */}
+      {selectedPackageData && (
+        <IyzicoPaymentModal
+          isOpen={showPaymentModal}
+          onClose={() => setShowPaymentModal(false)}
+          packageData={selectedPackageData}
+          onSuccess={handlePaymentSuccess}
+        />
+      )}
     </div>
   )
 }
