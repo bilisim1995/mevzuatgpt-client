@@ -21,6 +21,9 @@ export interface PaymentRequest {
   buyerCountry: string
   buyerZipCode: string
   buyerAddress: string
+  buyerPhoneNumber?: string
+  registrationDate?: string
+  lastLoginDate?: string
   cardNumber: string
   cardHolderName: string
   expiryMonth: string

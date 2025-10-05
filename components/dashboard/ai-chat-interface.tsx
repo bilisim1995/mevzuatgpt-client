@@ -1,9 +1,17 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Play, X } from 'lucide-react';
+import { Play, X, Info } from 'lucide-react';
 
-export function AIChatInterface() {
+interface AIChatInterfaceProps {
+  userCredits?: {
+    current_balance: number
+    unlimited: boolean
+  } | null
+  onCreditPurchase?: () => void
+}
+
+export function AIChatInterface({ userCredits, onCreditPurchase }: AIChatInterfaceProps) {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -44,23 +52,38 @@ export function AIChatInterface() {
   return (
     <div className="flex-1 flex items-center justify-center p-4 sm:p-8 h-full overflow-hidden">
       {/* O3 Logo ve Play Butonu */}
-      <div className="relative flex items-center justify-center h-full">
-        <img 
-          src="/o3.svg" 
-          alt="O3 Logo" 
-          className="h-80 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-        />
-        
-        {/* Play Butonu */}
-        <button
-          onClick={openVideoModal}
-          className="absolute inset-0 flex items-center justify-center group cursor-pointer"
-          aria-label="Video oynat"
-        >
-          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 dark:bg-gray-800/90 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:bg-white dark:group-hover:bg-gray-700 border-2 border-blue-500 dark:border-blue-400 shadow-2xl">
-            <Play className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 dark:text-blue-400 ml-1" />
+      <div className="relative flex flex-col items-center justify-center h-full">
+        <div className="relative flex items-center justify-center">
+          <img 
+            src="/o3.svg" 
+            alt="O3 Logo" 
+            className="h-80 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+          />
+          
+          {/* Play Butonu */}
+          <button
+            onClick={openVideoModal}
+            className="absolute inset-0 flex items-center justify-center group cursor-pointer"
+            aria-label="Video oynat"
+          >
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 dark:bg-gray-800/90 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:bg-white dark:group-hover:bg-gray-700 border-2 border-blue-500 dark:border-blue-400 shadow-2xl">
+              <Play className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 dark:text-blue-400 ml-1" />
+            </div>
+          </button>
+        </div>
+
+        {/* Kredi Uyarısı */}
+        {userCredits && !userCredits.unlimited && userCredits.current_balance <= 10 && (
+          <div className="mt-4 text-center">
+            <button 
+              onClick={onCreditPurchase}
+              className="inline-flex items-center space-x-1 text-xs text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20 px-3 py-2 rounded-lg border border-orange-200 dark:border-orange-800 hover:bg-orange-100 dark:hover:bg-orange-900/30 transition-colors cursor-pointer shadow-lg hover:shadow-xl"
+            >
+              <Info className="w-3 h-3" />
+              <span>Krediniz tükenmek üzere! Satın almak için <strong>TIKLAYIN</strong>.</span>
+            </button>
           </div>
-        </button>
+        )}
       </div>
 
       {/* YouTube Video Modal */}

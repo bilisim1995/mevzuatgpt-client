@@ -817,7 +817,7 @@ export default function DashboardPage() {
             
             {/* Hizmet Satın Alma Panel İçeriği */}
             <div className="max-w-5xl mx-auto w-full">
-              <CreditPurchasePanel />
+              <CreditPurchasePanel onCreditsUpdated={loadUserCredits} />
             </div>
           </div>
         ) : (
@@ -841,7 +841,10 @@ export default function DashboardPage() {
             
             {/* AI Chat Interface - Sadece soru-cevap yoksa göster */}
             {questionAnswers.length === 0 && !isAsking && (
-              <AIChatInterface />
+              <AIChatInterface 
+                userCredits={userCredits} 
+                onCreditPurchase={() => setCreditPurchasePanelOpen(true)}
+              />
             )}
             
             {/* Yükleme durumu - Arama sırasında */}

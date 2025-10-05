@@ -1,11 +1,16 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { CreditCard, Shield, Zap, Clock, Check, Building, Users, Award } from 'lucide-react'
 import { toast } from 'sonner'
 import { IyzicoPaymentModal } from './modals/iyzico-payment-modal'
+import { PaymentResultModal } from './modals/payment-result-modal'
+
+interface CreditPurchasePanelProps {
+  onCreditsUpdated?: () => void
+}
 
 const CREDIT_PACKAGES = [
   {
@@ -67,11 +72,31 @@ const CREDIT_PACKAGES = [
   }
 ]
 
-export function CreditPurchasePanel() {
+export function CreditPurchasePanel({ onCreditsUpdated }: CreditPurchasePanelProps) {
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null)
   const [purchasing, setPurchasing] = useState(false)
   const [showPaymentModal, setShowPaymentModal] = useState(false)
   const [selectedPackageData, setSelectedPackageData] = useState<any>(null)
+  const [showResultModal, setShowResultModal] = useState(false)
+  const [paymentResult, setPaymentResult] = useState<any>(null)
+  const [userIP, setUserIP] = useState<string>('88.123.45.67')
+
+  // Kullanıcı IP adresini al
+  useEffect(() => {
+    const fetchUserIP = async () => {
+      try {
+        const response = await fetch('https://api.ipify.org?format=json')
+        const data = await response.json()
+        if (data.ip && data.ip !== '::1' && data.ip !== '127.0.0.1') {
+          setUserIP(data.ip)
+        }
+      } catch (error) {
+        console.error('IP adresi alınamadı:', error)
+      }
+    }
+    
+    fetchUserIP()
+  }, [])
 
   const handlePurchase = async (packageId: string) => {
     const pkg = CREDIT_PACKAGES.find(p => p.id === packageId)
@@ -81,9 +106,92 @@ export function CreditPurchasePanel() {
     setShowPaymentModal(true)
   }
 
-  const handlePaymentSuccess = (credits: number) => {
-    toast.success(`${selectedPackageData?.name} başarıyla satın alındı! ${credits.toLocaleString()} hizmet hakkı hesabınıza eklendi.`)
+  const handlePaymentSuccess = async (credits: number) => {
+    // Ödeme başarılı - result modal'ı göster
+    const paymentId = 'PAY-' + Date.now()
+    const orderNumber = 'ORD-' + Date.now()
+    
+    setPaymentResult({
+      status: 'success',
+      packageData: selectedPackageData,
+      paymentId: paymentId,
+      orderNumber: orderNumber
+    })
     setShowPaymentModal(false)
+    setShowResultModal(true)
+    
+          // /api/payment/order/create endpoint'ine POST et
+          try {
+            const userData = localStorage.getItem('user')
+            const user = userData ? JSON.parse(userData) : null
+            
+            const orderData = {
+              email: user?.email || 'unknown@example.com',
+              user_id: user?.id || 'unknown-user-id', // UUID eklendi
+              status: 'success',
+              conversation_id: 'conv-' + (user?.id || 'unknown-user-id'),
+              price: selectedPackageData?.price || 0,
+              payment_id: paymentId,
+              credit_amount: credits,
+              user_agent: navigator.userAgent,
+              user_ip: userIP,
+              referrer: document.referrer || '',
+              fraud_status: 'ok',
+              commission_rate: 0.029,
+              commission_fee: (selectedPackageData?.price || 0) * 0.029,
+              host_reference: 'mevzuatgpt-' + Date.now(),
+              system_time: new Date().toISOString()
+            }
+            
+            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+            const response = await fetch(`${baseUrl}/api/payment/order/create`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(orderData)
+            })
+            
+            if (response.ok) {
+              console.log('Order created successfully:', await response.json())
+            } else {
+              const errorText = await response.text()
+              console.error('Failed to create order:', errorText)
+              
+              // Veritabanı hatası için kullanıcıya bilgi ver
+              if (errorText.includes('balance_after') || errorText.includes('PGRST204')) {
+                console.warn('Veritabanı şema hatası: balance_after sütunu bulunamadı. Lütfen veritabanı şemasını güncelleyin.')
+              }
+            }
+          } catch (error) {
+            console.error('Error creating order:', error)
+            // Order creation hatası olsa bile ödeme başarılı olarak göster
+            console.warn('Order creation failed, but payment was successful')
+          }
+          
+          // Kredi bilgilerini güncelle
+          if (onCreditsUpdated) {
+            onCreditsUpdated()
+          }
+  }
+
+  const handlePaymentError = (error: any) => {
+    // Ödeme hatalı - result modal'ı göster
+    setPaymentResult({
+      status: 'error',
+      packageData: selectedPackageData,
+      errorCode: error.errorCode,
+      errorGroup: error.errorGroup,
+      errorName: error.errorName,
+      errorMessage: error.errorMessage
+    })
+    setShowPaymentModal(false)
+    setShowResultModal(true)
+  }
+
+  const handleResultModalClose = () => {
+    setShowResultModal(false)
+    setPaymentResult(null)
     setSelectedPackageData(null)
   }
 
@@ -204,6 +312,16 @@ export function CreditPurchasePanel() {
           onClose={() => setShowPaymentModal(false)}
           packageData={selectedPackageData}
           onSuccess={handlePaymentSuccess}
+          onError={handlePaymentError}
+        />
+      )}
+
+      {/* Payment Result Modal */}
+      {paymentResult && (
+        <PaymentResultModal
+          isOpen={showResultModal}
+          onClose={handleResultModalClose}
+          result={paymentResult}
         />
       )}
     </div>
