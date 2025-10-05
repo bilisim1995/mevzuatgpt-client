@@ -222,6 +222,33 @@ import { maintenanceService } from './maintenance'
 
 // API SERVICE
 export const apiService = {
+  async getUserPaymentSettings(): Promise<{
+    success: boolean
+    payment_mode: 'sandbox' | 'production'
+    is_active: boolean
+    description?: string
+  }> {
+    const token = localStorage.getItem('access_token')
+    if (!token) {
+      throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
+    }
+
+    const response = await fetch(buildApiUrl(API_CONFIG.ENDPOINTS.USER_PAYMENT_SETTINGS), {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
+      }
+      throw new Error('Ödeme ayarları alınırken bir hata oluştu.')
+    }
+
+    return await response.json()
+  },
   async askQuestion(query: string, filters?: any): Promise<AskResponse> {
     const token = localStorage.getItem('access_token')
     

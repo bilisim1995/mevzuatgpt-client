@@ -63,7 +63,12 @@ export async function createDirectPayment(requestData: any) {
       requestData
     )
 
-    const response = await fetch(`${IYZICO_CONFIG.baseUrl}/payment/auth`, {
+    const baseUrlOverride = (requestData && requestData.__baseUrlOverride) ? requestData.__baseUrlOverride : IYZICO_CONFIG.baseUrl
+    // İç kullanım alanı olan __baseUrlOverride istekten kaldırılır
+    if (requestData && requestData.__baseUrlOverride) {
+      delete requestData.__baseUrlOverride
+    }
+    const response = await fetch(`${baseUrlOverride}/payment/auth`, {
       method: 'POST',
       headers,
       body: JSON.stringify(requestData)

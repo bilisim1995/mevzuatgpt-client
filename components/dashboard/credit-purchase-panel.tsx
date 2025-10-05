@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { CreditCard, Shield, Zap, Clock, Check, Building, Users, Award } from 'lucide-react'
 import { toast } from 'sonner'
 import { IyzicoPaymentModal } from './modals/iyzico-payment-modal'
+import { apiService } from '@/services/api'
 import { PaymentResultModal } from './modals/payment-result-modal'
 
 interface CreditPurchasePanelProps {
@@ -80,9 +81,31 @@ export function CreditPurchasePanel({ onCreditsUpdated }: CreditPurchasePanelPro
   const [showResultModal, setShowResultModal] = useState(false)
   const [paymentResult, setPaymentResult] = useState<any>(null)
   const [userIP, setUserIP] = useState<string>('88.123.45.67')
+  const [paymentSettings, setPaymentSettings] = useState<{
+    payment_mode: 'sandbox' | 'production'
+    is_active: boolean
+    description?: string
+  } | null>(null)
 
   // Kullanıcı IP adresini al
   useEffect(() => {
+    // Ödeme ayarlarını yükle
+    const loadPaymentSettings = async () => {
+      try {
+        const res = await apiService.getUserPaymentSettings()
+        if (res?.success) {
+          setPaymentSettings({
+            payment_mode: res.payment_mode,
+            is_active: res.is_active,
+            description: res.description
+          })
+        }
+      } catch (e) {
+        console.error('Ödeme ayarları alınamadı:', e)
+      }
+    }
+    loadPaymentSettings()
+
     const fetchUserIP = async () => {
       try {
         const response = await fetch('https://api.ipify.org?format=json')
@@ -99,6 +122,10 @@ export function CreditPurchasePanel({ onCreditsUpdated }: CreditPurchasePanelPro
   }, [])
 
   const handlePurchase = async (packageId: string) => {
+    if (paymentSettings && paymentSettings.is_active === false) {
+      toast.error('Ödeme Kapalı')
+      return
+    }
     const pkg = CREDIT_PACKAGES.find(p => p.id === packageId)
     if (!pkg) return
 
@@ -238,7 +265,7 @@ export function CreditPurchasePanel({ onCreditsUpdated }: CreditPurchasePanelPro
                     <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${pkg.gradient} shadow-lg mb-2 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
                       <IconComponent className="w-6 h-6 text-white drop-shadow-lg" />
                     </div>
-                    <h3 className="text-base font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+                    <h3 className="text-base font-bold text-gray-900 dark:text-white mb-2 tracking-tight flex items-center justify-center gap-2">
                       {pkg.name}
                     </h3>
                     
@@ -279,11 +306,12 @@ export function CreditPurchasePanel({ onCreditsUpdated }: CreditPurchasePanelPro
                   <div className="mt-auto">
                     <Button
                       onClick={() => handlePurchase(pkg.id)}
-                      className={`w-full h-10 rounded-xl font-bold text-white shadow-lg transition-all duration-500 transform bg-gradient-to-r ${pkg.gradient} hover:shadow-2xl hover:scale-105 hover:-translate-y-1 active:scale-95 active:translate-y-0`}
+                      disabled={paymentSettings?.is_active === false}
+                      className={`w-full h-10 rounded-xl font-bold text-white shadow-lg transition-all duration-500 transform bg-gradient-to-r ${pkg.gradient} hover:shadow-2xl hover:scale-105 hover:-translate-y-1 active:scale-95 active:translate-y-0 ${paymentSettings?.is_active === false ? 'opacity-60 cursor-not-allowed' : ''}`}
                     >
                       <div className="flex items-center justify-center space-x-2">
                         <CreditCard className="w-4 h-4 drop-shadow-sm" />
-                        <span className="text-xs tracking-wide">Satın Al</span>
+                        <span className="text-xs tracking-wide">{paymentSettings?.is_active === false ? 'Ödeme Kapalı' : 'Satın Al'}</span>
                       </div>
                     </Button>
                   </div>
@@ -295,13 +323,29 @@ export function CreditPurchasePanel({ onCreditsUpdated }: CreditPurchasePanelPro
       </div>
 
       {/* Payment methods */}
-      <div className="border-t border-gray-200/40 dark:border-gray-700/40 pt-4 mt-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-lg">
-        <div className="flex items-center justify-center">
+      <div className="mt-6">
+        <div className="flex items-center justify-between gap-4 text-[11px] sm:text-xs text-gray-600 dark:text-gray-300 font-medium">
           <img 
             src="./logo_band_colored.svg" 
             alt="Ödeme Yöntemleri" 
-            className="h-8 opacity-80 hover:opacity-100 transition-opacity duration-300 drop-shadow-lg shadow-lg"
+            className="h-8 opacity-80"
           />
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
+              <Shield className="w-3.5 h-3.5" />
+              <span>256-bit SSL</span>
+            </div>
+            <span>|</span>
+            <div className="flex items-center gap-1">
+              <Zap className="w-3.5 h-3.5" />
+              <span>Anında Aktivasyon</span>
+            </div>
+            <span>|</span>
+            <div className="flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5" />
+              <span>7/24 Destek</span>
+            </div>
+          </div>
         </div>
       </div>
 

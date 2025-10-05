@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { CreditCard, Lock, Shield, CheckCircle, XCircle, Loader2, Eye, EyeOff, X, ArrowRight, Info, Copy, RefreshCw } from 'lucide-react'
 import { toast } from 'sonner'
 import { createDirectPayment, PaymentRequest } from '@/lib/iyzico'
+import { apiService } from '@/services/api'
 import { performSecurityChecks, SecurityCheckResult } from '@/lib/payment-security'
 import { getCardInfo } from '@/lib/payment-security'
 import { validateTCKimlikNoWithMessage } from '@/lib/tc-validation'
@@ -96,6 +97,11 @@ export function IyzicoPaymentModal({ isOpen, onClose, packageData, onSuccess, on
     errorName?: string
     errorMessage?: string
   } | null>(null)
+  const [paymentSettings, setPaymentSettings] = useState<{
+    payment_mode: 'sandbox' | 'production'
+    is_active: boolean
+    description?: string
+  } | null>(null)
   // Bu state'ler artık gerekli değil - ayrı modal'da gösterilecek
 
   // Ay ve yıl seçenekleri
@@ -125,6 +131,24 @@ export function IyzicoPaymentModal({ isOpen, onClose, packageData, onSuccess, on
 
   // Kullanıcı IP adresini al
   useEffect(() => {
+    // Ödeme ayarlarını çek
+    const loadPaymentSettings = async () => {
+      try {
+        const res = await apiService.getUserPaymentSettings()
+        if (res?.success) {
+          setPaymentSettings({
+            payment_mode: res.payment_mode,
+            is_active: res.is_active,
+            description: res.description,
+          })
+        }
+      } catch (e) {
+        console.error('Ödeme ayarları alınamadı:', e)
+      }
+    }
+    if (isOpen) {
+      loadPaymentSettings()
+    }
     const fetchUserIP = async () => {
       try {
         // WebRTC ile local IP alma (daha güvenilir)
@@ -336,6 +360,10 @@ export function IyzicoPaymentModal({ isOpen, onClose, packageData, onSuccess, on
   }
 
   const handlePayment = async () => {
+    if (paymentSettings && paymentSettings.is_active === false) {
+      toast.error('Ödeme Kapalı')
+      return
+    }
     setLoading(true)
     
     try {

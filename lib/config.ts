@@ -23,6 +23,8 @@ export const API_CONFIG = {
     
     // System endpoints
     MAINTENANCE_STATUS: '/api/maintenance/status',
+    // Payment settings
+    USER_PAYMENT_SETTINGS: '/api/user/payment-settings',
     HEALTH: '/health'
   }
 }

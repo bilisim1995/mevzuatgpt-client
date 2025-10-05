@@ -785,36 +785,7 @@ export default function DashboardPage() {
           </div>
         ) : creditPurchasePanelOpen ? (
           <div className="bg-amber-50/10 dark:bg-amber-900/10 border border-amber-200/30 dark:border-amber-700/30 rounded-2xl p-8 flex flex-col shadow-lg">
-            <div className="text-center mb-6">
-              <div className="flex items-center justify-center gap-4 mb-2">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-                  Hizmet Satın Al
-                </h2>
-                <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-                  <div className="flex items-center space-x-1">
-                    <div className="w-4 h-4 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                      <Shield className="w-2.5 h-2.5 text-green-600 dark:text-green-400" />
-                    </div>
-                    <span className="font-medium">256-bit SSL</span>
-                  </div>
-                  <span>|</span>
-                  <div className="flex items-center space-x-1">
-                    <div className="w-4 h-4 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                      <Zap className="w-2.5 h-2.5 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <span className="font-medium">Anında Aktivasyon</span>
-                  </div>
-                  <span>|</span>
-                  <div className="flex items-center space-x-1">
-                    <div className="w-4 h-4 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                      <Clock className="w-2.5 h-2.5 text-purple-600 dark:text-purple-400" />
-                    </div>
-                    <span className="font-medium">7/24 Destek</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
+           
             {/* Hizmet Satın Alma Panel İçeriği */}
             <div className="max-w-5xl mx-auto w-full">
               <CreditPurchasePanel onCreditsUpdated={loadUserCredits} />
