@@ -127,17 +127,20 @@ export async function POST(request: NextRequest) {
     console.log('Accept Language:', request.headers.get('accept-language'))
     console.log('=====================================')
 
-    // payment_mode header'ına göre baseUrl override et
-    const paymentMode = request.headers.get('x-payment-mode') || ''
-    if (paymentMode === 'sandbox') {
-      ;(requestData as any).__baseUrlOverride = 'https://sandbox-api.iyzipay.com'
-    } else if (paymentMode === 'production') {
+    // payment_mode header'ına göre baseUrl override et ve doğru anahtarları seç
+    const paymentModeHeader = request.headers.get('x-payment-mode') || ''
+    let mode: 'sandbox' | 'production' = 'sandbox'
+    if (paymentModeHeader === 'production') {
+      mode = 'production'
       ;(requestData as any).__baseUrlOverride = 'https://api.iyzipay.com'
+    } else {
+      mode = 'sandbox'
+      ;(requestData as any).__baseUrlOverride = 'https://sandbox-api.iyzipay.com'
     }
 
     // Gerçek İyzico API çağrısı - Direkt ödeme
     try {
-      const result = await createDirectPayment(requestData)
+      const result = await createDirectPayment(requestData, mode)
       console.log('İyzico Direct Payment Response:', result)
       return NextResponse.json(result)
     } catch (error: any) {

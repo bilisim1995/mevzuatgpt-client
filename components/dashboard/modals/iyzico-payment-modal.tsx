@@ -141,6 +141,11 @@ export function IyzicoPaymentModal({ isOpen, onClose, packageData, onSuccess, on
             is_active: res.is_active,
             description: res.description,
           })
+          try {
+            localStorage.setItem('payment_mode', res.payment_mode)
+          } catch (e) {
+            // ignore storage errors
+          }
         }
       } catch (e) {
         console.error('Ödeme ayarları alınamadı:', e)

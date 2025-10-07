@@ -1,7 +1,5 @@
-// İyzico konfigürasyonu (Test ortamı)
+// İyzico konfigürasyonu (Frontend istek başlatıcı) - Sunucu tarafında anahtarlar seçilir
 export const iyzicoConfig = {
-  apiKey: 'sandbox-Fa5NExTBNOHvExD91jpG5UUiA9hB1OwP',
-  secretKey: 'sandbox-WxoGjsPXGSTgSLjcoxlFS1gJ0ahhPzJ7',
   baseUrl: 'https://sandbox-api.iyzipay.com'
 }
 
@@ -40,6 +38,8 @@ export const createDirectPayment = async (request: PaymentRequest) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        // payment_mode header'ı backend'de doğru anahtar ve baseUrl seçimi için kullanılacak
+        'x-payment-mode': (typeof window !== 'undefined' ? (window.localStorage.getItem('payment_mode') || 'sandbox') : 'sandbox')
       },
       body: JSON.stringify(request)
     })

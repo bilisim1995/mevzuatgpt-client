@@ -1,10 +1,17 @@
 import crypto from 'crypto'
 
-// İyzico API konfigürasyonu
-export const IYZICO_CONFIG = {
-  apiKey: 'sandbox-7OzmQy32DrtWAhongzdGLb7HJLNTffxL',
-  secretKey: 'sandbox-NG9DJJUZqXOqtWu0v88UTt3q7N11zyhz',
-  baseUrl: 'https://sandbox-api.iyzipay.com'
+// İyzico API konfigürasyonları (sandbox ve production)
+export const IYZICO_CONFIGS: Record<'sandbox' | 'production', { apiKey: string; secretKey: string; baseUrl: string }> = {
+  sandbox: {
+    apiKey: 'sandbox-7OzmQy32DrtWAhongzdGLb7HJLNTffxL',
+    secretKey: 'sandbox-NG9DJJUZqXOqtWu0v88UTt3q7N11zyhz',
+    baseUrl: 'https://sandbox-api.iyzipay.com'
+  },
+  production: {
+    apiKey: 'M3C1KyZHo48GPnUJK5sRys1LqAxNOlwM',
+    secretKey: 'YcQ6GmGjFr33XdSBRWgxfkREh72eKz3y',
+    baseUrl: 'https://api.iyzipay.com'
+  }
 }
 
 // İyzico HMACSHA256 signature hesaplama (Resmi dokümantasyona göre)
@@ -51,19 +58,14 @@ export function createIyzicoHeaders(
 
 
 // Direkt ödeme (3D Secure olmadan) - Non-3DS
-export async function createDirectPayment(requestData: any) {
+export async function createDirectPayment(requestData: any, mode: 'sandbox' | 'production' = 'sandbox') {
   try {
     const randomKey = new Date().getTime() + Math.random().toString(36).substring(2, 15)
     const uriPath = '/payment/auth' // Non-3DS için doğru endpoint
-    const headers = createIyzicoHeaders(
-      IYZICO_CONFIG.apiKey,
-      IYZICO_CONFIG.secretKey,
-      randomKey,
-      uriPath,
-      requestData
-    )
+    const selectedConfig = IYZICO_CONFIGS[mode] || IYZICO_CONFIGS.sandbox
+    const headers = createIyzicoHeaders(selectedConfig.apiKey, selectedConfig.secretKey, randomKey, uriPath, requestData)
 
-    const baseUrlOverride = (requestData && requestData.__baseUrlOverride) ? requestData.__baseUrlOverride : IYZICO_CONFIG.baseUrl
+    const baseUrlOverride = (requestData && requestData.__baseUrlOverride) ? requestData.__baseUrlOverride : selectedConfig.baseUrl
     // İç kullanım alanı olan __baseUrlOverride istekten kaldırılır
     if (requestData && requestData.__baseUrlOverride) {
       delete requestData.__baseUrlOverride

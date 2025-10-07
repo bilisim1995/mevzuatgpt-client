@@ -61,7 +61,6 @@ export function LoginForm() {
           }
       
       const response = await authService.login(loginData)
-      toast.success('Giriş başarılı!')
       // Başarılı giriş sonrası dashboard'a yönlendir
       router.push('/dashboard')
     } catch (error) {
