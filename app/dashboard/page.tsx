@@ -90,7 +90,7 @@ export default function DashboardPage() {
   const [mounted, setMounted] = useState(false)
   
   // Sesli asistan hook'u
-  const { audioLevel, isListening, startListening, stopListening, error, waveform, isUploading, finalizeAndUpload, isBoosting, isPlaying, stopAudio } = useVoiceAnalysis()
+  const { audioLevel, isListening, startListening, stopListening, error, waveform, isUploading, finalizeAndUpload, isBoosting, isPlaying, stopAudio, questionText } = useVoiceAnalysis()
 
   // Modal açıkken dropdown menülerin focus'unu yönet - sadece kritik modallar
   const isAnyModalOpen = false
@@ -830,6 +830,7 @@ export default function DashboardPage() {
                 isBoosting={isBoosting}
                 isPlaying={isPlaying}
                 onStopAudio={stopAudio}
+                questionText={questionText}
               />
             )}
             

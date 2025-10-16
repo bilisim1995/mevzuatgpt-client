@@ -3,6 +3,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { useToast } from '@/hooks/use-toast'
 
+// Web Speech API tiplerini tanımla
+declare global {
+  interface Window {
+    SpeechRecognition: any
+    webkitSpeechRecognition: any
+  }
+}
+
+interface SpeechRecognitionErrorEvent {
+  error: string
+  type: string
+}
+
 interface UseVoiceAnalysisReturn {
   audioLevel: number
   isListening: boolean
@@ -15,6 +28,7 @@ interface UseVoiceAnalysisReturn {
   isBoosting?: boolean
   isPlaying?: boolean
   stopAudio: () => void
+  questionText?: string
 }
 
 export function useVoiceAnalysis(): UseVoiceAnalysisReturn {
@@ -26,6 +40,9 @@ export function useVoiceAnalysis(): UseVoiceAnalysisReturn {
   const [isBoosting, setIsBoosting] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null)
+  const [questionText, setQuestionText] = useState<string>('')
+  const [realtimeText, setRealtimeText] = useState<string>('')
+  const [isRealtimeListening, setIsRealtimeListening] = useState(false)
   // Otomatik sessizlikle finalize kapalı
   const [autoFinalizeEnabled] = useState(false)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
@@ -38,6 +55,58 @@ export function useVoiceAnalysis(): UseVoiceAnalysisReturn {
   const animationRef = useRef<number>()
   const lastSpeechTsRef = useRef<number>(0)
   const autoFinalizingRef = useRef<boolean>(false)
+  const recognitionRef = useRef<SpeechRecognition | null>(null)
+
+  // Gerçek zamanlı konuşma tanıma başlat
+  const startRealtimeSTT = () => {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+      console.warn('Bu tarayıcı konuşma tanımayı desteklemiyor')
+      return
+    }
+
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
+    const recognition = new SpeechRecognition()
+    
+    recognition.continuous = true
+    recognition.interimResults = true
+    recognition.lang = 'tr-TR'
+    
+    recognition.onstart = () => {
+      setIsRealtimeListening(true)
+      setRealtimeText('') // Başlangıçta temizle
+      console.log('[REALTIME-STT] Başladı')
+    }
+    
+    recognition.onresult = (event: any) => {
+      let interimTranscript = ''
+      let finalTranscript = ''
+      
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript
+        } else {
+          interimTranscript += transcript
+        }
+      }
+      
+      // Anlık metni güncelle
+      setRealtimeText(finalTranscript + interimTranscript)
+    }
+    
+    recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+      console.error('[REALTIME-STT] Hata:', event.error)
+      setIsRealtimeListening(false)
+    }
+    
+    recognition.onend = () => {
+      setIsRealtimeListening(false)
+      console.log('[REALTIME-STT] Bitti')
+    }
+    
+    recognitionRef.current = recognition
+    recognition.start()
+  }
 
   const startListening = async () => {
     try {
@@ -49,7 +118,13 @@ export function useVoiceAnalysis(): UseVoiceAnalysisReturn {
       }
       // Upload state reset
       setIsUploading(false)
+      // Metinleri temizle - yeni konuşma başlıyor
+      setRealtimeText('')
+      setQuestionText('')
       try { console.log('[VOICE] startListening() çağrıldı') } catch {}
+      
+      // Gerçek zamanlı STT başlat
+      startRealtimeSTT()
       
       // Mikrofon erişimi
       const stream = await navigator.mediaDevices.getUserMedia({ 
@@ -180,6 +255,13 @@ export function useVoiceAnalysis(): UseVoiceAnalysisReturn {
     try { console.log('[VOICE] stopListening() çağrıldı') } catch {}
     setIsListening(false)
     setAudioLevel(0)
+    
+    // Gerçek zamanlı STT'yi durdur
+    if (recognitionRef.current) {
+      recognitionRef.current.stop()
+      recognitionRef.current = null
+    }
+    setIsRealtimeListening(false)
     
     // Tüm media stream'leri durdur - agresif yaklaşım
     try {
@@ -324,6 +406,7 @@ export function useVoiceAnalysis(): UseVoiceAnalysisReturn {
       }
 
       const transcribedText = data?.data?.transcribed_text || ''
+      setQuestionText(transcribedText) // Soru metnini sakla
       try { console.log('[VOICE-QUERY] Success transcribed_text:', transcribedText) } catch {}
       toast({ title: 'Sesli Sorgu', description: transcribedText || 'Metin boş döndü.' })
       
@@ -365,6 +448,22 @@ export function useVoiceAnalysis(): UseVoiceAnalysisReturn {
 
   const finalizeAndUpload = async () => {
     try { console.log('[FINALIZE] buton tıklandı') } catch {}
+    
+    // Gerçek zamanlı STT'yi durdur ve metni kaydet
+    if (recognitionRef.current) {
+      recognitionRef.current.stop()
+      recognitionRef.current = null
+    }
+    setIsRealtimeListening(false)
+    
+    // Realtime metni final metin olarak kaydet
+    if (realtimeText.trim()) {
+      setQuestionText(realtimeText.trim())
+    } else {
+      // Eğer realtime metin yoksa, boş string olarak ayarla
+      setQuestionText('')
+    }
+    
     if (!mediaRecorderRef.current) {
       toast({ title: 'Kayıt bulunamadı', description: 'Gönderilecek kayıt yok.', variant: 'destructive' })
       return
@@ -404,6 +503,7 @@ export function useVoiceAnalysis(): UseVoiceAnalysisReturn {
     isUploading,
     finalizeAndUpload,
     isPlaying,
-    stopAudio
+    stopAudio,
+    questionText: realtimeText || questionText || ''
   }
 }

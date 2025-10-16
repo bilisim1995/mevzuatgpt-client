@@ -362,7 +362,7 @@ export function MessageInputFooter({
                     : 'bg-blue-600 dark:bg-gray-700 hover:bg-blue-700 dark:hover:bg-gray-600 hover:shadow-lg'
                 }`}
               >
-                <Send className="h-5 w-5 mr-2" />
+                <Send className="h-5 w-5 mr-2 text-white" />
                 <span className="text-white hidden sm:inline">Gönder</span>
               </Button>
             </div>

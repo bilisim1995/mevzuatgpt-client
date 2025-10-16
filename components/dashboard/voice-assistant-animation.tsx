@@ -13,6 +13,7 @@ interface VoiceAssistantAnimationProps {
   isListening: boolean
   audioLevel: number
   onStop?: () => void
+  questionText?: string
 }
 
 function clamp(value: number, min: number, max: number) {
@@ -184,7 +185,7 @@ function Scene({ isListening, audioLevel, waveform, isUploading = false, boostUn
   )
 }
 
-export function VoiceAssistantAnimation({ isListening, audioLevel, onStop, waveform, isUploading = false, onFinalize, onStart, isPlaying = false, onStopAudio }: VoiceAssistantAnimationProps & { waveform?: Float32Array | null, isUploading?: boolean, onFinalize?: () => void, onStart?: () => void, isPlaying?: boolean, onStopAudio?: () => void }) {
+export function VoiceAssistantAnimation({ isListening, audioLevel, onStop, waveform, isUploading = false, onFinalize, onStart, isPlaying = false, onStopAudio, questionText }: VoiceAssistantAnimationProps & { waveform?: Float32Array | null, isUploading?: boolean, onFinalize?: () => void, onStart?: () => void, isPlaying?: boolean, onStopAudio?: () => void }) {
   const [reactEnabled, setReactEnabled] = useState(false)
   const [boostUntil, setBoostUntil] = useState<number>(0)
 
@@ -224,7 +225,7 @@ export function VoiceAssistantAnimation({ isListening, audioLevel, onStop, wavef
           <div className="h-6 flex items-center">
             {reactEnabled && !isUploading && (
               <p className="text-sm text-gray-500 dark:text-gray-400 animate-pulse">
-                Şuan sizi dinliyorum...
+                {questionText && questionText.trim() ? questionText : "Şuan sizi dinliyorum..."}
               </p>
             )}
           </div>

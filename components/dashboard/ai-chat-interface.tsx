@@ -20,6 +20,7 @@ interface AIChatInterfaceProps {
   isBoosting?: boolean
   isPlaying?: boolean
   onStopAudio?: () => void
+  questionText?: string
 }
 
 export function AIChatInterface({ 
@@ -34,7 +35,8 @@ export function AIChatInterface({
   onStartListening,
   isBoosting = false,
   isPlaying = false,
-  onStopAudio
+  onStopAudio,
+  questionText
 }: AIChatInterfaceProps) {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [showAssistant, setShowAssistant] = useState(false);
@@ -99,6 +101,7 @@ export function AIChatInterface({
           isBoosting={isBoosting}
           isPlaying={isPlaying}
           onStopAudio={onStopAudio}
+          questionText={questionText}
         />
       ) : (
         /* O3 Logo ve Play Butonu - Sesli asistan değilken */
