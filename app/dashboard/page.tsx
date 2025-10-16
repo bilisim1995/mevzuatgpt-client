@@ -18,6 +18,8 @@ import { CreditPurchasePanel } from '@/components/dashboard/credit-purchase-pane
 import { AIChatInterface } from '@/components/dashboard/ai-chat-interface'
 import { LoadingIndicator } from '@/components/dashboard/loading-indicator'
 import { AIAnalysisAnimation } from '@/components/dashboard/ai-analysis-animation'
+import { VoiceAssistantAnimation } from '@/components/dashboard/voice-assistant-animation'
+import { useVoiceAnalysis } from '@/hooks/use-voice-analysis'
 import { AnnouncementsPanel } from '@/components/dashboard/announcements-panel'
 import { CorporateContractsPanel } from '@/components/dashboard/corporate-contracts-panel'
 import { ContactForm } from '@/components/dashboard/contact-form'
@@ -86,6 +88,9 @@ export default function DashboardPage() {
   const [announcementsPanelOpen, setAnnouncementsPanelOpen] = useState(false)
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  
+  // Sesli asistan hook'u
+  const { audioLevel, isListening, startListening, stopListening, error, waveform, isUploading, finalizeAndUpload, isBoosting, isPlaying, stopAudio } = useVoiceAnalysis()
 
   // Modal açıkken dropdown menülerin focus'unu yönet - sadece kritik modallar
   const isAnyModalOpen = false
@@ -815,6 +820,16 @@ export default function DashboardPage() {
               <AIChatInterface 
                 userCredits={userCredits} 
                 onCreditPurchase={() => setCreditPurchasePanelOpen(true)}
+                isListening={isListening}
+                audioLevel={audioLevel}
+                onVoiceStop={stopListening}
+                waveform={waveform}
+                isUploading={isUploading}
+                onFinalize={finalizeAndUpload}
+                onStartListening={startListening}
+                isBoosting={isBoosting}
+                isPlaying={isPlaying}
+                onStopAudio={stopAudio}
               />
             )}
             
@@ -822,6 +837,7 @@ export default function DashboardPage() {
             {isAsking && (
               <AIAnalysisAnimation />
             )}
+            
           </div>
         )}
       </main>
@@ -832,6 +848,9 @@ export default function DashboardPage() {
           onSendMessage={handleSendMessage}
           disabled={isAsking}
           placeholder={isAsking ? "Cevap bekleniyor..." : "Merak ettiğiniz konuyu kısaca yazın..."}
+          onVoiceStart={startListening}
+          onVoiceStop={stopListening}
+          isVoiceActive={isListening}
         />
       )}
 

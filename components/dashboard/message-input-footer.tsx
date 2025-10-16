@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Send, Circle, MoreVertical, X } from 'lucide-react'
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Send, Circle, MoreVertical, X, Mic, MicIcon } from 'lucide-react'
 import { AdvancedFiltersModal, FilterSettings } from './advanced-filters-modal'
 
 import { buildApiUrl, API_CONFIG } from '@/lib/config'
@@ -38,13 +39,19 @@ interface MessageInputFooterProps {
   disabled?: boolean
   placeholder?: string
   hideFooter?: boolean
+  onVoiceStart?: () => void
+  isVoiceActive?: boolean
+  onVoiceStop?: () => void
 }
 
 export function MessageInputFooter({
   onSendMessage,
   disabled = false,
   placeholder = "Mesajınızı yazın...",
-  hideFooter = false
+  hideFooter = false,
+  onVoiceStart,
+  isVoiceActive = false,
+  onVoiceStop
 }: MessageInputFooterProps) {
   const [message, setMessage] = useState('')
   const [showExamples, setShowExamples] = useState(false)
@@ -60,6 +67,7 @@ export function MessageInputFooter({
     similarity_threshold: 0.5,
     use_cache: false
   })
+  const [permissionModalOpen, setPermissionModalOpen] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<HTMLDivElement>(null)
@@ -132,6 +140,32 @@ export function MessageInputFooter({
     setIsPaused(false)
     setAnimationPosition(0)
     inputRef.current?.focus()
+  }
+
+  // Mikrofon izin isteği
+  const handleVoiceClick = () => {
+    if (isVoiceActive) {
+      if (onVoiceStop) onVoiceStop()
+      return
+    }
+    setPermissionModalOpen(true)
+  }
+
+  const handlePermissionGrant = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      // İzin verildi, stream'i kapat
+      stream.getTracks().forEach(track => track.stop())
+      setPermissionModalOpen(false)
+      // Sesli asistan başlat
+      if (onVoiceStart) {
+        onVoiceStart()
+      }
+      console.log('Mikrofon izni verildi, sesli asistan başlatıldı')
+    } catch (error) {
+      console.error('Mikrofon izni reddedildi:', error)
+      setPermissionModalOpen(false)
+    }
   }
 
   // Animasyon kontrolü
@@ -272,9 +306,37 @@ export function MessageInputFooter({
                 variant="ghost"
                 size="sm"
                 onClick={() => setFiltersModalOpen(true)}
-                className="h-12 w-10 p-0 mr-1 bg-gray-100/80 dark:bg-gray-700/50 hover:bg-gray-200/80 dark:hover:bg-gray-600/50 rounded-xl transition-all duration-200"
+                disabled={isVoiceActive}
+                className={`h-12 w-10 p-0 mr-1 rounded-xl transition-all duration-200 ${
+                  isVoiceActive 
+                    ? 'bg-gray-100/40 dark:bg-gray-700/30 cursor-not-allowed opacity-50' 
+                    : 'bg-gray-100/80 dark:bg-gray-700/50 hover:bg-gray-200/80 dark:hover:bg-gray-600/50'
+                }`}
               >
-                <MoreVertical className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                <MoreVertical className={`h-5 w-5 ${
+                  isVoiceActive 
+                    ? 'text-gray-400 dark:text-gray-500' 
+                    : 'text-gray-600 dark:text-gray-400'
+                }`} />
+              </Button>
+              {/* Sesli Sohbet Butonu */}
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={handleVoiceClick}
+                className={`h-12 mr-1 rounded-xl transition-all duration-200 flex items-center justify-center ${
+                  isVoiceActive
+                    ? 'bg-red-100/80 dark:bg-red-900/40 hover:bg-red-200/80 dark:hover:bg-red-800/50 px-3 w-auto'
+                    : 'bg-gray-100/80 dark:bg-gray-700/50 hover:bg-gray-200/80 dark:hover:bg-gray-600/50 w-10 p-0'
+                }`}
+                aria-label={isVoiceActive ? "Sesli modu durdur" : "Sesli sohbeti başlat"}
+                title={isVoiceActive ? "Durdur" : "Sesli sohbet"}
+              >
+                <Mic className={`h-5 w-5 ${isVoiceActive ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'}`} />
+                {isVoiceActive && (
+                  <span className="ml-2 text-sm font-medium text-red-700 dark:text-red-300">Durdur</span>
+                )}
               </Button>
               
               <Input
@@ -283,14 +345,22 @@ export function MessageInputFooter({
                 onChange={handleInputChange}
                 onFocus={handleInputFocus}
                 onKeyPress={handleKeyPress}
-                placeholder={placeholder}
-                disabled={disabled}
-                className="flex-1 h-12 px-4 text-base bg-white dark:bg-gray-800/50 border border-gray-300 dark:border-gray-600/30 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300 dark:focus:border-gray-600/30 focus:shadow-none placeholder-gray-500 dark:placeholder-gray-400 transition-colors focus-visible:ring-0 focus-visible:ring-offset-0"
+                placeholder={isVoiceActive ? "Sesli mod aktif..." : placeholder}
+                disabled={disabled || isVoiceActive}
+                className={`flex-1 h-12 px-4 text-base border rounded-xl focus:outline-none focus:ring-0 transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 ${
+                  isVoiceActive
+                    ? 'bg-gray-100/50 dark:bg-gray-800/30 border-gray-200 dark:border-gray-700/30 text-gray-500 dark:text-gray-500 placeholder-gray-400 dark:placeholder-gray-500 cursor-not-allowed'
+                    : 'bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-600/30 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400'
+                }`}
               />
               <Button
                 type="submit"
-                disabled={disabled || !message.trim()}
-                className="h-12 px-6 ml-2 bg-blue-600 dark:bg-gray-700 hover:bg-blue-700 dark:hover:bg-gray-600 text-white rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-base font-medium shadow-md hover:shadow-lg"
+                disabled={disabled || !message.trim() || isVoiceActive}
+                className={`h-12 px-6 ml-2 rounded-xl transition-all duration-200 flex items-center justify-center text-base font-medium shadow-md ${
+                  isVoiceActive
+                    ? 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed opacity-50'
+                    : 'bg-blue-600 dark:bg-gray-700 hover:bg-blue-700 dark:hover:bg-gray-600 hover:shadow-lg'
+                }`}
               >
                 <Send className="h-5 w-5 mr-2" />
                 <span className="text-white hidden sm:inline">Gönder</span>
@@ -366,6 +436,37 @@ export function MessageInputFooter({
         settings={filterSettings}
         onSettingsChange={setFilterSettings}
       />
+
+      {/* Mikrofon İzin Modalı */}
+      <Dialog open={permissionModalOpen} onOpenChange={setPermissionModalOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <MicIcon className="h-5 w-5 text-blue-600" />
+              Mikrofon İzni Gerekli
+            </DialogTitle>
+            <DialogDescription className="text-sm text-gray-600 dark:text-gray-400">
+              Sesli sohbet özelliğini kullanabilmek için mikrofon erişimine izin vermeniz gerekiyor. 
+              Bu izin sadece bu oturum için geçerlidir ve güvenliğiniz için gereklidir.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={() => setPermissionModalOpen(false)}
+              className="flex-1"
+            >
+              İptal
+            </Button>
+            <Button
+              onClick={handlePermissionGrant}
+              className="flex-1 bg-blue-600 hover:bg-blue-700"
+            >
+              İzin Ver
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
