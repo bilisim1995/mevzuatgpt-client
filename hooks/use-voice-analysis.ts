@@ -55,7 +55,7 @@ export function useVoiceAnalysis(): UseVoiceAnalysisReturn {
   const animationRef = useRef<number>()
   const lastSpeechTsRef = useRef<number>(0)
   const autoFinalizingRef = useRef<boolean>(false)
-  const recognitionRef = useRef<SpeechRecognition | null>(null)
+  const recognitionRef = useRef<any | null>(null)
 
   // Gerçek zamanlı konuşma tanıma başlat
   const startRealtimeSTT = () => {

@@ -14,6 +14,7 @@ interface VoiceAssistantAnimationProps {
   audioLevel: number
   onStop?: () => void
   questionText?: string
+  isBoosting?: boolean
 }
 
 function clamp(value: number, min: number, max: number) {
@@ -185,7 +186,7 @@ function Scene({ isListening, audioLevel, waveform, isUploading = false, boostUn
   )
 }
 
-export function VoiceAssistantAnimation({ isListening, audioLevel, onStop, waveform, isUploading = false, onFinalize, onStart, isPlaying = false, onStopAudio, questionText }: VoiceAssistantAnimationProps & { waveform?: Float32Array | null, isUploading?: boolean, onFinalize?: () => void, onStart?: () => void, isPlaying?: boolean, onStopAudio?: () => void }) {
+export function VoiceAssistantAnimation({ isListening, audioLevel, onStop, waveform, isUploading = false, onFinalize, onStart, isPlaying = false, onStopAudio, questionText, isBoosting = false }: VoiceAssistantAnimationProps & { waveform?: Float32Array | null, isUploading?: boolean, onFinalize?: () => void, onStart?: () => void, isPlaying?: boolean, onStopAudio?: () => void }) {
   const [reactEnabled, setReactEnabled] = useState(false)
   const [boostUntil, setBoostUntil] = useState<number>(0)
 

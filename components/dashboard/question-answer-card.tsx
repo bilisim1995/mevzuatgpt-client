@@ -255,6 +255,28 @@ export function QuestionAnswerCard({
     toast.success('WhatsApp açılıyor...')
   }
 
+  // Metni temizle - tüm newline karakterlerini düzgün satır sonlarına çevir
+  const cleanAnswerText = (text: string) => {
+    return text
+      // Önce escape edilmiş karakterleri temizle
+      .replace(/\\n\\n/g, '\n\n')  // \\n\\n -> \n\n (escape edilmiş paragraf sonu)
+      .replace(/\\n/g, '\n')        // \\n -> \n (escape edilmiş satır sonu)
+      
+      // BAŞLIK KURALLARI - Başlık satırından sonra mutlaka alt satıra geç
+      .replace(/(#{1,6}\s+[^\n]+)(\n)(?!\n)/g, '$1\n\n')  // Başlık sonrası tek satır -> çift satır
+      .replace(/(#{1,6}\s+[^\n]+)(\n\n+)/g, '$1\n\n')      // Başlık sonrası çoklu satır -> çift satır
+      
+      // Başlık karakterlerini temizle (kaldırıldı)
+      // .replace(/^#{1,6}\s+/gm, '')  // Başlık karakterlerini sil (#, ##, ###, vb.)
+      
+      // Sonra normal karakterleri işle
+      .replace(/\n\n+/g, '\n\n')    // Çoklu boş satırları tek boş satıra çevir
+      .replace(/\n\s*\n/g, '\n\n')  // Satır sonu + boşluk + satır sonu -> tek paragraf sonu
+      .replace(/\s+\n/g, '\n')     // Satır sonundaki boşlukları temizle
+      .replace(/\n\s+/g, '\n')      // Satır başındaki boşlukları temizle
+      .trim()                       // Başta ve sonda boşlukları temizle
+  }
+
   return (
     <Card className="w-full max-w-4xl mx-auto shadow-lg border border-gray-200/50 dark:border-gray-700/30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm rounded-xl">
       <CardContent className="p-6 space-y-4">
@@ -330,43 +352,159 @@ export function QuestionAnswerCard({
             )}
             
             <div className={`bg-gray-100 dark:bg-gray-800/50 rounded-xl p-4 mt-3 shadow-inner border border-gray-200/50 dark:border-gray-700/30 h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-800 hover:scrollbar-thumb-gray-500 dark:hover:scrollbar-thumb-gray-500 ${showBlurWarning ? 'blur-sm' : ''}`}>
-              <div className="prose prose-sm max-w-none dark:prose-invert 
-                            prose-headings:text-gray-900 dark:prose-headings:text-white 
-                            prose-p:text-gray-800 dark:prose-p:text-gray-200 
-                            prose-strong:text-gray-900 dark:prose-strong:text-white 
-                            prose-code:text-blue-600 dark:prose-code:text-blue-400 
-                            prose-code:bg-blue-100 dark:prose-code:bg-blue-900/30 
-                            prose-code:px-1 prose-code:py-0.5 prose-code:rounded 
-                            prose-pre:bg-gray-800 dark:prose-pre:bg-gray-900 
-                            prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-lg
-                            prose-blockquote:border-l-blue-500 prose-blockquote:bg-blue-50 
-                            dark:prose-blockquote:bg-blue-900/20 prose-blockquote:pl-4 
-                            prose-blockquote:py-2 prose-blockquote:rounded-r-lg
-                            prose-ul:text-gray-800 dark:prose-ul:text-gray-200 
-                            prose-ol:text-gray-800 dark:prose-ol:text-gray-200 
-                            prose-li:text-gray-800 dark:prose-li:text-gray-200
-                            prose-a:text-blue-600 dark:prose-a:text-blue-400
-                            prose-a:underline hover:prose-a:text-blue-500">
+              <div className="markdown-content">
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
+                  skipHtml={false}
                   components={{
-                    // Özel bileşen render'ları
-                    h1: ({children}) => <h1 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{children}</h1>,
-                    h2: ({children}) => <h2 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{children}</h2>,
-                    h3: ({children}) => <h3 className="text-base font-medium mb-2 text-gray-900 dark:text-white">{children}</h3>,
-                    p: ({children}) => <p className="mb-3 text-gray-800 dark:text-gray-200 leading-relaxed">{children}</p>,
-                    ul: ({children}) => <ul className="mb-3 pl-4 space-y-1 text-gray-800 dark:text-gray-200">{children}</ul>,
-                    ol: ({children}) => <ol className="mb-3 pl-4 space-y-1 text-gray-800 dark:text-gray-200">{children}</ol>,
-                    li: ({children}) => <li className="text-gray-800 dark:text-gray-200">{children}</li>,
-                    strong: ({children}) => <strong className="font-semibold text-gray-900 dark:text-white">{children}</strong>,
-                    em: ({children}) => <em className="italic text-gray-800 dark:text-gray-200">{children}</em>,
-                    code: ({children}) => <code className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-1 py-0.5 rounded text-sm font-mono">{children}</code>,
-                    pre: ({children}) => <pre className="bg-gray-800 dark:bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-3 text-sm">{children}</pre>,
-                    blockquote: ({children}) => <blockquote className="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 pl-4 py-2 mb-3 rounded-r-lg">{children}</blockquote>,
-                    a: ({href, children}) => <a href={href} className="text-blue-600 dark:text-blue-400 underline hover:text-blue-500 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">{children}</a>,
+                    // Başlıklar
+                    h1: ({children}) => (
+                      <h1 className="text-2xl font-bold mb-4 mt-6 text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">
+                        {children}
+                      </h1>
+                    ),
+                    h2: ({children}) => (
+                      <h2 className="text-xl font-semibold mb-3 mt-5 text-gray-900 dark:text-white border-l-4 border-blue-500 pl-3">
+                        {children}
+                      </h2>
+                    ),
+                    h3: ({children}) => (
+                      <h3 className="text-lg font-semibold mb-3 mt-4 text-gray-900 dark:text-white border-l-3 border-green-500 pl-3 bg-green-50 dark:bg-green-900/20 py-2 rounded-r-md">
+                        {children}
+                      </h3>
+                    ),
+                    h4: ({children}) => (
+                      <h4 className="text-base font-medium mb-2 mt-3 text-gray-800 dark:text-gray-200">
+                        {children}
+                      </h4>
+                    ),
+                    h5: ({children}) => (
+                      <h5 className="text-sm font-medium mb-1 mt-2 text-gray-700 dark:text-gray-300">
+                        {children}
+                      </h5>
+                    ),
+                    h6: ({children}) => (
+                      <h6 className="text-xs font-medium mb-1 mt-2 text-gray-600 dark:text-gray-400">
+                        {children}
+                      </h6>
+                    ),
+                    
+                    // Paragraflar
+                    p: ({children}) => (
+                      <p className="mb-4 text-gray-800 dark:text-gray-200 leading-relaxed text-base">
+                        {children}
+                      </p>
+                    ),
+                    
+                    // Listeler
+                    ul: ({children}) => (
+                      <ul className="mb-4 pl-6 space-y-2 text-gray-800 dark:text-gray-200 list-disc marker:text-blue-500 dark:marker:text-blue-400">
+                        {children}
+                      </ul>
+                    ),
+                    ol: ({children}) => (
+                      <ol className="mb-4 pl-6 space-y-2 text-gray-800 dark:text-gray-200 list-decimal marker:font-bold marker:text-blue-500 dark:marker:text-blue-400">
+                        {children}
+                      </ol>
+                    ),
+                    li: ({children}) => (
+                      <li className="text-gray-800 dark:text-gray-200 leading-relaxed">
+                        {children}
+                      </li>
+                    ),
+                    
+                    // Metin formatları
+                    strong: ({children}) => (
+                      <strong className="font-semibold text-gray-900 dark:text-white">
+                        {children}
+                      </strong>
+                    ),
+                    em: ({children}) => (
+                      <em className="italic text-gray-700 dark:text-gray-300">
+                        {children}
+                      </em>
+                    ),
+                    del: ({children}) => (
+                      <del className="line-through text-gray-500 dark:text-gray-500">
+                        {children}
+                      </del>
+                    ),
+                    
+                    // Kod blokları
+                    code: ({children}) => (
+                      <code className="bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 px-2 py-1 rounded text-sm font-mono border border-gray-200 dark:border-gray-700">
+                        {children}
+                      </code>
+                    ),
+                    pre: ({children}) => (
+                      <pre className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4 text-sm font-mono border border-gray-700 dark:border-gray-600">
+                        {children}
+                      </pre>
+                    ),
+                    
+                    // Blockquote
+                    blockquote: ({children}) => (
+                      <blockquote className="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 pl-4 py-3 mb-4 rounded-r-lg italic text-gray-700 dark:text-gray-300">
+                        {children}
+                      </blockquote>
+                    ),
+                    
+                    // Linkler
+                    a: ({href, children}) => (
+                      <a 
+                        href={href} 
+                        className="text-blue-600 dark:text-blue-400 underline hover:text-blue-500 dark:hover:text-blue-300 hover:no-underline transition-colors" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        {children}
+                      </a>
+                    ),
+                    
+                    // Tablolar
+                    table: ({children}) => (
+                      <div className="overflow-x-auto mb-4">
+                        <table className="min-w-full border-collapse border border-gray-300 dark:border-gray-600 rounded-lg">
+                          {children}
+                        </table>
+                      </div>
+                    ),
+                    thead: ({children}) => (
+                      <thead className="bg-gray-100 dark:bg-gray-800">
+                        {children}
+                      </thead>
+                    ),
+                    tbody: ({children}) => (
+                      <tbody className="bg-white dark:bg-gray-900">
+                        {children}
+                      </tbody>
+                    ),
+                    tr: ({children}) => (
+                      <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                        {children}
+                      </tr>
+                    ),
+                    th: ({children}) => (
+                      <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left font-semibold text-gray-900 dark:text-white">
+                        {children}
+                      </th>
+                    ),
+                    td: ({children}) => (
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-200">
+                        {children}
+                      </td>
+                    ),
+                    
+                    // Yatay çizgi
+                    hr: () => (
+                      <hr className="my-6 border-gray-300 dark:border-gray-600" />
+                    ),
+                    
+                    // Satır sonları
+                    br: () => <br className="mb-2" />,
                   }}
                 >
-                  {answer}
+                  {cleanAnswerText(answer)}
                 </ReactMarkdown>
               </div>
             </div>

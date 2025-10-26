@@ -256,6 +256,10 @@ export const apiService = {
       throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
     }
 
+    // Konsola soruyu yazdır
+    console.log('🔍 Gönderilen Soru:', query)
+    console.log('📋 Filtreler:', filters)
+
     const requestBody: any = { query }
     
     // Filtreler varsa değerlerini kontrol et ve gönder
@@ -299,7 +303,10 @@ export const apiService = {
   
     
     const responseText = await response.text()
-   
+    
+    // Konsola response'u yazdır
+    console.log('📤 API Response Status:', response.status)
+    console.log('📄 API Response Text:', responseText)
     
     if (!response.ok) {
       if (response.status === 401) {
@@ -318,7 +325,9 @@ export const apiService = {
     try {
       const result = JSON.parse(responseText)
       
-     
+      // Konsola parse edilmiş response'u yazdır
+      console.log('✅ Parse Edilmiş Response:', result)
+      console.log('💬 Cevap:', result.answer || result.data?.answer || 'Cevap bulunamadı')
       
       // Başarılı cevap sonrası bakım durumu kontrolü
       try {
