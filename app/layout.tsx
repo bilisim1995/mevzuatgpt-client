@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Mevzuat GPT',
-  description: 'Yapay zeka destekli mevzuat asistanı',
+  title: 'İlBilge',
+  description: 'Mevzuat ve içtihat araştırmaları için yapay zeka asistanı',
   icons: {
     icon: '/favicon.ico',
   },

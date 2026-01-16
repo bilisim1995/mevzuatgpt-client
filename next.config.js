@@ -7,13 +7,7 @@ const nextConfig = {
   images: { unoptimized: true },
   outputFileTracingRoot: __dirname,
   async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/login',
-        permanent: false,
-      },
-    ]
+    return [];
   },
 };
 
