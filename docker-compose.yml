@@ -1,0 +1,30 @@
+services:
+  # Next.js Uygulaması
+  mevzuat-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nextjs-container
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - ilbilge-network
+
+  # Cloudflare Tunnel
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared-tunnel
+    restart: always
+    # xxx yazan yere Cloudflare'den aldığın uzun token'ı yapıştır
+    command: tunnel --no-autoupdate run --token eyJhIjoiNDhjMDkxN2Q1YmFkZWI3ZTBiODNmNGQyZjQ3ZTUwMzMiLCJ0IjoiMTg1NDMzOGEtMzUwZi00YWUyLThiMjktMTFhOGVlOGJhYmNiIiwicyI6IllXVXpOV00wTmpNdE56RmpNaTAwWWpGaExUazBNakV0WW1Nd01UTmtOemM0TW1GbSJ9
+    networks:
+      - ilbilge-network
+    depends_on:
+      - mevzuat-app
+
+networks:
+  ilbilge-network:
+    external: true
+    # Buraya daha önce oluşturduğun network ismini veya ID'sini yazmalısın
+    name: 6e4c91e145664d04f385e50c19c8c3b00eefaeff0082a61cc1de2b312451203a
