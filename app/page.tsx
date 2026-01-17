@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme-toggle';
 import HomeRefreshButton from '@/components/landing/home-refresh-button';
@@ -63,13 +62,7 @@ export default function Home() {
       <header className="sticky top-0 z-40 border-b border-white/20 bg-white/80 backdrop-blur-md dark:border-slate-700/30 dark:bg-slate-900/80">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
-            <Image
-              src="/logo_band_colored.svg"
-              alt="İlBilge logosu"
-              width={140}
-              height={36}
-              priority
-            />
+            <span className="text-lg font-semibold">İlBilge</span>
           </div>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             <HomeRefreshButton className="hover:text-primary" />
@@ -143,6 +136,26 @@ export default function Home() {
             <div className="flex items-center justify-center">
               <div className="w-full max-w-md rounded-3xl border border-white/20 bg-white/90 p-6 shadow-2xl dark:border-slate-700/30 dark:bg-slate-900/85">
                 <div className="space-y-4">
+                  <div className="rounded-2xl border border-blue-200/60 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 p-4 text-xs text-slate-600 dark:border-blue-500/30 dark:from-blue-500/10 dark:to-indigo-500/10 dark:text-blue-100">
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-200">
+                        Yapay Zeka Akışı
+                      </span>
+                      <span className="rounded-full bg-white/80 px-2 py-0.5 text-[10px] text-blue-700 dark:bg-slate-800/70 dark:text-blue-200">
+                        Canlı Analiz
+                      </span>
+                    </div>
+                    <p className="mt-2 text-[11px] text-slate-600 dark:text-blue-100">
+                      İlBilge, mevzuat ve içtihat verilerini eşzamanlı tarar,
+                      güven puanı ve kaynak doğrulamasıyla sonuç üretir.
+                    </p>
+                    <div className="mt-3 flex items-center gap-2 text-[10px] text-slate-500 dark:text-blue-200/80">
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+                      %98 Kaynak doğrulama
+                      <span className="h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
+                      2.4 sn sonuç süresi
+                    </div>
+                  </div>
                   <div className="rounded-2xl bg-blue-50/80 p-4 text-sm text-slate-600 dark:bg-slate-800/60 dark:text-slate-300">
                     “İlBilge, 6102 sayılı Türk Ticaret Kanunu kapsamında,
                     pay devri süreçlerinde dikkat edilmesi gereken kritik
