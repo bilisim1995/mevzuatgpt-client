@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 text-foreground dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
       <header className="sticky top-0 z-40 border-b border-white/20 bg-white/80 backdrop-blur-md dark:border-slate-700/30 dark:bg-slate-900/80">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
           <div className="flex items-center gap-3">
             <span className="text-lg font-semibold">İlBilge</span>
           </div>
@@ -82,12 +82,6 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <Link
-              href="/login"
-              className="hidden rounded-full border px-4 py-2 text-sm font-medium hover:bg-secondary md:inline-flex"
-            >
-              Giriş Yap
-            </Link>
-            <Link
               href="/register"
               className="hidden rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90 md:inline-flex"
             >
@@ -98,7 +92,7 @@ export default function Home() {
       </header>
 
       <main>
-        <section className="relative overflow-hidden pt-24 pb-20 md:pt-28 md:pb-24">
+        <section className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-24">
           <div className="absolute inset-0 -z-10">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-[#0B1120] dark:via-slate-900 dark:to-indigo-900"></div>
             <div className="absolute inset-0 hero-grid-pattern bg-grid-mask opacity-[0.03]"></div>
@@ -137,40 +131,29 @@ export default function Home() {
             </svg>
           </div>
 
-          <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 md:grid-cols-2">
-            <div className="flex flex-col gap-7">
-              <div className="inline-flex items-center gap-3 rounded-full border border-[#0DA6E0]/30 bg-[#0DA6E0]/10 px-4 py-1.5 text-xs font-semibold text-slate-700 shadow-[0_0_20px_rgba(8,145,178,0.12)] backdrop-blur dark:border-[#22d3ee]/30 dark:bg-[#22d3ee]/10 dark:text-slate-100">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#22d3ee] opacity-70"></span>
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
-                </span>
-                <span className="uppercase tracking-wide">Canlı</span>
-                <span className="h-3 w-px bg-slate-400/50 dark:bg-white/20"></span>
-                <span className="font-mono text-[11px] text-slate-500 dark:text-slate-300">
-                  v2.4.0
-                </span>
-              </div>
-              <h1 className="text-4xl font-semibold leading-[1.05] text-slate-900 md:text-6xl dark:text-white">
+          <div className="mx-auto grid max-w-6xl items-start gap-16 px-4 md:grid-cols-2">
+            <div className="flex flex-col gap-7 md:pt-6">
+              <h1 className="text-4xl font-semibold leading-[1.05] text-slate-900 md:text-7xl dark:text-white">
                 Verilerinizi <br />
                 <span className="text-gradient">Akıllı RAG ile Güçlendirin</span>
               </h1>
-              <p className="text-base text-slate-600 md:text-lg dark:text-slate-300">
+              <p className="text-base text-slate-600 md:text-xl dark:text-slate-300">
                 Statik belgeleri dinamik bilgi grafiklerine dönüştürün. İlBilge,
                 mevzuat ve içtihat verileri ile yapay zeka zekası arasında köprü
                 kurar.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/register" className="glass-button-primary rounded-xl px-6 py-3 text-sm font-semibold text-white">
+                <Link href="/register" className="glass-button-primary rounded-xl px-5 py-3.5 text-base font-semibold text-white">
                   Geliştirmeye Başla
                 </Link>
                 <Link
                   href="/login"
-                  className="glass-button rounded-xl px-6 py-3 text-sm font-semibold text-slate-600 transition hover:text-slate-900 dark:text-slate-200"
+                  className="glass-button rounded-xl px-5 py-3.5 text-base font-semibold text-slate-600 transition hover:text-slate-900 dark:text-slate-200"
                 >
                   Demoyu İzle
                 </Link>
               </div>
-              <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-slate-300">
+              <div className="flex flex-wrap items-center gap-6 text-base text-slate-500 dark:text-slate-300">
                 <div className="flex items-center gap-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
                   99.9% Bağlam doğruluğu
@@ -186,7 +169,7 @@ export default function Home() {
               <div className="absolute h-72 w-72 rounded-full bg-[#22d3ee]/20 blur-[100px] animate-pulse-slow"></div>
               <div className="absolute h-48 w-48 rounded-full bg-[#a855f7]/15 blur-[80px]"></div>
 
-              <div className="relative h-full w-full max-w-[460px] transform-style-3d">
+              <div className="relative h-full w-full max-w-[460px] -translate-y-6 transform-style-3d">
                 <div className="absolute left-0 top-1/2 w-44 -translate-y-1/2 rounded-xl glass-panel p-4 animate-float border-t border-white/20">
                   <div className="mb-3 h-2 w-12 rounded-full bg-white/20"></div>
                   <div className="space-y-2">
@@ -292,7 +275,7 @@ export default function Home() {
               </defs>
             </svg>
           </div>
-          <div className="relative mx-auto max-w-6xl px-6">
+          <div className="relative mx-auto max-w-6xl px-4">
             <div className="mb-12 max-w-2xl">
               <h2 className="text-2xl font-semibold md:text-3xl">
                 İlBilge ile mevzuat araştırmalarınız daha net, daha hızlı
@@ -332,7 +315,7 @@ export default function Home() {
         </section>
 
         <section id="nasil-calisir" className="bg-white/40 py-16 md:py-24 dark:bg-slate-900/40">
-          <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-6xl px-4">
             <h2 className="text-2xl font-semibold md:text-3xl">
               Üç adımda sonuç alın
             </h2>
@@ -356,7 +339,7 @@ export default function Home() {
         </section>
 
         <section id="kullanim-alanlari" className="py-16 md:py-24">
-          <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-6xl px-4">
             <div className="grid gap-10 md:grid-cols-2">
               <div>
                 <h2 className="text-2xl font-semibold md:text-3xl">
@@ -382,7 +365,7 @@ export default function Home() {
         </section>
 
         <section id="sss" className="bg-white/40 py-16 md:py-24 dark:bg-slate-900/40">
-          <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-6xl px-4">
             <h2 className="text-2xl font-semibold md:text-3xl">
               Sıkça sorulan sorular
             </h2>
@@ -428,8 +411,8 @@ export default function Home() {
         </section>
 
         <section className="py-16 md:py-24">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="rounded-3xl bg-gradient-to-r from-blue-600/90 to-indigo-600/90 px-6 py-12 text-center text-white shadow-2xl md:px-12 dark:from-blue-600/70 dark:to-indigo-700/70">
+          <div className="mx-auto max-w-6xl px-4">
+            <div className="rounded-3xl bg-gradient-to-r from-blue-600/90 to-indigo-600/90 px-4 py-12 text-center text-white shadow-2xl md:px-10 dark:from-blue-600/70 dark:to-indigo-700/70">
               <h2 className="text-2xl font-semibold md:text-3xl">
                 İlBilge ile mevzuat araştırmalarınızı bugün hızlandırın
               </h2>
@@ -440,13 +423,13 @@ export default function Home() {
               <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
                 <Link
                   href="/register"
-                  className="rounded-full bg-white px-6 py-3 text-sm font-medium text-slate-900 hover:opacity-90"
+                  className="rounded-full bg-white px-4 py-3 text-sm font-medium text-slate-900 hover:opacity-90"
                 >
                   Hemen Başla
                 </Link>
                 <Link
                   href="/login"
-                  className="rounded-full border border-white/60 px-6 py-3 text-sm font-medium text-white hover:bg-white/10"
+                  className="rounded-full border border-white/60 px-4 py-3 text-sm font-medium text-white hover:bg-white/10"
                 >
                   Giriş Yap
                 </Link>
@@ -457,7 +440,7 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-white/30 py-10 dark:border-slate-700/40">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2">
             <p className="text-lg font-semibold">İlBilge</p>
             <p className="text-sm text-muted-foreground">
