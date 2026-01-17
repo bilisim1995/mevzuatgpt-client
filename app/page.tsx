@@ -98,109 +98,235 @@ export default function Home() {
       </header>
 
       <main>
-        <section className="bg-transparent">
-          <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:py-24">
-            <div className="flex flex-col justify-center gap-6">
-              <p className="text-sm font-semibold uppercase tracking-wide text-[#0DA6E0]">
-                İlBilge
-              </p>
-              <h1 className="text-3xl font-semibold leading-tight md:text-5xl">
-                Mevzuat ve içtihat araştırmalarınızı hızlandıran yapay zeka
-                destekli asistan
+        <section className="relative overflow-hidden pt-24 pb-20 md:pt-28 md:pb-24">
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-[#0B1120] dark:via-slate-900 dark:to-indigo-900"></div>
+            <div className="absolute inset-0 hero-grid-pattern bg-grid-mask opacity-[0.03]"></div>
+            <div className="absolute left-[15%] top-[-25%] h-[520px] w-[520px] rounded-full bg-[#0DA6E0]/15 blur-[120px] dark:bg-[#22d3ee]/20"></div>
+            <div className="absolute bottom-[-20%] right-[10%] h-[480px] w-[480px] rounded-full bg-[#7c3aed]/10 blur-[140px]"></div>
+            <svg
+              className="absolute inset-0 h-full w-full neural-lines pointer-events-none"
+              viewBox="0 0 1440 900"
+              preserveAspectRatio="none"
+              aria-hidden
+            >
+              <path
+                d="M0,400 C300,300 600,500 1440,200"
+                fill="none"
+                stroke="url(#grad-neural-1)"
+                strokeWidth="1.4"
+              />
+              <path
+                d="M-100,600 C400,800 800,400 1500,700"
+                fill="none"
+                stroke="url(#grad-neural-2)"
+                strokeWidth="1.4"
+              />
+              <defs>
+                <linearGradient id="grad-neural-1" x1="0%" x2="100%" y1="0%" y2="0%">
+                  <stop offset="0%" stopColor="#0B1120" />
+                  <stop offset="50%" stopColor="#22d3ee" />
+                  <stop offset="100%" stopColor="#0B1120" />
+                </linearGradient>
+                <linearGradient id="grad-neural-2" x1="0%" x2="100%" y1="0%" y2="0%">
+                  <stop offset="0%" stopColor="#0B1120" />
+                  <stop offset="50%" stopColor="#a855f7" />
+                  <stop offset="100%" stopColor="#0B1120" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 md:grid-cols-2">
+            <div className="flex flex-col gap-7">
+              <div className="inline-flex items-center gap-3 rounded-full border border-[#0DA6E0]/30 bg-[#0DA6E0]/10 px-4 py-1.5 text-xs font-semibold text-slate-700 shadow-[0_0_20px_rgba(8,145,178,0.12)] backdrop-blur dark:border-[#22d3ee]/30 dark:bg-[#22d3ee]/10 dark:text-slate-100">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#22d3ee] opacity-70"></span>
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+                </span>
+                <span className="uppercase tracking-wide">Canlı</span>
+                <span className="h-3 w-px bg-slate-400/50 dark:bg-white/20"></span>
+                <span className="font-mono text-[11px] text-slate-500 dark:text-slate-300">
+                  v2.4.0
+                </span>
+              </div>
+              <h1 className="text-4xl font-semibold leading-[1.05] text-slate-900 md:text-6xl dark:text-white">
+                Verilerinizi <br />
+                <span className="text-gradient">Akıllı RAG ile Güçlendirin</span>
               </h1>
-              <p className="text-base text-muted-foreground md:text-lg">
-                İlBilge, hukuki araştırmaları güvenilir kaynaklarla birleştirir,
-                sonuçları anlaşılır özetlere dönüştürür ve ekiplerin ortak
-                çalışma hızını artırır.
+              <p className="text-base text-slate-600 md:text-lg dark:text-slate-300">
+                Statik belgeleri dinamik bilgi grafiklerine dönüştürün. İlBilge,
+                mevzuat ve içtihat verileri ile yapay zeka zekası arasında köprü
+                kurar.
               </p>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/register"
-                  className="rounded-full bg-[#0DA6E0] px-6 py-3 text-center text-sm font-medium text-white hover:opacity-90"
-                >
-                  Ücretsiz Dene
+              <div className="flex flex-wrap gap-4">
+                <Link href="/register" className="glass-button-primary rounded-xl px-6 py-3 text-sm font-semibold text-white">
+                  Geliştirmeye Başla
                 </Link>
                 <Link
                   href="/login"
-                  className="rounded-full border border-[#2E77BC]/40 px-6 py-3 text-center text-sm font-medium text-[#2E77BC] hover:bg-[#2E77BC]/10"
+                  className="glass-button rounded-xl px-6 py-3 text-sm font-semibold text-slate-600 transition hover:text-slate-900 dark:text-slate-200"
                 >
-                  Demo Gör
+                  Demoyu İzle
                 </Link>
               </div>
-              <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
-                <span>Kaynaklı cevaplar</span>
-                <span>Güncel mevzuat takibi</span>
-                <span>Mobil uyumlu deneyim</span>
+              <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-slate-300">
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+                  99.9% Bağlam doğruluğu
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#22d3ee]"></span>
+                  &lt; 50ms Gecikme
+                </div>
               </div>
             </div>
-            <div className="flex items-center justify-center">
-              <div className="w-full max-w-md rounded-3xl border border-white/20 bg-white/90 p-6 shadow-2xl dark:border-slate-700/30 dark:bg-slate-900/85">
-                <div className="space-y-4">
-                  <div className="rounded-2xl border border-blue-200/60 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 p-4 text-xs text-slate-600 dark:border-blue-500/30 dark:from-blue-500/10 dark:to-indigo-500/10 dark:text-blue-100">
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-200">
-                        Yapay Zeka Akışı
-                      </span>
-                      <span className="rounded-full bg-white/80 px-2 py-0.5 text-[10px] text-blue-700 dark:bg-slate-800/70 dark:text-blue-200">
-                        Canlı Analiz
-                      </span>
+
+            <div className="relative flex h-[420px] items-center justify-center md:h-[500px]">
+              <div className="absolute h-72 w-72 rounded-full bg-[#22d3ee]/20 blur-[100px] animate-pulse-slow"></div>
+              <div className="absolute h-48 w-48 rounded-full bg-[#a855f7]/15 blur-[80px]"></div>
+
+              <div className="relative h-full w-full max-w-[460px] transform-style-3d">
+                <div className="absolute left-0 top-1/2 w-44 -translate-y-1/2 rounded-xl glass-panel p-4 animate-float border-t border-white/20">
+                  <div className="mb-3 h-2 w-12 rounded-full bg-white/20"></div>
+                  <div className="space-y-2">
+                    <div className="h-1 w-full rounded-full bg-white/10"></div>
+                    <div className="h-1 w-full rounded-full bg-white/10"></div>
+                    <div className="h-1 w-3/4 rounded-full bg-white/10"></div>
+                    <div className="h-1 w-full rounded-full bg-white/10"></div>
+                    <div className="h-1 w-5/6 rounded-full bg-white/10"></div>
+                  </div>
+                  <div className="relative mt-4 h-20 w-full overflow-hidden rounded bg-white/5 border border-white/5">
+                    <div className="scan-line absolute left-0 top-0 h-1 w-full animate-scan"></div>
+                  </div>
+                </div>
+
+                <svg
+                  className="absolute left-[140px] top-1/2 hidden h-[100px] w-[140px] -translate-y-1/2 text-[#22d3ee]/70 md:block"
+                  viewBox="0 0 140 100"
+                >
+                  <path
+                    d="M0,50 C40,50 40,20 140,20"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    opacity="0.4"
+                  />
+                  <path
+                    d="M0,50 C40,50 40,80 140,80"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    opacity="0.4"
+                  />
+                  <path
+                    d="M0,50 C50,50 60,50 140,50"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <circle r="3" fill="#22d3ee">
+                    <animateMotion
+                      dur="2s"
+                      path="M0,50 C40,50 40,20 140,20"
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                  <circle r="2.5" fill="#a855f7">
+                    <animateMotion
+                      dur="2.5s"
+                      path="M0,50 C40,50 40,80 140,80"
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                  <circle r="1.5" fill="#ffffff">
+                    <animateMotion
+                      dur="1.8s"
+                      path="M0,50 C50,50 60,50 140,50"
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                </svg>
+
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 animate-float-delayed">
+                  <div className="relative h-52 w-52">
+                    <div className="absolute left-1/2 top-1/2 z-20 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[#0DA6E0] to-blue-700 shadow-[0_0_40px_rgba(8,145,178,0.45)]">
+                      <div className="absolute inset-0 rounded-full border border-white/30 animate-pulse-slow"></div>
                     </div>
-                    <p className="mt-2 text-[11px] text-slate-600 dark:text-blue-100">
-                      İlBilge, mevzuat ve içtihat verilerini eşzamanlı tarar,
-                      güven puanı ve kaynak doğrulamasıyla sonuç üretir.
-                    </p>
-                    <div className="mt-3 flex items-center gap-2 text-[10px] text-slate-500 dark:text-blue-200/80">
-                      <span className="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
-                      %98 Kaynak doğrulama
-                      <span className="h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
-                      2.4 sn sonuç süresi
+                    <div className="absolute left-1/2 top-0 z-10 h-10 w-10 -translate-x-1/2 rounded-xl glass-panel animate-float-delayed"></div>
+                    <div className="absolute bottom-4 left-4 z-10 h-12 w-12 rounded-xl glass-panel border border-[#22d3ee]/30"></div>
+                    <div className="absolute bottom-10 right-0 z-10 h-9 w-9 rounded-full border border-[#a855f7]/60 bg-slate-900/80 dark:bg-[#151e32]">
+                      <div className="absolute inset-0 m-auto h-2.5 w-2.5 rounded-full bg-[#a855f7]"></div>
                     </div>
                   </div>
-                  <div className="rounded-2xl bg-blue-50/80 p-4 text-sm text-slate-600 dark:bg-slate-800/60 dark:text-slate-300">
-                    “İlBilge, 6102 sayılı Türk Ticaret Kanunu kapsamında,
-                    pay devri süreçlerinde dikkat edilmesi gereken kritik
-                    maddeleri özetler.”
-                  </div>
-                  <div className="rounded-2xl border border-dashed border-slate-300/60 p-4 text-xs text-slate-500 dark:border-slate-700/60 dark:text-slate-300">
-                    <p className="font-medium text-slate-800 dark:text-slate-100">Öne Çıkan Kaynaklar</p>
-                    <ul className="mt-2 space-y-1">
-                      <li>TTK m. 490-492</li>
-                      <li>Yargıtay 11. HD 2022/1234</li>
-                      <li>Güncel Tebliğ 2024/7</li>
-                    </ul>
-                  </div>
-                  <div className="rounded-2xl bg-blue-100/80 p-4 text-xs text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">
-                    Raporu tek tıkla paylaşın ve ekipçe aynı kaynağı görün.
-                  </div>
+                </div>
+
+                <div className="absolute -bottom-6 left-12 rounded-lg glass-panel px-4 py-2.5 text-[11px] text-[#a855f7] shadow-lg">
+                  <span className="block font-mono text-slate-500"># RAG Pipeline</span>
+                  <span className="block font-mono">vector_db.query(user_prompt)</span>
+                  <span className="block font-mono text-emerald-300">&gt;&gt; context_retrieved</span>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="ozellikler" className="py-16 md:py-24">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="mb-10 max-w-2xl">
+        <section id="ozellikler" className="relative overflow-hidden bg-[#0B1120] py-16 text-white md:py-24">
+          <div className="absolute inset-0 hero-grid-pattern opacity-[0.03]"></div>
+          <div className="absolute top-[40%] hidden w-full opacity-40 lg:block">
+            <svg className="h-24 w-full" preserveAspectRatio="none" aria-hidden>
+              <path
+                className="animate-draw"
+                d="M0,48 Q720,120 1440,48"
+                fill="none"
+                stroke="url(#grad-feature-line)"
+                strokeWidth="2"
+                strokeDasharray="1000"
+              />
+              <defs>
+                <linearGradient id="grad-feature-line" x1="0%" x2="100%" y1="0%" y2="0%">
+                  <stop offset="0%" stopColor="#0891b2" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#22d3ee" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div className="relative mx-auto max-w-6xl px-6">
+            <div className="mb-12 max-w-2xl">
               <h2 className="text-2xl font-semibold md:text-3xl">
                 İlBilge ile mevzuat araştırmalarınız daha net, daha hızlı
               </h2>
-              <p className="mt-3 text-muted-foreground">
+              <p className="mt-3 text-slate-300">
                 Kaynak doğrulama, özetleme ve güncel takip özellikleri tek
                 platformda birleşir.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
-              {features.map((feature) => (
-                <div
-                  key={feature.title}
-                  className="rounded-2xl border border-white/30 bg-white/90 p-6 shadow-xl dark:border-slate-700/40 dark:bg-slate-900/80"
-                >
-                  <h3 className="text-lg font-semibold">{feature.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {features.map((feature, index) => {
+                const borderAccent =
+                  index === 0
+                    ? 'hover:border-[#22d3ee]/60'
+                    : index === 1
+                      ? 'hover:border-[#a855f7]/60'
+                      : index === 2
+                        ? 'hover:border-blue-500/60'
+                        : 'hover:border-emerald-400/60';
+                return (
+                  <div
+                    key={feature.title}
+                    className={`group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.12)] ${borderAccent}`}
+                  >
+                    <div className="mb-5 h-12 w-12 rounded-xl border border-white/10 bg-[#151e32] shadow-[0_0_20px_rgba(34,211,238,0.15)]"></div>
+                    <h3 className="text-lg font-semibold group-hover:text-[#22d3ee]">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-3 text-sm text-slate-300">
+                      {feature.description}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
