@@ -198,24 +198,30 @@
 
 /* Landing hero yardımcı sınıflar */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(15, 23, 42, 0.08);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.25);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+}
+
+.dark .glass-panel {
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
 .glass-button-primary {
-  background: rgba(34, 211, 238, 0.14);
-  border: 1px solid rgba(34, 211, 238, 0.35);
-  box-shadow: 0 0 20px rgba(8, 145, 178, 0.25);
+  background: rgba(8, 145, 178, 0.22);
+  border: 1px solid rgba(8, 145, 178, 0.45);
+  box-shadow: 0 0 24px rgba(8, 145, 178, 0.35);
   transition: all 0.3s ease;
 }
 
 .glass-button-primary:hover {
-  background: rgba(34, 211, 238, 0.25);
-  border-color: rgba(34, 211, 238, 0.6);
-  box-shadow: 0 0 36px rgba(8, 145, 178, 0.4);
+  background: rgba(8, 145, 178, 0.32);
+  border-color: rgba(8, 145, 178, 0.65);
+  box-shadow: 0 0 40px rgba(8, 145, 178, 0.45);
   transform: translateY(-2px);
 }
 

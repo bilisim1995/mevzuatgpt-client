@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme-toggle';
 import HomeRefreshButton from '@/components/landing/home-refresh-button';
+import QuoteInfoDialog from '@/components/landing/quote-info-dialog';
+import HeroLottie from '@/components/landing/hero-lottie';
 
 export const metadata: Metadata = {
   title: 'İlBilge | Mevzuat ve İçtihat Asistanı',
@@ -92,7 +94,7 @@ export default function Home() {
       </header>
 
       <main>
-        <section className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-24">
+        <section className="relative flex min-h-screen items-center overflow-hidden pt-24 pb-24 md:pt-28 md:pb-28">
           <div className="absolute inset-0 -z-10">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-[#0B1120] dark:via-slate-900 dark:to-indigo-900"></div>
             <div className="absolute inset-0 hero-grid-pattern bg-grid-mask opacity-[0.03]"></div>
@@ -132,31 +134,29 @@ export default function Home() {
           </div>
 
           <div className="mx-auto grid max-w-6xl items-start gap-16 px-4 md:grid-cols-2">
-            <div className="flex flex-col gap-7 md:pt-6">
-              <h1 className="text-4xl font-semibold leading-[1.05] text-slate-900 md:text-7xl dark:text-white">
-                Verilerinizi <br />
-                <span className="text-gradient">Akıllı RAG ile Güçlendirin</span>
+            <div className="flex flex-col gap-7 md:pt-6 md:-translate-y-6">
+                <h1 className="animate-in slide-in-from-bottom-6 fade-in-0 duration-700 text-4xl font-semibold leading-[1.05] text-slate-900 md:text-6xl dark:text-white">
+                Mevzuatı <br />
+                <span className="text-gradient">Vektör Tabanlı Ai ile Hızlandırın</span>
               </h1>
-              <p className="text-base text-slate-600 md:text-xl dark:text-slate-300">
-                Statik belgeleri dinamik bilgi grafiklerine dönüştürün. İlBilge,
-                mevzuat ve içtihat verileri ile yapay zeka zekası arasında köprü
-                kurar.
-              </p>
+              <QuoteInfoDialog />
               <div className="flex flex-wrap gap-4">
-                <Link href="/register" className="glass-button-primary rounded-xl px-5 py-3.5 text-base font-semibold text-white">
-                  Geliştirmeye Başla
+                <Link href="/register" className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3.5 text-base font-semibold text-white transition hover:from-cyan-400 hover:to-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60">
+                  Kullanmaya Başlayın
+                  <span aria-hidden className="transition group-hover:translate-x-1">→</span>
                 </Link>
                 <Link
                   href="/login"
-                  className="glass-button rounded-xl px-5 py-3.5 text-base font-semibold text-slate-600 transition hover:text-slate-900 dark:text-slate-200"
+                  className="group inline-flex items-center gap-2 rounded-full border border-slate-300/80 bg-white/60 px-6 py-3.5 text-base font-semibold text-slate-800 backdrop-blur transition hover:border-slate-400 hover:bg-white/80 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300/60 dark:border-slate-600/60 dark:bg-slate-900/40 dark:text-slate-100 dark:hover:bg-slate-900/60"
                 >
                   Demoyu İzle
+                  <span aria-hidden className="transition group-hover:translate-x-1">→</span>
                 </Link>
               </div>
               <div className="flex flex-wrap items-center gap-6 text-base text-slate-500 dark:text-slate-300">
                 <div className="flex items-center gap-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
-                  99.9% Bağlam doğruluğu
+                  199 Kamu Kurumu İle Entegre
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-[#22d3ee]"></span>
@@ -165,91 +165,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative flex h-[420px] items-center justify-center md:h-[500px]">
-              <div className="absolute h-72 w-72 rounded-full bg-[#22d3ee]/20 blur-[100px] animate-pulse-slow"></div>
-              <div className="absolute h-48 w-48 rounded-full bg-[#a855f7]/15 blur-[80px]"></div>
-
-              <div className="relative h-full w-full max-w-[460px] -translate-y-6 transform-style-3d">
-                <div className="absolute left-0 top-1/2 w-44 -translate-y-1/2 rounded-xl glass-panel p-4 animate-float border-t border-white/20">
-                  <div className="mb-3 h-2 w-12 rounded-full bg-white/20"></div>
-                  <div className="space-y-2">
-                    <div className="h-1 w-full rounded-full bg-white/10"></div>
-                    <div className="h-1 w-full rounded-full bg-white/10"></div>
-                    <div className="h-1 w-3/4 rounded-full bg-white/10"></div>
-                    <div className="h-1 w-full rounded-full bg-white/10"></div>
-                    <div className="h-1 w-5/6 rounded-full bg-white/10"></div>
-                  </div>
-                  <div className="relative mt-4 h-20 w-full overflow-hidden rounded bg-white/5 border border-white/5">
-                    <div className="scan-line absolute left-0 top-0 h-1 w-full animate-scan"></div>
-                  </div>
-                </div>
-
-                <svg
-                  className="absolute left-[140px] top-1/2 hidden h-[100px] w-[140px] -translate-y-1/2 text-[#22d3ee]/70 md:block"
-                  viewBox="0 0 140 100"
-                >
-                  <path
-                    d="M0,50 C40,50 40,20 140,20"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    opacity="0.4"
-                  />
-                  <path
-                    d="M0,50 C40,50 40,80 140,80"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    opacity="0.4"
-                  />
-                  <path
-                    d="M0,50 C50,50 60,50 140,50"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                  <circle r="3" fill="#22d3ee">
-                    <animateMotion
-                      dur="2s"
-                      path="M0,50 C40,50 40,20 140,20"
-                      repeatCount="indefinite"
-                    />
-                  </circle>
-                  <circle r="2.5" fill="#a855f7">
-                    <animateMotion
-                      dur="2.5s"
-                      path="M0,50 C40,50 40,80 140,80"
-                      repeatCount="indefinite"
-                    />
-                  </circle>
-                  <circle r="1.5" fill="#ffffff">
-                    <animateMotion
-                      dur="1.8s"
-                      path="M0,50 C50,50 60,50 140,50"
-                      repeatCount="indefinite"
-                    />
-                  </circle>
-                </svg>
-
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 animate-float-delayed">
-                  <div className="relative h-52 w-52">
-                    <div className="absolute left-1/2 top-1/2 z-20 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[#0DA6E0] to-blue-700 shadow-[0_0_40px_rgba(8,145,178,0.45)]">
-                      <div className="absolute inset-0 rounded-full border border-white/30 animate-pulse-slow"></div>
-                    </div>
-                    <div className="absolute left-1/2 top-0 z-10 h-10 w-10 -translate-x-1/2 rounded-xl glass-panel animate-float-delayed"></div>
-                    <div className="absolute bottom-4 left-4 z-10 h-12 w-12 rounded-xl glass-panel border border-[#22d3ee]/30"></div>
-                    <div className="absolute bottom-10 right-0 z-10 h-9 w-9 rounded-full border border-[#a855f7]/60 bg-slate-900/80 dark:bg-[#151e32]">
-                      <div className="absolute inset-0 m-auto h-2.5 w-2.5 rounded-full bg-[#a855f7]"></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute -bottom-6 left-12 rounded-lg glass-panel px-4 py-2.5 text-[11px] text-[#a855f7] shadow-lg">
-                  <span className="block font-mono text-slate-500"># RAG Pipeline</span>
-                  <span className="block font-mono">vector_db.query(user_prompt)</span>
-                  <span className="block font-mono text-emerald-300">&gt;&gt; context_retrieved</span>
-                </div>
-              </div>
+            <div className="relative flex h-[420px] items-center justify-center md:h-[500px] md:-translate-y-6">
+              <HeroLottie className="h-full w-full max-w-[520px] -translate-y-3 md:-translate-y-6" />
             </div>
           </div>
         </section>
