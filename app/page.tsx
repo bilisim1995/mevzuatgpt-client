@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme-toggle';
 import HomeRefreshButton from '@/components/landing/home-refresh-button';
@@ -179,6 +180,131 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <section className="pb-16 md:pb-24">
+          <div className="mx-auto max-w-6xl px-4">
+            <div className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-xl backdrop-blur md:p-10 dark:border-slate-700/50 dark:bg-slate-900/70">
+              <div className="grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-center">
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                      Kurumsal Değer Önerileri
+                    </p>
+                    <h2 className="text-2xl font-semibold text-slate-900 md:text-3xl dark:text-white">
+                      Enterprise-grade, Secure, Integrations
+                    </h2>
+                    <p className="text-base text-slate-600 dark:text-slate-300">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                      dignissim, nisl nec placerat interdum, lacus urna facilisis justo,
+                      sed cursus turpis lorem eget neque.
+                    </p>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <h3 className="text-base font-semibold text-slate-900 dark:text-white">
+                        Enterprise-grade
+                      </h3>
+                      <p className="mt-2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae
+                        nibh at arcu tempor.
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <h3 className="text-base font-semibold text-slate-900 dark:text-white">
+                        Secure
+                      </h3>
+                      <p className="mt-2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                        commodo ligula.
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300 sm:col-span-2">
+                      <h3 className="text-base font-semibold text-slate-900 dark:text-white">
+                        Integrations
+                      </h3>
+                      <p className="mt-2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                        laoreet, purus non hendrerit tempus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-4">
+                  <div className="overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 shadow-md dark:border-slate-700/60 dark:bg-slate-800">
+                    <img
+                      id="value-prop-image"
+                      src="https://placehold.co/640x420/png?text=Lorem"
+                      alt="Örnek gösterim görseli"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 gap-3 text-xs text-slate-500 dark:text-slate-400">
+                    <button
+                      type="button"
+                      data-value-tab
+                      data-image="https://placehold.co/640x420/png?text=Lorem"
+                      data-alt="Lorem örnek görseli"
+                      data-active="true"
+                      className="rounded-xl border border-slate-200/60 bg-white/70 px-3 py-2 text-center transition data-[active=true]:bg-white data-[active=true]:text-slate-900 data-[active=true]:ring-2 data-[active=true]:ring-indigo-500/40 dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-400 dark:data-[active=true]:bg-slate-900/80 dark:data-[active=true]:text-white"
+                    >
+                      Lorem
+                    </button>
+                    <button
+                      type="button"
+                      data-value-tab
+                      data-image="https://placehold.co/640x420/png?text=Ipsum"
+                      data-alt="Ipsum örnek görseli"
+                      className="rounded-xl border border-slate-200/60 bg-white/70 px-3 py-2 text-center transition data-[active=true]:bg-white data-[active=true]:text-slate-900 data-[active=true]:ring-2 data-[active=true]:ring-indigo-500/40 dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-400 dark:data-[active=true]:bg-slate-900/80 dark:data-[active=true]:text-white"
+                    >
+                      Ipsum
+                    </button>
+                    <button
+                      type="button"
+                      data-value-tab
+                      data-image="https://placehold.co/640x420/png?text=Dolor"
+                      data-alt="Dolor örnek görseli"
+                      className="rounded-xl border border-slate-200/60 bg-white/70 px-3 py-2 text-center transition data-[active=true]:bg-white data-[active=true]:text-slate-900 data-[active=true]:ring-2 data-[active=true]:ring-indigo-500/40 dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-400 dark:data-[active=true]:bg-slate-900/80 dark:data-[active=true]:text-white"
+                    >
+                      Dolor
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Script id="value-prop-image-switcher" strategy="afterInteractive">
+          {`
+            (function () {
+              var image = document.getElementById('value-prop-image');
+              var tabs = document.querySelectorAll('[data-value-tab]');
+              if (!image || !tabs.length) return;
+
+              function activate(tab) {
+                tabs.forEach(function (item) {
+                  item.dataset.active = 'false';
+                });
+                tab.dataset.active = 'true';
+                if (tab.dataset.image) {
+                  image.src = tab.dataset.image;
+                }
+                if (tab.dataset.alt) {
+                  image.alt = tab.dataset.alt;
+                }
+              }
+
+              tabs.forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                  activate(tab);
+                });
+              });
+            })();
+          `}
+        </Script>
 
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-4">
