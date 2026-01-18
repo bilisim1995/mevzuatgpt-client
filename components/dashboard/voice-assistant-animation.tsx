@@ -15,6 +15,7 @@ interface VoiceAssistantAnimationProps {
   onStop?: () => void
   questionText?: string
   isBoosting?: boolean
+  variant?: 'full' | 'preview'
 }
 
 function clamp(value: number, min: number, max: number) {
@@ -186,9 +187,23 @@ function Scene({ isListening, audioLevel, waveform, isUploading = false, boostUn
   )
 }
 
-export function VoiceAssistantAnimation({ isListening, audioLevel, onStop, waveform, isUploading = false, onFinalize, onStart, isPlaying = false, onStopAudio, questionText, isBoosting = false }: VoiceAssistantAnimationProps & { waveform?: Float32Array | null, isUploading?: boolean, onFinalize?: () => void, onStart?: () => void, isPlaying?: boolean, onStopAudio?: () => void }) {
+export function VoiceAssistantAnimation({
+  isListening,
+  audioLevel,
+  onStop,
+  waveform,
+  isUploading = false,
+  onFinalize,
+  onStart,
+  isPlaying = false,
+  onStopAudio,
+  questionText,
+  isBoosting = false,
+  variant = 'full',
+}: VoiceAssistantAnimationProps & { waveform?: Float32Array | null, isUploading?: boolean, onFinalize?: () => void, onStart?: () => void, isPlaying?: boolean, onStopAudio?: () => void }) {
   const [reactEnabled, setReactEnabled] = useState(false)
   const [boostUntil, setBoostUntil] = useState<number>(0)
+  const isPreview = variant === 'preview'
 
   // Upload bittiğinde tepkiselliği kapat (cevap geldikten sonra "Bir Konuşma Başlat" moduna dön)
   useEffect(() => {
@@ -206,9 +221,27 @@ export function VoiceAssistantAnimation({ isListening, audioLevel, onStop, wavef
     }
   }, [isUploading])
   return (
-    <div className="flex w-full min-h-[60vh] items-center justify-center px-4">
-      <div className="flex w-full max-w-[720px] flex-col items-center justify-center gap-8">
-        <div className="relative mx-auto aspect-square w-full max-w-[360px] sm:max-w-[420px]">
+    <div
+      className={
+        isPreview
+          ? 'w-full'
+          : 'flex w-full min-h-[60vh] items-center justify-center px-4'
+      }
+    >
+      <div
+        className={
+          isPreview
+            ? 'w-full'
+            : 'flex w-full max-w-[720px] flex-col items-center justify-center gap-8'
+        }
+      >
+        <div
+          className={
+            isPreview
+              ? 'relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[360px]'
+              : 'relative mx-auto aspect-square w-full max-w-[360px] sm:max-w-[420px]'
+          }
+        >
           <Canvas
             shadows
             dpr={[1, 1.5]}
@@ -221,54 +254,56 @@ export function VoiceAssistantAnimation({ isListening, audioLevel, onStop, wavef
           {/* Üst fade kaldırıldı */}
         </div>
 
-        <div className="flex flex-col items-center gap-2 -mt-8">
-          {/* Dinleme durumu metni - butonun üstünde sabit konumda */}
-          <div className="h-6 flex items-center">
-            {reactEnabled && !isUploading && (
-              <p className="text-sm text-gray-500 dark:text-gray-400 animate-pulse">
-                {questionText && questionText.trim() ? questionText : "Şuan sizi dinliyorum..."}
-              </p>
-            )}
-          </div>
-          
-          <div className="flex gap-3">
-            {/* Bir Konuşma Başlat butonu - sadece seslendirme yokken görünür */}
-            {!isPlaying && (
-              <button
-                type="button"
-                onClick={() => {
-                  if (!reactEnabled) {
-                    // Yeni Soru Gönder akışı: tepkiyi aç ve dinlemeyi başlat
-                    setReactEnabled(true)
-                    onStart?.()
-                  } else {
-                    // Soruyu Gönder akışı: finalize
-                    onFinalize?.()
-                  }
-                }}
-                disabled={isUploading}
-                className="px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 shadow-sm transition dark:bg-blue-500 dark:hover:bg-blue-600"
-                aria-disabled={isUploading}
-              >
-                {isUploading ? 'Gönderiliyor...' : (reactEnabled ? 'Soruyu Gönder' : 'Bir Konuşma Başlat')}
-              </button>
-            )}
+        {!isPreview && (
+          <div className="flex flex-col items-center gap-2 -mt-8">
+            {/* Dinleme durumu metni - butonun üstünde sabit konumda */}
+            <div className="h-6 flex items-center">
+              {reactEnabled && !isUploading && (
+                <p className="text-sm text-gray-500 dark:text-gray-400 animate-pulse">
+                  {questionText && questionText.trim() ? questionText : "Şuan sizi dinliyorum..."}
+                </p>
+              )}
+            </div>
             
-            {/* Cevabı Durdur butonu - sadece seslendirme sırasında görünür */}
-            {isPlaying && (
-              <button
-                type="button"
-                onClick={() => {
-                  onStopAudio?.()
-                  setReactEnabled(false) // Reset to "Bir Konuşma Başlat" mode
-                }}
-                className="px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white shadow-sm transition dark:bg-red-500 dark:hover:bg-red-600"
-              >
-                Cevabı Durdur
-              </button>
-            )}
+            <div className="flex gap-3">
+              {/* Bir Konuşma Başlat butonu - sadece seslendirme yokken görünür */}
+              {!isPlaying && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!reactEnabled) {
+                      // Yeni Soru Gönder akışı: tepkiyi aç ve dinlemeyi başlat
+                      setReactEnabled(true)
+                      onStart?.()
+                    } else {
+                      // Soruyu Gönder akışı: finalize
+                      onFinalize?.()
+                    }
+                  }}
+                  disabled={isUploading}
+                  className="px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 shadow-sm transition dark:bg-blue-500 dark:hover:bg-blue-600"
+                  aria-disabled={isUploading}
+                >
+                  {isUploading ? 'Gönderiliyor...' : (reactEnabled ? 'Soruyu Gönder' : 'Bir Konuşma Başlat')}
+                </button>
+              )}
+              
+              {/* Cevabı Durdur butonu - sadece seslendirme sırasında görünür */}
+              {isPlaying && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    onStopAudio?.()
+                    setReactEnabled(false) // Reset to "Bir Konuşma Başlat" mode
+                  }}
+                  className="px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white shadow-sm transition dark:bg-red-500 dark:hover:bg-red-600"
+                >
+                  Cevabı Durdur
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Durdurma butonu kaldırıldı; durdurma chat'teki mikrofon ile yapılacak */}
       </div>

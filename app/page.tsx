@@ -6,6 +6,7 @@ import HomeRefreshButton from '@/components/landing/home-refresh-button';
 import QuoteInfoDialog from '@/components/landing/quote-info-dialog';
 import HeroLottie from '@/components/landing/hero-lottie';
 import HowItWorksModal from '@/components/landing/how-it-works-modal';
+import { VoiceAssistantAnimation } from '@/components/dashboard/voice-assistant-animation';
 
 export const metadata: Metadata = {
   title: 'İlBilge | Mevzuat ve İçtihat Asistanı',
@@ -552,44 +553,12 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 shadow-md dark:border-slate-700/60 dark:bg-slate-800">
-                  <div className="relative">
-                    <img
-                      src="/ses-chat.png"
-                      alt="Sesli sohbet arayüzü görseli"
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/40 bg-white/30 p-3 backdrop-blur-sm dark:border-slate-700/70 dark:bg-slate-950/60">
-                      <div className="flex items-center gap-3">
-                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/20 text-indigo-700 dark:bg-cyan-400/20 dark:text-cyan-100">
-                          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
-                            <path d="M12 4v10" />
-                            <path d="M8 8h8" />
-                            <path d="M9 20h6" />
-                            <path d="M5 12a7 7 0 0014 0" />
-                          </svg>
-                        </span>
-                        <div className="flex-1">
-                          <p className="text-xs font-semibold uppercase tracking-widest text-slate-700 dark:text-slate-100">
-                            Sesli Asistan
-                          </p>
-                          <div className="mt-2 flex items-end gap-1">
-                            <span className="voice-bar h-3 w-1.5 rounded-full bg-indigo-500/70 dark:bg-cyan-300/80"></span>
-                            <span className="voice-bar h-5 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.1s' }}></span>
-                            <span className="voice-bar h-2 w-1.5 rounded-full bg-indigo-500/70 dark:bg-cyan-200/80" style={{ animationDelay: '0.2s' }}></span>
-                            <span className="voice-bar h-6 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.3s' }}></span>
-                            <span className="voice-bar h-4 w-1.5 rounded-full bg-indigo-500/70 dark:bg-cyan-200/80" style={{ animationDelay: '0.4s' }}></span>
-                            <span className="voice-bar h-7 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.5s' }}></span>
-                            <span className="voice-bar h-3 w-1.5 rounded-full bg-indigo-500/70 dark:bg-cyan-200/80" style={{ animationDelay: '0.6s' }}></span>
-                            <span className="voice-bar h-5 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.7s' }}></span>
-                          </div>
-                        </div>
-                        <span className="rounded-full bg-white/60 px-2 py-1 text-[10px] font-semibold text-slate-700 dark:bg-slate-800/80 dark:text-slate-100">
-                          Live
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  <VoiceAssistantAnimation
+                    variant="preview"
+                    isListening={false}
+                    audioLevel={0}
+                    isPlaying={false}
+                  />
                 </div>
               </div>
             </div>
