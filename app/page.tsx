@@ -480,8 +480,12 @@ export default function Home() {
                       Konuşarak mevzuata hızlı erişim
                     </h3>
                     <p className="text-sm text-slate-500 dark:text-slate-400">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                      egestas, lorem a bibendum aliquet, nisl nunc.
+                      Mevzuatla Konuşun, Yanıtları Sesli Alın. Klavye ve ekran sınırlarını
+                      ortadan kaldırıyoruz. İlBilge’ye mevzuat veya içtihatla ilgili
+                      merak ettiklerinizi sesli olarak sorun; o sizin için binlerce
+                      sayfayı saniyeler içinde tarasın ve sonucu size sesli bir asistan
+                      netliğinde aktarsın. Araştırma yaparken elleriniz serbest, zihniniz
+                      sadece çözümde kalsın.
                     </p>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
@@ -497,9 +501,10 @@ export default function Home() {
                         <p className="font-semibold text-slate-900 dark:text-white">
                           Sesli Sorgu
                         </p>
-                        <p className="mt-1">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
+                      <p className="mt-1">
+                        Sorularınızı sesli sorun, ilgili dokümanlardan gelen yanıtları
+                        anında dinleyin.
+                      </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
@@ -512,9 +517,10 @@ export default function Home() {
                         <p className="font-semibold text-slate-900 dark:text-white">
                           Doğruluk Kontrolü
                         </p>
-                        <p className="mt-1">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
+                      <p className="mt-1">
+                        RAG ile uydurma riskini azaltır, yanıtları kaynak verilerle
+                        doğrularız.
+                      </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
@@ -528,9 +534,10 @@ export default function Home() {
                         <p className="font-semibold text-slate-900 dark:text-white">
                           Anlık Özet
                         </p>
-                        <p className="mt-1">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
+                      <p className="mt-1">
+                        Uzun metinleri hızlıca analiz edip kritik noktaları kısa özetler
+                        halinde sunarız.
+                      </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
@@ -542,12 +549,13 @@ export default function Home() {
                         </svg>
                       </span>
                       <div>
-                        <p className="font-semibold text-slate-900 dark:text-white">
-                          Çoklu Komut
-                        </p>
-                        <p className="mt-1">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
+                      <p className="font-semibold text-slate-900 dark:text-white">
+                        Yerli Sesli Asistan
+                      </p>
+                      <p className="mt-1">
+                        Türkçe ve hukuki terminolojiye uyumlu, akıcı ve anlaşılır sesli
+                        yanıtlar verir.
+                      </p>
                       </div>
                     </div>
                   </div>
