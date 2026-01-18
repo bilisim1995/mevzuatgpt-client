@@ -469,6 +469,132 @@ export default function Home() {
             </div>
 
             <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                      Sesli Asistan
+                    </p>
+                    <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">
+                      Konuşarak mevzuata hızlı erişim
+                    </h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                      egestas, lorem a bibendum aliquet, nisl nunc.
+                    </p>
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                          <path d="M12 4v10" />
+                          <path d="M8 8h8" />
+                          <circle cx="12" cy="16" r="3" />
+                        </svg>
+                      </span>
+                      <div>
+                        <p className="font-semibold text-slate-900 dark:text-white">
+                          Sesli Sorgu
+                        </p>
+                        <p className="mt-1">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                          <path d="M5 12l3 3 8-8" />
+                        </svg>
+                      </span>
+                      <div>
+                        <p className="font-semibold text-slate-900 dark:text-white">
+                          Doğruluk Kontrolü
+                        </p>
+                        <p className="mt-1">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                          <path d="M4 12h16" />
+                          <path d="M12 4v16" />
+                        </svg>
+                      </span>
+                      <div>
+                        <p className="font-semibold text-slate-900 dark:text-white">
+                          Anlık Özet
+                        </p>
+                        <p className="mt-1">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                          <path d="M6 8h12" />
+                          <path d="M6 12h8" />
+                          <path d="M6 16h10" />
+                        </svg>
+                      </span>
+                      <div>
+                        <p className="font-semibold text-slate-900 dark:text-white">
+                          Çoklu Komut
+                        </p>
+                        <p className="mt-1">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 shadow-md dark:border-slate-700/60 dark:bg-slate-800">
+                  <div className="relative">
+                    <img
+                      src="/ses-chat.png"
+                      alt="Sesli sohbet arayüzü görseli"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/40 bg-white/30 p-3 backdrop-blur-sm dark:border-slate-700/70 dark:bg-slate-950/60">
+                      <div className="flex items-center gap-3">
+                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/20 text-indigo-700 dark:bg-cyan-400/20 dark:text-cyan-100">
+                          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                            <path d="M12 4v10" />
+                            <path d="M8 8h8" />
+                            <path d="M9 20h6" />
+                            <path d="M5 12a7 7 0 0014 0" />
+                          </svg>
+                        </span>
+                        <div className="flex-1">
+                          <p className="text-xs font-semibold uppercase tracking-widest text-slate-700 dark:text-slate-100">
+                            Sesli Asistan
+                          </p>
+                          <div className="mt-2 flex items-end gap-1">
+                            <span className="voice-bar h-3 w-1.5 rounded-full bg-indigo-500/70 dark:bg-cyan-300/80"></span>
+                            <span className="voice-bar h-5 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.1s' }}></span>
+                            <span className="voice-bar h-2 w-1.5 rounded-full bg-indigo-500/70 dark:bg-cyan-200/80" style={{ animationDelay: '0.2s' }}></span>
+                            <span className="voice-bar h-6 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.3s' }}></span>
+                            <span className="voice-bar h-4 w-1.5 rounded-full bg-indigo-500/70 dark:bg-cyan-200/80" style={{ animationDelay: '0.4s' }}></span>
+                            <span className="voice-bar h-7 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.5s' }}></span>
+                            <span className="voice-bar h-3 w-1.5 rounded-full bg-indigo-500/70 dark:bg-cyan-200/80" style={{ animationDelay: '0.6s' }}></span>
+                            <span className="voice-bar h-5 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.7s' }}></span>
+                          </div>
+                        </div>
+                        <span className="rounded-full bg-white/60 px-2 py-1 text-[10px] font-semibold text-slate-700 dark:bg-slate-800/80 dark:text-slate-100">
+                          Live
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
                   Öne Çıkan Özellikler
@@ -650,6 +776,313 @@ export default function Home() {
                     className="h-full w-full object-cover"
                     loading="lazy"
                   />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                      Vektörleştirme nedir?
+                    </p>
+                    <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">
+                      Klasik arama ile vektör araması arasındaki fark
+                    </h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vektör
+                      araması, anlam benzerliği üzerinden sonuç döndürür; klasik arama
+                      ise kelime eşleşmesine odaklanır.
+                    </p>
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Klasik Arama
+                      </p>
+                      <ul className="mt-2 space-y-1 text-sm">
+                        <li>Kelime eşleşmesi odaklı</li>
+                        <li>Bağlamı sınırlı yorumlar</li>
+                        <li>Net ifadelerle daha güçlü</li>
+                      </ul>
+                    </div>
+                    <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Vektör Araması
+                      </p>
+                      <ul className="mt-2 space-y-1 text-sm">
+                        <li>Anlam ve niyet odaklı</li>
+                        <li>Benzer kavramları yakalar</li>
+                        <li>Doğal dilde daha etkilidir</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                    <p className="text-base font-semibold text-slate-900 dark:text-white">
+                      Rakiplerimizden farkımız
+                    </p>
+                    <p className="mt-2">
+                      Neden İlBilge? Gerçek Veri, Sıfır Halüsinasyon. Rakiplerimiz
+                      sorularınızı doğrudan dil modellerine (LLM) emanet ederek
+                      "tahmini" yanıtlar üretirken; biz RAG (Retrieval-Augmented
+                      Generation) teknolojisiyle verinizi matematiksel bir kesinliğe
+                      dönüştürüyoruz.
+                    </p>
+                    <p className="mt-2">
+                      Bizim sistemimizde LLM bir karar verici değil, veriyi size en
+                      anlaşılır şekilde sunan bir tercümandır. Bu sayede uydurulmuş yanıt
+                      riskini ortadan kaldırıyor, %100 doküman sadakati sağlıyoruz.
+                    </p>
+                  </div>
+                </div>
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 p-4 shadow-md dark:border-slate-700/60 dark:bg-slate-800">
+                  <div className="absolute -left-8 top-6 h-28 w-28 rounded-full bg-indigo-500/10 blur-3xl dark:bg-cyan-400/10"></div>
+                  <div className="absolute -right-10 bottom-4 h-32 w-32 rounded-full bg-purple-500/10 blur-3xl dark:bg-indigo-500/10"></div>
+                  <HeroLottie
+                    className="h-72 w-full origin-center scale-[1.08] sm:h-80"
+                    path="/vector.json"
+                    ariaLabel="Vektör animasyonu"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                    Karşılaştırma Tablosu
+                  </p>
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+                    Rakipler vs İlBilge
+                  </h3>
+                </div>
+                <span className="hidden rounded-full border border-slate-200/70 bg-white/80 px-3 py-1 text-xs text-slate-500 dark:border-slate-700/50 dark:bg-slate-900/70 dark:text-slate-300 md:inline-flex">
+                  RAG odaklı kıyas
+                </span>
+              </div>
+
+              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200/60 dark:border-slate-700/50">
+                <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr_1fr]">
+                  <div className="border-b border-slate-200/60 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-600 dark:border-slate-700/50 dark:bg-slate-900/70 dark:text-slate-300">
+                    Özellik
+                  </div>
+                  <div className="border-b border-slate-200/60 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-600 dark:border-slate-700/50 dark:bg-slate-900/70 dark:text-slate-300">
+                    Standart Yapay Zeka (Rakipler)
+                  </div>
+                  <div className="border-b border-slate-200/60 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-600 dark:border-slate-700/50 dark:bg-slate-900/70 dark:text-slate-300">
+                    İlBilge (RAG Teknolojisi)
+                  </div>
+
+                  <div className="flex items-start gap-2 border-b border-slate-200/60 px-4 py-4 text-sm text-slate-600 dark:border-slate-700/50 dark:text-slate-300">
+                    <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
+                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M4 7h16" />
+                        <path d="M4 12h16" />
+                        <path d="M4 17h10" />
+                      </svg>
+                    </span>
+                    Bilgi Kaynağı
+                  </div>
+                  <div className="border-b border-slate-200/60 px-4 py-4 text-sm text-slate-600 dark:border-slate-700/50 dark:text-slate-300">
+                    <div className="flex items-start gap-2">
+                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-200">
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M6 6l12 12" />
+                          <path d="M18 6l-12 12" />
+                        </svg>
+                      </span>
+                      <span>Modelin kendi eğitimi (Genel bilgi)</span>
+                    </div>
+                  </div>
+                  <div className="border-b border-slate-200/60 px-4 py-4 text-sm text-slate-600 dark:border-slate-700/50 dark:text-slate-300">
+                    <div className="flex items-start gap-2">
+                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M5 12l4 4 10-10" />
+                        </svg>
+                      </span>
+                      <span>Doğrudan sizin yüklediğiniz dokümanlar</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-2 border-b border-slate-200/60 px-4 py-4 text-sm text-slate-600 dark:border-slate-700/50 dark:text-slate-300">
+                    <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-200">
+                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M12 8v4" />
+                        <circle cx="12" cy="16" r="1" />
+                        <path d="M8 4h8" />
+                      </svg>
+                    </span>
+                    Doğruluk Payı
+                  </div>
+                  <div className="border-b border-slate-200/60 px-4 py-4 text-sm text-slate-600 dark:border-slate-700/50 dark:text-slate-300">
+                    <div className="flex items-start gap-2">
+                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-200">
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M6 6l12 12" />
+                          <path d="M18 6l-12 12" />
+                        </svg>
+                      </span>
+                      <span>"Uydurma" (Hallucination) riski yüksek</span>
+                    </div>
+                  </div>
+                  <div className="border-b border-slate-200/60 px-4 py-4 text-sm text-slate-600 dark:border-slate-700/50 dark:text-slate-300">
+                    <div className="flex items-start gap-2">
+                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M5 12l4 4 10-10" />
+                        </svg>
+                      </span>
+                      <span>Matematiksel veri eşleşmesi ile maksimum doğruluk</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-2 border-b border-slate-200/60 px-4 py-4 text-sm text-slate-600 dark:border-slate-700/50 dark:text-slate-300">
+                    <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M12 4v8" />
+                        <path d="M8 12h8" />
+                        <path d="M6 20h12" />
+                      </svg>
+                    </span>
+                    LLM'in Rolü
+                  </div>
+                  <div className="border-b border-slate-200/60 px-4 py-4 text-sm text-slate-600 dark:border-slate-700/50 dark:text-slate-300">
+                    <div className="flex items-start gap-2">
+                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-200">
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M6 6l12 12" />
+                          <path d="M18 6l-12 12" />
+                        </svg>
+                      </span>
+                      <span>Yanıtı ve bilgiyi kendisi üretir</span>
+                    </div>
+                  </div>
+                  <div className="border-b border-slate-200/60 px-4 py-4 text-sm text-slate-600 dark:border-slate-700/50 dark:text-slate-300">
+                    <div className="flex items-start gap-2">
+                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M5 12l4 4 10-10" />
+                        </svg>
+                      </span>
+                      <span>Sadece veriyi anlaşılır bir dile çevirir</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-2 px-4 py-4 text-sm text-slate-600 dark:text-slate-300">
+                    <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
+                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M7 12l3 3 7-7" />
+                      </svg>
+                    </span>
+                    Güvenilirlik
+                  </div>
+                  <div className="px-4 py-4 text-sm text-slate-600 dark:text-slate-300">
+                    <div className="flex items-start gap-2">
+                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-200">
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M6 6l12 12" />
+                          <path d="M18 6l-12 12" />
+                        </svg>
+                      </span>
+                      <span>Kaynağı belirsiz yanıtlar</span>
+                    </div>
+                  </div>
+                  <div className="px-4 py-4 text-sm text-slate-600 dark:text-slate-300">
+                    <div className="flex items-start gap-2">
+                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M5 12l4 4 10-10" />
+                        </svg>
+                      </span>
+                      <span>Kaynağı dokümana dayalı, doğrulanabilir sonuçlar</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative mt-8 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div className="pointer-events-none absolute -left-10 top-6 h-32 w-32 rounded-full bg-rose-500/10 blur-3xl dark:bg-rose-500/20"></div>
+              <div className="pointer-events-none absolute -right-8 bottom-8 h-36 w-36 rounded-full bg-emerald-500/10 blur-3xl dark:bg-emerald-500/20"></div>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                    Halüsinasyon Testi (Canlı Kanıt)
+                  </p>
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+                    Gerçek veri ile uydurma yanıtı kıyaslayın
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                    Tek tıkla örnek bir soru sorulmuş gibi çalışır ve iki yaklaşımı
+                    yan yana gösterir.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-500 dark:text-slate-300">
+                    <span className="inline-flex items-center gap-1 rounded-full border border-slate-200/70 bg-white/80 px-2 py-1 dark:border-slate-700/60 dark:bg-slate-900/70">
+                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-emerald-500" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M5 12l4 4 10-10" />
+                      </svg>
+                      Kaynaklı Yanıt
+                    </span>
+                    <span className="inline-flex items-center gap-1 rounded-full border border-slate-200/70 bg-white/80 px-2 py-1 dark:border-slate-700/60 dark:bg-slate-900/70">
+                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-rose-500" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M6 6l12 12" />
+                        <path d="M18 6l-12 12" />
+                      </svg>
+                      Uydurma Riski
+                    </span>
+                    <span className="inline-flex items-center gap-1 rounded-full border border-slate-200/70 bg-white/80 px-2 py-1 dark:border-slate-700/60 dark:bg-slate-900/70">
+                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-indigo-500" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M4 12h16" />
+                        <path d="M12 4v16" />
+                      </svg>
+                      Canlı Karşılaştırma
+                    </span>
+                  </div>
+                </div>
+                <button
+                  id="hallucination-ask"
+                  type="button"
+                  className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 dark:bg-white dark:text-slate-900"
+                >
+                  Sor
+                </button>
+              </div>
+
+              <div className="relative mt-6 grid gap-4 md:grid-cols-2">
+                <span className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-200/70 bg-white/90 px-3 py-1 text-xs font-semibold text-slate-500 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/80 dark:text-slate-300 md:inline-flex">
+                  VS
+                </span>
+                <div className="rounded-2xl border border-rose-200/70 bg-rose-50/70 p-4 text-sm text-slate-700 shadow-sm dark:border-rose-500/30 dark:bg-rose-950/30 dark:text-slate-200">
+                  <div className="flex items-center justify-between">
+                    <p className="text-base font-semibold text-rose-700 dark:text-rose-200">
+                      LLM Cevabı (Uydurma)
+                    </p>
+                    <span className="rounded-full bg-rose-500/10 px-2 py-1 text-xs text-rose-600 dark:bg-rose-500/20 dark:text-rose-200">
+                      Düşük Güven
+                    </span>
+                  </div>
+                  <p id="llm-answer" className="mt-3 text-sm">
+                    Soruyu görmek için “Sor” butonuna tıklayın.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-emerald-200/70 bg-emerald-50/70 p-4 text-sm text-slate-700 shadow-sm dark:border-emerald-500/30 dark:bg-emerald-950/30 dark:text-slate-200">
+                  <div className="flex items-center justify-between">
+                    <p className="text-base font-semibold text-emerald-700 dark:text-emerald-200">
+                      İlBilge RAG Cevabı
+                    </p>
+                    <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-xs text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                      Güven: %96
+                    </span>
+                  </div>
+                  <p id="rag-answer" className="mt-3 text-sm">
+                    Kaynaklı cevabı görmek için “Sor” butonuna tıklayın.
+                  </p>
+                  <div className="mt-3 rounded-xl border border-emerald-200/60 bg-white/70 px-3 py-2 text-xs text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-900/40 dark:text-emerald-200">
+                    Kaynak: Yüklenen dokümanlar (MADDE 12, Sayfa 4)
+                  </div>
                 </div>
               </div>
             </div>
@@ -1059,6 +1492,58 @@ export default function Home() {
             })();
           `}
         </Script>
+        <Script id="hallucination-test" strategy="afterInteractive">
+          {`
+            (function () {
+              var askButton = document.getElementById('hallucination-ask');
+              var llmAnswer = document.getElementById('llm-answer');
+              var ragAnswer = document.getElementById('rag-answer');
+              if (!askButton || !llmAnswer || !ragAnswer) return;
+
+              var isRunning = false;
+              var llmText =
+                "Bu sorunun yanıtı genel olarak kurumlara göre değişir ve çoğu durumda yüzde 75-85 aralığında uygulanır. Ayrıca 2023 güncellemeleriyle birlikte ek istisnalar da getirilmiştir.";
+              var ragText =
+                "Yüklenen dokümana göre oran %92 olarak belirlenmiştir ve yalnızca MADDE 12 kapsamındaki başvurularda geçerlidir. Ek istisnalar MADDE 14'te listelenmiştir.";
+
+              function setLoading(target) {
+                target.innerHTML =
+                  "<span class='typing-dot'></span><span class='typing-dot'></span><span class='typing-dot'></span>";
+              }
+
+              function typeText(target, text, speed) {
+                var i = 0;
+                target.textContent = "";
+                function tick() {
+                  if (i <= text.length) {
+                    target.textContent = text.slice(0, i);
+                    i += 1;
+                    window.setTimeout(tick, speed);
+                  }
+                }
+                tick();
+              }
+
+              askButton.addEventListener('click', function () {
+                if (isRunning) return;
+                isRunning = true;
+                askButton.classList.add('opacity-70', 'cursor-wait');
+                setLoading(llmAnswer);
+                setLoading(ragAnswer);
+
+                window.setTimeout(function () {
+                  typeText(llmAnswer, llmText, 18);
+                  typeText(ragAnswer, ragText, 16);
+                }, 900);
+
+                window.setTimeout(function () {
+                  askButton.classList.remove('opacity-70', 'cursor-wait');
+                  isRunning = false;
+                }, 3200);
+              });
+            })();
+          `}
+        </Script>
 
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-4">
@@ -1140,7 +1625,62 @@ export default function Home() {
             .value-carousel-track {
               animation: none;
             }
+
+            .voice-bar {
+              animation: none;
+            }
+
+            .typing-dot {
+              animation: none;
+            }
+
           }
+
+          .voice-bar {
+            animation: voice-equalizer 1.2s ease-in-out infinite;
+          }
+
+          @keyframes voice-equalizer {
+            0%,
+            100% {
+              transform: scaleY(0.5);
+            }
+            50% {
+              transform: scaleY(1.2);
+            }
+          }
+
+          .typing-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            margin-right: 4px;
+            border-radius: 9999px;
+            background: currentColor;
+            opacity: 0.4;
+            animation: typing-bounce 1s ease-in-out infinite;
+          }
+
+          .typing-dot:nth-child(2) {
+            animation-delay: 0.15s;
+          }
+
+          .typing-dot:nth-child(3) {
+            animation-delay: 0.3s;
+          }
+
+          @keyframes typing-bounce {
+            0%,
+            100% {
+              transform: translateY(0);
+              opacity: 0.4;
+            }
+            50% {
+              transform: translateY(-4px);
+              opacity: 1;
+            }
+          }
+
         `}</style>
       </main>
 

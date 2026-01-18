@@ -5,9 +5,15 @@ import lottie, { type AnimationItem } from 'lottie-web';
 
 type HeroLottieProps = {
   className?: string;
+  path?: string;
+  ariaLabel?: string;
 };
 
-export default function HeroLottie({ className }: HeroLottieProps) {
+export default function HeroLottie({
+  className,
+  path = '/hero.json',
+  ariaLabel = 'İlBilge animasyonu',
+}: HeroLottieProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const animationRef = useRef<AnimationItem | null>(null);
 
@@ -21,7 +27,7 @@ export default function HeroLottie({ className }: HeroLottieProps) {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: '/hero.json',
+      path,
     });
 
     return () => {
@@ -35,7 +41,7 @@ export default function HeroLottie({ className }: HeroLottieProps) {
       ref={containerRef}
       className={className}
       role="img"
-      aria-label="İlBilge animasyonu"
+      aria-label={ariaLabel}
     />
   );
 }
