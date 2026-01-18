@@ -70,16 +70,41 @@ export default function Home() {
           </div>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             <HomeRefreshButton className="hover:text-primary" />
-            <a href="#ozellikler" className="hover:text-primary">
+            <a href="#ozellikler" className="flex items-center gap-2 hover:text-primary">
+              <span className="text-slate-400 dark:text-slate-300" aria-hidden>
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <path d="M4 7h16" />
+                  <path d="M4 12h16" />
+                  <path d="M4 17h10" />
+                </svg>
+              </span>
               Özellikler
             </a>
-            <a href="#nasil-calisir" className="hover:text-primary">
+            <a href="#nasil-calisir" className="flex items-center gap-2 hover:text-primary">
+              <span className="text-slate-400 dark:text-slate-300" aria-hidden>
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <path d="M6 12l4 4L18 8" />
+                </svg>
+              </span>
               Nasıl Çalışır
             </a>
-            <a href="#kullanim-alanlari" className="hover:text-primary">
+            <a href="#kullanim-alanlari" className="flex items-center gap-2 hover:text-primary">
+              <span className="text-slate-400 dark:text-slate-300" aria-hidden>
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <circle cx="12" cy="12" r="8" />
+                  <path d="M8 12h8" />
+                </svg>
+              </span>
               Kullanım Alanları
             </a>
-            <a href="#sss" className="hover:text-primary">
+            <a href="#sss" className="flex items-center gap-2 hover:text-primary">
+              <span className="text-slate-400 dark:text-slate-300" aria-hidden>
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <path d="M12 4a4 4 0 00-4 4" />
+                  <path d="M12 10v4" />
+                  <circle cx="12" cy="18" r="1" />
+                </svg>
+              </span>
               SSS
             </a>
           </nav>
@@ -181,6 +206,104 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="pb-10 md:pb-16">
+          <div className="mx-auto max-w-6xl px-4">
+            <div className="rounded-3xl border border-slate-200/70 bg-white/85 p-6 shadow-lg backdrop-blur md:p-8 dark:border-slate-700/50 dark:bg-slate-900/70">
+              <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+                <div className="space-y-2">
+                  <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                    İlBilge Nedir ?
+                  </p>
+                  <h2 className="text-2xl font-semibold text-slate-900 md:text-3xl dark:text-white">
+                    Mevzuat ve içtihat araştırmalarında akıllı yardımcı
+                  </h2>
+                </div>
+                <p className="max-w-xl text-base text-slate-600 dark:text-slate-300">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae
+                  arcu id libero porta dictum. Integer posuere, nibh id hendrerit
+                  ultrices, lacus justo facilisis velit.
+                </p>
+              </div>
+
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
+                        <path d="M4 7.5C4 6.12 5.12 5 6.5 5H18" />
+                        <path d="M4 16.5C4 17.88 5.12 19 6.5 19H18" />
+                        <path d="M4 7.5v9" />
+                        <path d="M18 5v14" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Kaynaklı Sonuçlar
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
+                        <path d="M5 12l4 4L19 6" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Hızlı Özetleme
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
+                        <circle cx="12" cy="12" r="6.5" />
+                        <path d="M12 8v4l2.5 2.5" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Güncel Takip
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
+                        <path d="M4 16c1.5-3 4-4.5 8-4.5S18.5 13 20 16" />
+                        <circle cx="12" cy="8" r="3" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Kurumsal Akış
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="pb-16 md:pb-24">
           <div className="mx-auto max-w-6xl px-4">
             <div className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-xl backdrop-blur md:p-10 dark:border-slate-700/50 dark:bg-slate-900/70">
@@ -274,6 +397,599 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            <div className="mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/70 p-6 shadow-lg backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                    Örnek Görseller
+                  </p>
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+                    Kurumsal vitrin karoseli
+                  </h3>
+                </div>
+                <span className="hidden rounded-full border border-slate-200/70 bg-white/80 px-3 py-1 text-xs text-slate-500 dark:border-slate-700/50 dark:bg-slate-900/70 dark:text-slate-300 md:inline-flex">
+                  Otomatik akış
+                </span>
+              </div>
+
+              <div className="relative mt-6 overflow-hidden">
+                <div className="value-carousel-track flex items-center gap-4">
+                  {[
+                    'https://placehold.co/420x260/png?text=Case+01',
+                    'https://placehold.co/420x260/png?text=Case+02',
+                    'https://placehold.co/420x260/png?text=Case+03',
+                    'https://placehold.co/420x260/png?text=Case+04',
+                    'https://placehold.co/420x260/png?text=Case+05',
+                    'https://placehold.co/420x260/png?text=Case+06',
+                  ].map((src) => (
+                    <div
+                      key={src}
+                      className="value-carousel-card relative min-w-[220px] overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-md dark:border-slate-700/60 dark:bg-slate-900"
+                    >
+                      <img
+                        src={src}
+                        alt="Karosel örnek görseli"
+                        className="h-40 w-full object-cover sm:h-44 md:h-48"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent px-3 py-2 text-xs text-white">
+                        Lorem ipsum
+                      </div>
+                    </div>
+                  ))}
+
+                  {[
+                    'https://placehold.co/420x260/png?text=Case+01',
+                    'https://placehold.co/420x260/png?text=Case+02',
+                    'https://placehold.co/420x260/png?text=Case+03',
+                    'https://placehold.co/420x260/png?text=Case+04',
+                    'https://placehold.co/420x260/png?text=Case+05',
+                    'https://placehold.co/420x260/png?text=Case+06',
+                  ].map((src) => (
+                    <div
+                      key={`${src}-dup`}
+                      className="value-carousel-card relative min-w-[220px] overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-md dark:border-slate-700/60 dark:bg-slate-900"
+                    >
+                      <img
+                        src={src}
+                        alt="Karosel örnek görseli"
+                        className="h-40 w-full object-cover sm:h-44 md:h-48"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent px-3 py-2 text-xs text-white">
+                        Lorem ipsum
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-white/80 to-transparent dark:from-slate-900/80"></div>
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white/80 to-transparent dark:from-slate-900/80"></div>
+              </div>
+            </div>
+
+            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+                  Öne Çıkan Özellikler
+                </h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </div>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M12 5v14" />
+                        <path d="M5 12h14" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Akıllı Filtreler
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                        facilisi, sed feugiat lorem.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M7 12l3 3 7-7" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Doğrulama
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                        sollicitudin augue sit.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M4 12a8 8 0 0116 0" />
+                        <path d="M12 12l4 4" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Hızlı Arama
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                        blandit lorem.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M8 12h8" />
+                        <path d="M12 8v8" />
+                        <path d="M4 6h16v12H4z" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Raporlama
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                        posuere.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-500/10 text-amber-600 dark:bg-amber-500/20 dark:text-amber-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M12 3l4 7-4 11-4-11 4-7z" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Akıllı Etiketler
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+                        sit amet.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M5 7h14" />
+                        <path d="M5 12h14" />
+                        <path d="M5 17h10" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        İçerik Özetleri
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                        commodo.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-500/10 text-teal-600 dark:bg-teal-500/20 dark:text-teal-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M4 12h16" />
+                        <path d="M12 4v16" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Takvim Takibi
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+                        vehicula.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-purple-500/10 text-purple-600 dark:bg-purple-500/20 dark:text-purple-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <circle cx="12" cy="12" r="8" />
+                        <path d="M12 8v4l3 3" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Zaman Kazandırır
+                      </p>
+                      <p className="mt-1 text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+                        consequat.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-md backdrop-blur md:p-5 dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                    Arayüz Tanıtımı
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative mt-6">
+                <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 shadow-md dark:border-slate-700/60 dark:bg-slate-800">
+                  <img
+                    src="https://placehold.co/900x520/png?text=UI+Overview"
+                    alt="Ürün arayüzü örnek görseli"
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+                  Kullanıcı Yorumları
+                </h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
+                  Gerçek kullanıcılardan kısa geri bildirimler.
+                </p>
+              </div>
+              <div className="mt-5 grid gap-4 md:grid-cols-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Ayse K.
+                      </p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        Hukuk Danismani
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-xs text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                        5/5
+                      </span>
+                      <div className="flex items-center text-amber-500">
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="mt-3">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+                    facilisis, sapien in cursus placerat, lorem neque. Integer ac
+                    ullamcorper lacus, ac dignissim nulla. Nulla facilisi.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Mehmet S.
+                      </p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        Uyum Uzmani
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-xs text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                        5/5
+                      </span>
+                      <div className="flex items-center text-amber-500">
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="mt-3">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+                    varius, nisl sed rutrum porta, erat. Cras ut lorem vitae nibh
+                    efficitur luctus.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Elif D.
+                      </p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        Arastirma Ekibi
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-xs text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                        5/5
+                      </span>
+                      <div className="flex items-center text-amber-500">
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                          <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="mt-3">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                    posuere, justo nec sagittis eleifend. Pellentesque habitant morbi
+                    tristique senectus et netus.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+                  Sıkça Sorulan Sorular
+                </h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
+                  10 maddelik kısa yanıtlar.
+                </p>
+              </div>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M12 3a6 6 0 00-6 6" />
+                        <path d="M12 9v4" />
+                        <circle cx="12" cy="17" r="1" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        IlBilge nedir?
+                      </p>
+                      <p className="mt-1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                        vitae nunc.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M7 12l3 3 7-7" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Kaynaklar nasil dogrulaniyor?
+                      </p>
+                      <p className="mt-1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                        posuere ante at.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M12 4v16" />
+                        <path d="M4 12h16" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Hangi mevzuatlar kapsanir?
+                      </p>
+                      <p className="mt-1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                        convallis.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M4 6h16v12H4z" />
+                        <path d="M8 10h8" />
+                        <path d="M8 14h6" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Raporlar nasil olusturulur?
+                      </p>
+                      <p className="mt-1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+                        facilisis.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-amber-500/10 text-amber-600 dark:bg-amber-500/20 dark:text-amber-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M12 6v6l4 2" />
+                        <circle cx="12" cy="12" r="9" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Yanitlar ne kadar hizli gelir?
+                      </p>
+                      <p className="mt-1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                        venenatis.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M5 12h14" />
+                        <path d="M12 5v14" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Takimlarla nasil paylasilir?
+                      </p>
+                      <p className="mt-1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+                        blandit.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-teal-500/10 text-teal-600 dark:bg-teal-500/20 dark:text-teal-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <circle cx="12" cy="12" r="8" />
+                        <path d="M12 8v4l2 2" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Guncelleme sikligi nedir?
+                      </p>
+                      <p className="mt-1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+                        finibus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-lime-500/10 text-lime-600 dark:bg-lime-500/20 dark:text-lime-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M6 8h12" />
+                        <path d="M6 12h12" />
+                        <path d="M6 16h8" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Cikti formatlari nelerdir?
+                      </p>
+                      <p className="mt-1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                        posuere.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-cyan-500/10 text-cyan-600 dark:bg-cyan-500/20 dark:text-cyan-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M12 4a4 4 0 014 4c0 2-2 3-4 5-2-2-4-3-4-5a4 4 0 014-4z" />
+                        <path d="M8 18h8" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Veri guvenligi nasil saglanir?
+                      </p>
+                      <p className="mt-1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                        facilisis.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-violet-500/10 text-violet-600 dark:bg-violet-500/20 dark:text-violet-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                        <path d="M5 6h14" />
+                        <path d="M7 10h10" />
+                        <path d="M9 14h6" />
+                        <path d="M11 18h2" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-slate-900 dark:text-white">
+                        Kurumsal paketler mevcut mu?
+                      </p>
+                      <p className="mt-1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                        erat volutpat.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -305,6 +1021,44 @@ export default function Home() {
             })();
           `}
         </Script>
+        <Script id="scroll-to-top-progress" strategy="afterInteractive">
+          {`
+            (function () {
+              var button = document.getElementById('scroll-to-top');
+              var progress = document.getElementById('scroll-progress');
+              if (!button || !progress) return;
+
+              var radius = 18;
+              var circumference = 2 * Math.PI * radius;
+              progress.style.strokeDasharray = String(circumference);
+              progress.style.strokeDashoffset = String(circumference);
+
+              function updateProgress() {
+                var scrollTop = window.scrollY || document.documentElement.scrollTop;
+                var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                var ratio = docHeight > 0 ? scrollTop / docHeight : 0;
+                var offset = circumference * (1 - ratio);
+                progress.style.strokeDashoffset = String(offset);
+
+                if (scrollTop > 200) {
+                  button.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+                  button.classList.add('opacity-100');
+                } else {
+                  button.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+                  button.classList.remove('opacity-100');
+                }
+              }
+
+              button.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              });
+
+              window.addEventListener('scroll', updateProgress, { passive: true });
+              window.addEventListener('resize', updateProgress);
+              updateProgress();
+            })();
+          `}
+        </Script>
 
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-4">
@@ -333,6 +1087,61 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <button
+          id="scroll-to-top"
+          type="button"
+          aria-label="Yukarı çık"
+          className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-slate-200/70 bg-white/90 text-slate-700 shadow-lg transition opacity-0 translate-y-2 pointer-events-none hover:bg-white dark:border-slate-700/60 dark:bg-slate-900/80 dark:text-slate-200"
+        >
+          <svg className="absolute h-12 w-12" viewBox="0 0 40 40" aria-hidden>
+            <circle
+              cx="20"
+              cy="20"
+              r="18"
+              fill="none"
+              stroke="currentColor"
+              strokeOpacity="0.2"
+              strokeWidth="2.5"
+            />
+            <circle
+              id="scroll-progress"
+              cx="20"
+              cy="20"
+              r="18"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              transform="rotate(-90 20 20)"
+            />
+          </svg>
+          <span className="relative text-lg">↑</span>
+        </button>
+        <style>{`
+          .value-carousel-track {
+            width: max-content;
+            animation: value-carousel-marquee 28s linear infinite;
+          }
+
+          .value-carousel-track:hover {
+            animation-play-state: paused;
+          }
+
+          @keyframes value-carousel-marquee {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .value-carousel-track {
+              animation: none;
+            }
+          }
+        `}</style>
       </main>
 
       <footer className="border-t border-white/30 py-10 dark:border-slate-700/40">
