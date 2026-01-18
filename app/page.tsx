@@ -4,6 +4,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import HomeRefreshButton from '@/components/landing/home-refresh-button';
 import QuoteInfoDialog from '@/components/landing/quote-info-dialog';
 import HeroLottie from '@/components/landing/hero-lottie';
+import HowItWorksModal from '@/components/landing/how-it-works-modal';
 
 export const metadata: Metadata = {
   title: 'İlBilge | Mevzuat ve İçtihat Asistanı',
@@ -141,17 +142,25 @@ export default function Home() {
               </h1>
               <QuoteInfoDialog />
               <div className="flex flex-wrap gap-4">
-                <Link href="/register" className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3.5 text-base font-semibold text-white transition hover:from-cyan-400 hover:to-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60">
-                  Kullanmaya Başlayın
-                  <span aria-hidden className="transition group-hover:translate-x-1">→</span>
-                </Link>
                 <Link
-                  href="/login"
-                  className="group inline-flex items-center gap-2 rounded-full border border-slate-300/80 bg-white/60 px-6 py-3.5 text-base font-semibold text-slate-800 backdrop-blur transition hover:border-slate-400 hover:bg-white/80 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300/60 dark:border-slate-600/60 dark:bg-slate-900/40 dark:text-slate-100 dark:hover:bg-slate-900/60"
+                  href="/register"
+                  className="group inline-flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-105 active:scale-95"
                 >
-                  Demoyu İzle
-                  <span aria-hidden className="transition group-hover:translate-x-1">→</span>
+                  <span className="relative rounded-full p-[2px]">
+                    <span className="pointer-events-none absolute inset-0 overflow-hidden rounded-full opacity-90">
+                      <span className="absolute -inset-[40%] rounded-full bg-[conic-gradient(from_0deg,rgba(255,255,255,0.75),transparent,rgba(255,255,255,0.45),transparent)] opacity-85 dark:opacity-60 animate-border-spin"></span>
+                      <span className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.55),_transparent_55%)]"></span>
+                      <span className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(59,130,246,0.45),_transparent_55%)]"></span>
+                    </span>
+                    <span className="relative z-10 flex items-center gap-2 rounded-full bg-gradient-to-b from-slate-900 to-slate-950 px-6 py-3 text-base font-semibold text-slate-100 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]">
+                      Kullanmaya Başlayın
+                      <span aria-hidden className="transition group-hover:translate-x-1">
+                        →
+                      </span>
+                    </span>
+                  </span>
                 </Link>
+                <HowItWorksModal />
               </div>
               <div className="flex flex-wrap items-center gap-6 text-base text-slate-500 dark:text-slate-300">
                 <div className="flex items-center gap-2">
@@ -167,162 +176,6 @@ export default function Home() {
 
             <div className="relative flex h-[420px] items-center justify-center md:h-[500px] md:-translate-y-6">
               <HeroLottie className="h-full w-full max-w-[520px] -translate-y-3 md:-translate-y-6" />
-            </div>
-          </div>
-        </section>
-
-        <section id="ozellikler" className="relative overflow-hidden bg-[#0B1120] py-16 text-white md:py-24">
-          <div className="absolute inset-0 hero-grid-pattern opacity-[0.03]"></div>
-          <div className="absolute top-[40%] hidden w-full opacity-40 lg:block">
-            <svg className="h-24 w-full" preserveAspectRatio="none" aria-hidden>
-              <path
-                className="animate-draw"
-                d="M0,48 Q720,120 1440,48"
-                fill="none"
-                stroke="url(#grad-feature-line)"
-                strokeWidth="2"
-                strokeDasharray="1000"
-              />
-              <defs>
-                <linearGradient id="grad-feature-line" x1="0%" x2="100%" y1="0%" y2="0%">
-                  <stop offset="0%" stopColor="#0891b2" stopOpacity="0" />
-                  <stop offset="50%" stopColor="#22d3ee" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          <div className="relative mx-auto max-w-6xl px-4">
-            <div className="mb-12 max-w-2xl">
-              <h2 className="text-2xl font-semibold md:text-3xl">
-                İlBilge ile mevzuat araştırmalarınız daha net, daha hızlı
-              </h2>
-              <p className="mt-3 text-slate-300">
-                Kaynak doğrulama, özetleme ve güncel takip özellikleri tek
-                platformda birleşir.
-              </p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {features.map((feature, index) => {
-                const borderAccent =
-                  index === 0
-                    ? 'hover:border-[#22d3ee]/60'
-                    : index === 1
-                      ? 'hover:border-[#a855f7]/60'
-                      : index === 2
-                        ? 'hover:border-blue-500/60'
-                        : 'hover:border-emerald-400/60';
-                return (
-                  <div
-                    key={feature.title}
-                    className={`group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.12)] ${borderAccent}`}
-                  >
-                    <div className="mb-5 h-12 w-12 rounded-xl border border-white/10 bg-[#151e32] shadow-[0_0_20px_rgba(34,211,238,0.15)]"></div>
-                    <h3 className="text-lg font-semibold group-hover:text-[#22d3ee]">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-3 text-sm text-slate-300">
-                      {feature.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section id="nasil-calisir" className="bg-white/40 py-16 md:py-24 dark:bg-slate-900/40">
-          <div className="mx-auto max-w-6xl px-4">
-            <h2 className="text-2xl font-semibold md:text-3xl">
-              Üç adımda sonuç alın
-            </h2>
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
-              {steps.map((step, index) => (
-                <div
-                  key={step.title}
-                  className="rounded-2xl border border-white/30 bg-white/90 p-6 shadow-xl dark:border-slate-700/40 dark:bg-slate-900/80"
-                >
-                  <p className="text-xs font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-300">
-                    Adım {index + 1}
-                  </p>
-                  <h3 className="mt-3 text-lg font-semibold">{step.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {step.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="kullanim-alanlari" className="py-16 md:py-24">
-          <div className="mx-auto max-w-6xl px-4">
-            <div className="grid gap-10 md:grid-cols-2">
-              <div>
-                <h2 className="text-2xl font-semibold md:text-3xl">
-                  İlBilge kimler için?
-                </h2>
-                <p className="mt-3 text-muted-foreground">
-                  Hukuki araştırma yapan tüm ekipler, hızlı ve güvenilir sonuç
-                  almak için İlBilge’yi tercih eder.
-                </p>
-              </div>
-              <div className="space-y-4">
-                {useCases.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-xl border border-white/30 bg-white/90 px-4 py-3 text-sm shadow-md dark:border-slate-700/40 dark:bg-slate-900/80"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="sss" className="bg-white/40 py-16 md:py-24 dark:bg-slate-900/40">
-          <div className="mx-auto max-w-6xl px-4">
-            <h2 className="text-2xl font-semibold md:text-3xl">
-              Sıkça sorulan sorular
-            </h2>
-            <div className="mt-8 grid gap-6 md:grid-cols-2">
-              <div className="rounded-2xl border border-white/30 bg-white/90 p-6 shadow-xl dark:border-slate-700/40 dark:bg-slate-900/80">
-                <h3 className="text-lg font-semibold">
-                  İlBilge hangi kaynakları kullanır?
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Resmi mevzuat, içtihat ve güncel düzenlemeler temel alınır.
-                  Çıktılar her zaman kaynak referanslarıyla birlikte gelir.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-white/30 bg-white/90 p-6 shadow-xl dark:border-slate-700/40 dark:bg-slate-900/80">
-                <h3 className="text-lg font-semibold">
-                  Ekipler birlikte çalışabilir mi?
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Evet. Paylaşılabilir raporlar ve ortak çalışma alanları ile
-                  ekip içi koordinasyon kolaylaşır.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-white/30 bg-white/90 p-6 shadow-xl dark:border-slate-700/40 dark:bg-slate-900/80">
-                <h3 className="text-lg font-semibold">
-                  Mobilde sorunsuz çalışır mı?
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  İlBilge, mobil uyumlu arayüzü sayesinde tüm cihazlarda hızlı
-                  ve kolay kullanım sağlar.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-white/30 bg-white/90 p-6 shadow-xl dark:border-slate-700/40 dark:bg-slate-900/80">
-                <h3 className="text-lg font-semibold">
-                  İlBilge güvenli mi?
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Güvenli erişim, rol bazlı kontrol ve kurumsal ihtiyaçlara
-                  uygun altyapı sunar.
-                </p>
-              </div>
             </div>
           </div>
         </section>

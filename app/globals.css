@@ -290,6 +290,10 @@
   animation: draw 8s ease-in-out infinite alternate;
 }
 
+.animate-border-spin {
+  animation: border-spin 6s linear infinite;
+}
+
 @keyframes float {
   0%,
   100% {
@@ -320,6 +324,12 @@
 @keyframes dash {
   to {
     stroke-dashoffset: -1000;
+  }
+}
+
+@keyframes border-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
