@@ -14,7 +14,6 @@ import { loginSchema, LoginFormData } from '@/lib/validations/auth'
 import { authService } from '@/services/auth'
 import { Eye, EyeOff, Loader2, Mail, ArrowLeft } from 'lucide-react'
 import { toast } from 'sonner'
-import { useTheme } from 'next-themes'
 
 export function LoginForm() {
   const router = useRouter()
@@ -26,7 +25,6 @@ export function LoginForm() {
   const [forgotPasswordLoading, setForgotPasswordLoading] = useState(false)
   const [forgotPasswordSent, setForgotPasswordSent] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const { theme, resolvedTheme } = useTheme()
 
   // Hydration sorununu önlemek için mounted kontrolü
   useEffect(() => {
@@ -110,12 +108,12 @@ export function LoginForm() {
         <div className="flex justify-center mb-4">
           {mounted ? (
             <img 
-              src={resolvedTheme === 'dark' ? '/Logo (2).png' : '/Logo-Siyah.png'} 
+              src="/logo.svg" 
               alt="Logo" 
-              className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+              className="h-16 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
             />
           ) : (
-            <div className="h-12 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+            <div className="h-16 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
           )}
         </div>
         

@@ -86,7 +86,7 @@ export default function DashboardPage() {
   const [profilePanelOpen, setProfilePanelOpen] = useState(false)
   const [creditPurchasePanelOpen, setCreditPurchasePanelOpen] = useState(false)
   const [announcementsPanelOpen, setAnnouncementsPanelOpen] = useState(false)
-  const { theme, setTheme, resolvedTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   
   // Sesli asistan hook'u
@@ -324,13 +324,12 @@ export default function DashboardPage() {
             <div className="flex items-center space-x-8">
               <div className="flex items-center ml-6">
                 <img 
-                  src={mounted && resolvedTheme === 'dark' ? "/Logo (2).png" : "/Logo-Siyah.png"}
+                  src="/logo.svg"
                   alt="Mevzuat GPT" 
                   className="h-8 w-auto drop-shadow-sm cursor-pointer hover:opacity-80 transition-opacity"
                   onClick={() => window.location.reload()}
                   onError={(e) => {
-                   
-                    (e.target as HTMLImageElement).src = "/Logo-Siyah.png"; // Fallback
+                    (e.target as HTMLImageElement).src = "/logo.svg"
                   }}
                 />
               </div>

@@ -3,7 +3,6 @@
 import { useState, useMemo, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -71,7 +70,6 @@ export function RegisterForm() {
   const [marketingAccepted, setMarketingAccepted] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
   const [mounted, setMounted] = useState(false)
-  const { theme, resolvedTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
@@ -143,11 +141,11 @@ export function RegisterForm() {
         <div className="flex items-center justify-center mb-4">
           {mounted && (
             <Image 
-              src={resolvedTheme === 'dark' ? '/Logo (2).png' : '/Logo-Siyah.png'} 
+              src="/logo.svg"
               alt="MevzuatGPT Logo" 
-              width={48}
-              height={48}
-              className="h-12 w-auto drop-shadow-lg"
+              width={64}
+              height={64}
+              className="h-16 w-auto drop-shadow-lg"
               unoptimized
             />
           )}
