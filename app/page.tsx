@@ -225,16 +225,14 @@ export default function Home() {
                   </h2>
                 </div>
                 <p className="max-w-xl text-base text-slate-600 dark:text-slate-300">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae
-                  arcu id libero porta dictum. Integer posuere, nibh id hendrerit
-                  ultrices, lacus justo facilisis velit.
+                  İlBilge; RAG (Retrieval-Augmented Generation) mimarisi üzerine inşa edilmiş, Türk mevzuatını vektörel veri tabanında işleyen yeni nesil bir araştırma asistanıdır. Klasik anahtar kelime araması yerine, sorunuzun anlamsal (semantik) karşılığını binlerce belge arasından analiz ederek en doğru bağlamı kurar.
                 </p>
               </div>
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex flex-col items-center text-center gap-3">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <path d="M4 7.5C4 6.12 5.12 5 6.5 5H18" />
                         <path d="M4 16.5C4 17.88 5.12 19 6.5 19H18" />
@@ -246,15 +244,15 @@ export default function Home() {
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
                         Kaynaklı Sonuçlar
                       </p>
-                      <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      <p className="mt-2 text-sm leading-relaxed">
+                        Sistem, sorunuzu matematiksel vektörlere dönüştürerek mevzuat içerisindeki en alakalı eşleşmeyi tespit eder. Bu sayede üretilen her cevap, LLM (Büyük Dil Modeli) halüsinasyonlarından arındırılmış, vektörel benzerlik skoru yüksek ve gerçek bir kanun maddesine dayandırılmış olur.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex flex-col items-center text-center gap-3">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <path d="M5 12l4 4L19 6" />
                       </svg>
@@ -263,15 +261,15 @@ export default function Home() {
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
                         Hızlı Özetleme
                       </p>
-                      <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      <p className="mt-2 text-sm leading-relaxed">
+                        RAG teknolojisinin "Getirme" (Retrieval) yeteneği sayesinde, tüm külliyat yerine sadece sorunuzla ilgili olan paragraflar çekilir. İlBilge, nokta atışı tespit ettiği bu teknik verileri yapay zeka ile işleyerek saniyeler içinde anlaşılır bir özete dönüştürür.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex flex-col items-center text-center gap-3">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <circle cx="12" cy="12" r="6.5" />
                         <path d="M12 8v4l2.5 2.5" />
@@ -281,15 +279,15 @@ export default function Home() {
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
                         Güncel Takip
                       </p>
-                      <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      <p className="mt-2 text-sm leading-relaxed">
+                        Kamu kurumlarının resmi mevzuat listeleri, sistemimiz tarafından belirli aralıklarla otomatik olarak kontrol edilir. Tespit edilen güncellemeler, RAG mimarisine anında dahil edilip vektörize edilir; böylece statik bir veriyle değil, sürekli kendini yenileyen canlı bir hukuk hafızasıyla çalışırsınız.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div className="flex flex-col items-center text-center gap-3">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <path d="M4 16c1.5-3 4-4.5 8-4.5S18.5 13 20 16" />
                         <circle cx="12" cy="8" r="3" />
@@ -299,8 +297,8 @@ export default function Home() {
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
                         Kurumsal Akış
                       </p>
-                      <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      <p className="mt-2 text-sm leading-relaxed">
+                        Yüksek performanslı sorgu altyapısı, kurumsal ihtiyaçlara özel ölçeklenebilir çözümler sunar. Kredi yönetimi, detaylı kullanım raporları ve güvenli API erişimi ile profesyonel iş akışlarınıza entegre olur.
                       </p>
                     </div>
                   </div>
