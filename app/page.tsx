@@ -67,7 +67,12 @@ export default function Home() {
       <header className="sticky top-0 z-40 border-b border-white/20 bg-white/80 backdrop-blur-md dark:border-slate-700/30 dark:bg-slate-900/80">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
           <div className="flex items-center gap-3">
-            <span className="text-lg font-semibold">İlBilge</span>
+            <img
+              src="/logo.svg"
+              alt="İlBilge"
+              className="h-11 w-auto"
+              loading="lazy"
+            />
           </div>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             <HomeRefreshButton className="hover:text-primary" />
@@ -201,8 +206,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative flex h-[420px] items-center justify-center md:h-[500px] md:-translate-y-6">
-              <HeroLottie className="h-full w-full max-w-[520px] -translate-y-3 md:-translate-y-6" />
+            <div className="relative flex h-[440px] items-center justify-center md:h-[540px] md:-translate-y-6">
+              <HeroLottie className="h-full w-full max-w-[580px] -translate-y-3 md:-translate-y-6" />
             </div>
           </div>
         </section>
@@ -560,13 +565,23 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 shadow-md dark:border-slate-700/60 dark:bg-slate-800">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 shadow-md dark:border-slate-700/60 dark:bg-slate-800">
                   <VoiceAssistantAnimation
                     variant="preview"
                     isListening={false}
                     audioLevel={0}
                     isPlaying={false}
                   />
+                  <div className="pointer-events-none absolute inset-x-6 bottom-4 flex items-end justify-center gap-1">
+                    <span className="soundwave-bar h-2 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70"></span>
+                    <span className="soundwave-bar h-4 w-1.5 rounded-full bg-indigo-500/70 dark:bg-cyan-200/80" style={{ animationDelay: '0.1s' }}></span>
+                    <span className="soundwave-bar h-3 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.2s' }}></span>
+                    <span className="soundwave-bar h-5 w-1.5 rounded-full bg-indigo-500/70 dark:bg-cyan-200/80" style={{ animationDelay: '0.3s' }}></span>
+                    <span className="soundwave-bar h-3 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.4s' }}></span>
+                    <span className="soundwave-bar h-6 w-1.5 rounded-full bg-indigo-500/70 dark:bg-cyan-200/80" style={{ animationDelay: '0.5s' }}></span>
+                    <span className="soundwave-bar h-4 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.6s' }}></span>
+                    <span className="soundwave-bar h-2 w-1.5 rounded-full bg-indigo-500/60 dark:bg-cyan-300/70" style={{ animationDelay: '0.7s' }}></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -748,9 +763,15 @@ export default function Home() {
               <div className="relative mt-6">
                 <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 shadow-md dark:border-slate-700/60 dark:bg-slate-800">
                   <img
-                    src="https://placehold.co/900x520/png?text=UI+Overview"
-                    alt="Ürün arayüzü örnek görseli"
-                    className="h-full w-full object-cover"
+                    src="/ana-beyaz.png"
+                    alt="Ürün arayüzü görseli"
+                    className="h-full w-full object-cover dark:hidden"
+                    loading="lazy"
+                  />
+                  <img
+                    src="/ana-siyah.png"
+                    alt="Ürün arayüzü görseli"
+                    className="hidden h-full w-full object-cover dark:block"
                     loading="lazy"
                   />
                 </div>
@@ -1611,6 +1632,10 @@ export default function Home() {
               animation: none;
             }
 
+            .soundwave-bar {
+              animation: none;
+            }
+
           }
 
           .voice-bar {
@@ -1658,13 +1683,29 @@ export default function Home() {
             }
           }
 
+          .soundwave-bar {
+            animation: soundwave-pulse 1.4s ease-in-out infinite;
+          }
+
+          @keyframes soundwave-pulse {
+            0%,
+            100% {
+              transform: scaleY(0.4);
+              opacity: 0.6;
+            }
+            50% {
+              transform: scaleY(1.3);
+              opacity: 1;
+            }
+          }
+
         `}</style>
       </main>
 
       <footer className="border-t border-white/30 py-10 dark:border-slate-700/40">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2">
-            <p className="text-lg font-semibold">İlBilge</p>
+            <img src="/logo.svg" alt="İlBilge" className="h-10 w-auto" loading="lazy" />
             <p className="text-sm text-muted-foreground">
               Mevzuat ve içtihat araştırmalarında güvenilir AI asistanı.
             </p>

@@ -22,6 +22,9 @@ export default function HowItWorksModal() {
         </button>
       </DialogTrigger>
       <DialogContent className="max-w-3xl rounded-2xl border-slate-200 bg-white/95 p-0 backdrop-blur-xl dark:border-slate-700 dark:bg-slate-900/95">
+        <DialogHeader className="sr-only">
+          <DialogTitle>Nasıl Çalışır</DialogTitle>
+        </DialogHeader>
         <div className="px-6 pb-6 pt-6">
           <div className="aspect-video w-full overflow-hidden rounded-xl border border-slate-200 bg-black dark:border-slate-700">
             <iframe
