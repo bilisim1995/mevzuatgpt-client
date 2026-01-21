@@ -214,7 +214,12 @@ export default function Home() {
 
         <section className="pb-10 md:pb-16">
           <div className="mx-auto max-w-6xl px-4">
-            <div className="rounded-3xl border border-slate-200/70 bg-white/85 p-6 shadow-lg backdrop-blur md:p-8 dark:border-slate-700/50 dark:bg-slate-900/70">
+            <div className="relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white/85 p-6 shadow-lg backdrop-blur md:p-8 dark:border-slate-700/50 dark:bg-slate-900/70">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:240px_240px] bg-center opacity-40"
+              ></div>
+              <div className="relative z-10">
               <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-2">
                   <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
@@ -225,13 +230,17 @@ export default function Home() {
                   </h2>
                 </div>
                 <p className="max-w-xl text-base text-slate-600 dark:text-slate-300">
-                  İlBilge; RAG (Retrieval-Augmented Generation) mimarisi üzerine inşa edilmiş, Türk mevzuatını vektörel veri tabanında işleyen yeni nesil bir araştırma asistanıdır. Klasik anahtar kelime araması yerine, sorunuzun anlamsal (semantik) karşılığını binlerce belge arasından analiz ederek en doğru bağlamı kurar.
+                    İlBilge; RAG (Retrieval-Augmented Generation) mimarisi üzerine inşa edilmiş, Türk mevzuatını vektörel veri tabanında işleyen yeni nesil bir araştırma asistanıdır. Klasik anahtar kelime araması yerine, sorunuzun anlamsal (semantik) karşılığını binlerce belge arasından analiz ederek en doğru bağlamı kurar.
                 </p>
               </div>
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex flex-col items-center text-center gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex flex-col items-center text-center gap-3">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <path d="M4 7.5C4 6.12 5.12 5 6.5 5H18" />
@@ -250,8 +259,12 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex flex-col items-center text-center gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex flex-col items-center text-center gap-3">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <path d="M5 12l4 4L19 6" />
@@ -267,8 +280,12 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex flex-col items-center text-center gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex flex-col items-center text-center gap-3">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <circle cx="12" cy="12" r="6.5" />
@@ -285,8 +302,12 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex flex-col items-center text-center gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex flex-col items-center text-center gap-3">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <path d="M4 16c1.5-3 4-4.5 8-4.5S18.5 13 20 16" />
@@ -301,6 +322,7 @@ export default function Home() {
                         Yüksek performanslı sorgu altyapısı, kurumsal ihtiyaçlara özel ölçeklenebilir çözümler sunar. Kredi yönetimi, detaylı kullanım raporları ve güvenli API erişimi ile profesyonel iş akışlarınıza entegre olur.
                       </p>
                     </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -310,8 +332,12 @@ export default function Home() {
 
         <section className="pb-16 md:pb-24">
           <div className="mx-auto max-w-6xl px-4">
-            <div className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-xl backdrop-blur md:p-10 dark:border-slate-700/50 dark:bg-slate-900/70">
-              <div className="grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-center">
+            <div className="relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-xl backdrop-blur md:p-10 dark:border-slate-700/50 dark:bg-slate-900/70">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                ></div>
+              <div className="relative z-10 grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-center">
                 <div className="space-y-6">
                   <div className="space-y-3">
                     <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
@@ -321,39 +347,38 @@ export default function Home() {
                       Enterprise-grade, Secure, Integrations
                     </h2>
                     <p className="text-base text-slate-600 dark:text-slate-300">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                      dignissim, nisl nec placerat interdum, lacus urna facilisis justo,
-                      sed cursus turpis lorem eget neque.
+                      İlBilge, profesyonel ekiplerin ihtiyaç duyduğu yüksek erişilebilirlik, veri gizliliği ve sorunsuz entegrasyon standartlarını karşılamak üzere tasarlanmıştır. Vektör tabanlı RAG mimarimiz, kurumsal iş yüklerinde bile kesintisiz, hızlı ve güvenilir bir mevzuat asistanı deneyimi sunar.
                     </p>
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                    <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                      ></div>
+                      <div className="relative z-10">
                       <h3 className="text-base font-semibold text-slate-900 dark:text-white">
-                        Enterprise-grade
+                          Integrations (Tam Entegrasyon)
                       </h3>
                       <p className="mt-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae
-                        nibh at arcu tempor.
+                          İlBilge’nin mevzuat zekasını kendi sistemlerinize taşıyın. Gelişmiş RESTful API desteği sayesinde RAG altyapımızı şirket içi yazılımlarınıza, CRM veya ERP sistemlerinize kolayca entegre ederek mevcut iş akışlarınızı bozmadan güçlendirin.
                       </p>
                     </div>
-                    <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <h3 className="text-base font-semibold text-slate-900 dark:text-white">
-                        Secure
-                      </h3>
-                      <p className="mt-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                        commodo ligula.
-                      </p>
                     </div>
-                    <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300 sm:col-span-2">
+                    <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                      ></div>
+                      <div className="relative z-10">
                       <h3 className="text-base font-semibold text-slate-900 dark:text-white">
-                        Integrations
+                          Secure (Veri Güvenliği)
                       </h3>
                       <p className="mt-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                        laoreet, purus non hendrerit tempus.
+                          Hukuk verisi mahremiyet gerektirir. Tüm sorgularınız ve verileriniz endüstri standartlarında şifreleme (encryption) protokolleri ile korunur. İzole edilmiş güvenli veri işleme süreçleri sayesinde kurumunuzun bilgi güvenliği risk altına girmez.
                       </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -402,7 +427,12 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/70 p-6 shadow-lg backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+            <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/70 p-6 shadow-lg backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+              ></div>
+              <div className="relative z-10">
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
@@ -470,10 +500,15 @@ export default function Home() {
                 <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-white/80 to-transparent dark:from-slate-900/80"></div>
                 <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white/80 to-transparent dark:from-slate-900/80"></div>
               </div>
+              </div>
             </div>
 
-            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
-              <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+            <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+              ></div>
+              <div className="relative z-10 grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
@@ -492,15 +527,19 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
+                    <div className="relative flex items-start gap-3 overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                      ></div>
+                      <span className="relative z-10 mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                           <path d="M12 4v10" />
                           <path d="M8 8h8" />
                           <circle cx="12" cy="16" r="3" />
                         </svg>
                       </span>
-                      <div>
+                      <div className="relative z-10">
                         <p className="font-semibold text-slate-900 dark:text-white">
                           Sesli Sorgu
                         </p>
@@ -510,13 +549,17 @@ export default function Home() {
                       </p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                    <div className="relative flex items-start gap-3 overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                      ></div>
+                      <span className="relative z-10 mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                           <path d="M5 12l3 3 8-8" />
                         </svg>
                       </span>
-                      <div>
+                      <div className="relative z-10">
                         <p className="font-semibold text-slate-900 dark:text-white">
                           Doğruluk Kontrolü
                         </p>
@@ -526,14 +569,18 @@ export default function Home() {
                       </p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
+                    <div className="relative flex items-start gap-3 overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                      ></div>
+                      <span className="relative z-10 mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                           <path d="M4 12h16" />
                           <path d="M12 4v16" />
                         </svg>
                       </span>
-                      <div>
+                      <div className="relative z-10">
                         <p className="font-semibold text-slate-900 dark:text-white">
                           Anlık Özet
                         </p>
@@ -543,15 +590,19 @@ export default function Home() {
                       </p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
+                    <div className="relative flex items-start gap-3 overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                      ></div>
+                      <span className="relative z-10 mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                           <path d="M6 8h12" />
                           <path d="M6 12h8" />
                           <path d="M6 16h10" />
                         </svg>
                       </span>
-                      <div>
+                      <div className="relative z-10">
                       <p className="font-semibold text-slate-900 dark:text-white">
                         Yerli Sesli Asistan
                       </p>
@@ -584,19 +635,25 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+            <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+              ></div>
+              <div className="relative z-10">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
                   Öne Çıkan Özellikler
                 </h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
               </div>
               <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-600 shadow-sm ring-1 ring-white/60 dark:bg-indigo-500/20 dark:text-indigo-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M12 5v14" />
                         <path d="M5 12h14" />
@@ -604,36 +661,42 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Akıllı Filtreler
+                        Anlamsal (Semantik) Arama
                       </p>
                       <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                        facilisi, sed feugiat lorem.
+                        Vektör tabanlı altyapı sayesinde sadece anahtar kelimeleri değil, sorunuzun hukuki bağlamını ve amacını anlayarak en doğru sonucu hedefler.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-600 shadow-sm ring-1 ring-white/60 dark:bg-emerald-500/20 dark:text-emerald-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M7 12l3 3 7-7" />
                       </svg>
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Doğrulama
+                        Doğrudan Kaynak Atıfı
                       </p>
                       <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                        sollicitudin augue sit.
+                        RAG teknolojisiyle üretilen her cümle, ilgili kanun maddesi veya resmi belgeye link verilerek kanıtlanır; varsayıma yer bırakmaz.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500/10 text-sky-600 shadow-sm ring-1 ring-white/60 dark:bg-sky-500/20 dark:text-sky-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M4 12a8 8 0 0116 0" />
                         <path d="M12 12l4 4" />
@@ -641,18 +704,21 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Hızlı Arama
+                        Güvenilirlik Skoru
                       </p>
                       <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                        blandit lorem.
+                        Yapay zekanın ürettiği cevabın, bulunan kaynakla ne kadar örtüştüğünü gösteren şeffaf bir doğruluk/güven puanı sunar.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-fuchsia-500/10 text-fuchsia-600 shadow-sm ring-1 ring-white/60 dark:bg-fuchsia-500/20 dark:text-fuchsia-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M8 12h8" />
                         <path d="M12 8v8" />
@@ -661,36 +727,42 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Raporlama
+                        Canlı Mevzuat Takibi
                       </p>
                       <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                        posuere.
+                        Kamu kurumlarının listeleri belirli aralıklarla taranıp vektörize edilir; böylece her zaman yürürlükteki en güncel veriye ulaşırsınız.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-500/10 text-amber-600 dark:bg-amber-500/20 dark:text-amber-200">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-600 shadow-sm ring-1 ring-white/60 dark:bg-amber-500/20 dark:text-amber-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M12 3l4 7-4 11-4-11 4-7z" />
                       </svg>
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Akıllı Etiketler
+                        Akıllı Özetleme
                       </p>
                       <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                        sit amet.
+                        Sayfalarca süren karmaşık hukuki metinleri ve içtihatları, saniyeler içinde anlaşılır, sade ve net özetlere dönüştürür.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-200">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-rose-500/10 text-rose-600 shadow-sm ring-1 ring-white/60 dark:bg-rose-500/20 dark:text-rose-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M5 7h14" />
                         <path d="M5 12h14" />
@@ -699,18 +771,21 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        İçerik Özetleri
+                        Kurum Bazlı Filtreleme
                       </p>
                       <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                        commodo.
+                        Aramalarınızı sadece belirli kurumların (Örn: Gelir İdaresi, SPK, BDDK) mevzuatıyla sınırlandırarak odaklanmış sonuçlar almanızı sağlar.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-500/10 text-teal-600 dark:bg-teal-500/20 dark:text-teal-200">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-teal-500/10 text-teal-600 shadow-sm ring-1 ring-white/60 dark:bg-teal-500/20 dark:text-teal-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M4 12h16" />
                         <path d="M12 4v16" />
@@ -718,18 +793,21 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Takvim Takibi
+                        Sesli Asistan Desteği
                       </p>
                       <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                        vehicula.
+                        Türkçe dil desteğiyle sorularınızı sesli olarak sorabilir, yanıtları İlBilge’den sesli olarak dinleyebilirsiniz.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-purple-500/10 text-purple-600 dark:bg-purple-500/20 dark:text-purple-200">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-500/10 text-purple-600 shadow-sm ring-1 ring-white/60 dark:bg-purple-500/20 dark:text-purple-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <circle cx="12" cy="12" r="8" />
                         <path d="M12 8v4l3 3" />
@@ -737,19 +815,24 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Zaman Kazandırır
+                        Orijinal Belge Erişimi
                       </p>
                       <p className="mt-1 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                        consequat.
+                        Cevabın dayandığı resmi belgenin orijinal PDF versiyonuna tek tıkla ulaşarak, metni yerinde inceleme imkanı tanır.
                       </p>
+                    </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-md backdrop-blur md:p-5 dark:border-slate-700/50 dark:bg-slate-900/60">
+            <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-md backdrop-blur md:p-5 dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+              ></div>
+              <div className="relative z-10">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
@@ -773,11 +856,16 @@ export default function Home() {
                     loading="lazy"
                   />
                 </div>
+                </div>
               </div>
             </div>
 
-            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
-              <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+            <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+              ></div>
+              <div className="relative z-10 grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
@@ -793,7 +881,12 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                    <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                      ></div>
+                      <div className="relative z-10">
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
                         Klasik Arama
                       </p>
@@ -803,7 +896,13 @@ export default function Home() {
                         <li>Net ifadelerle daha güçlü</li>
                       </ul>
                     </div>
-                    <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                    </div>
+                    <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                      ></div>
+                      <div className="relative z-10">
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
                         Vektör Araması
                       </p>
@@ -814,7 +913,13 @@ export default function Home() {
                       </ul>
                     </div>
                   </div>
-                  <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  </div>
+                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                    ></div>
+                    <div className="relative z-10">
                     <p className="text-base font-semibold text-slate-900 dark:text-white">
                       Rakiplerimizden farkımız
                     </p>
@@ -830,6 +935,7 @@ export default function Home() {
                       anlaşılır şekilde sunan bir tercümandır. Bu sayede uydurulmuş yanıt
                       riskini ortadan kaldırıyor, %100 doküman sadakati sağlıyoruz.
                     </p>
+                    </div>
                   </div>
                 </div>
                 <div className="relative overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 p-4 shadow-md dark:border-slate-700/60 dark:bg-slate-800">
@@ -844,7 +950,12 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-8 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+            <div className="relative mt-8 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+              ></div>
+              <div className="relative z-10">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
@@ -995,15 +1106,20 @@ export default function Home() {
                       </span>
                       <span>Kaynağı dokümana dayalı, doğrulanabilir sonuçlar</span>
                     </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="relative mt-8 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+              ></div>
               <div className="pointer-events-none absolute -left-10 top-6 h-32 w-32 rounded-full bg-rose-500/10 blur-3xl dark:bg-rose-500/20"></div>
               <div className="pointer-events-none absolute -right-8 bottom-8 h-36 w-36 rounded-full bg-emerald-500/10 blur-3xl dark:bg-emerald-500/20"></div>
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="relative z-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
                     Halüsinasyon Testi (Canlı Kanıt)
@@ -1051,8 +1167,12 @@ export default function Home() {
                 <span className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-200/70 bg-white/90 px-3 py-1 text-xs font-semibold text-slate-500 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/80 dark:text-slate-300 md:inline-flex">
                   VS
                 </span>
-                <div className="rounded-2xl border border-rose-200/70 bg-rose-50/70 p-4 text-sm text-slate-700 shadow-sm dark:border-rose-500/30 dark:bg-rose-950/30 dark:text-slate-200">
-                  <div className="flex items-center justify-between">
+                <div className="relative overflow-hidden rounded-2xl border border-rose-200/70 bg-rose-50/70 p-4 text-sm text-slate-700 shadow-sm dark:border-rose-500/30 dark:bg-rose-950/30 dark:text-slate-200">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-center justify-between">
                     <p className="text-base font-semibold text-rose-700 dark:text-rose-200">
                       LLM Cevabı (Uydurma)
                     </p>
@@ -1064,8 +1184,12 @@ export default function Home() {
                     Soruyu görmek için “Sor” butonuna tıklayın.
                   </p>
                 </div>
-                <div className="rounded-2xl border border-emerald-200/70 bg-emerald-50/70 p-4 text-sm text-slate-700 shadow-sm dark:border-emerald-500/30 dark:bg-emerald-950/30 dark:text-slate-200">
-                  <div className="flex items-center justify-between">
+                <div className="relative overflow-hidden rounded-2xl border border-emerald-200/70 bg-emerald-50/70 p-4 text-sm text-slate-700 shadow-sm dark:border-emerald-500/30 dark:bg-emerald-950/30 dark:text-slate-200">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-center justify-between">
                     <p className="text-base font-semibold text-emerald-700 dark:text-emerald-200">
                       İlBilge RAG Cevabı
                     </p>
@@ -1083,24 +1207,63 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+              ></div>
+              <div className="relative z-10">
+                <input
+                  type="radio"
+                  name="reviews-page"
+                  id="reviews-page-1"
+                  defaultChecked
+                  className="sr-only"
+                />
+                <input type="radio" name="reviews-page" id="reviews-page-2" className="sr-only" />
+              <div className="reviews-header flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
                   Kullanıcı Yorumları
                 </h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
-                  Gerçek kullanıcılardan kısa geri bildirimler.
-                </p>
+                <div className="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400 sm:text-right">
+                  <span>Gerçek kullanıcılardan kısa geri bildirimler.</span>
+                  <div className="reviews-nav flex items-center gap-2">
+                    <label
+                      htmlFor="reviews-page-1"
+                      className="prev flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-slate-200/70 bg-white/80 text-slate-600 shadow-sm transition hover:bg-white dark:border-slate-700/60 dark:bg-slate-900/70 dark:text-slate-300"
+                      aria-label="Önceki yorumlar"
+                    >
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M15 6l-6 6 6 6" />
+                      </svg>
+                    </label>
+                    <label
+                      htmlFor="reviews-page-2"
+                      className="next flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-slate-200/70 bg-white/80 text-slate-600 shadow-sm transition hover:bg-white dark:border-slate-700/60 dark:bg-slate-900/70 dark:text-slate-300"
+                      aria-label="Sonraki yorumlar"
+                    >
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M9 6l6 6-6 6" />
+                      </svg>
+                    </label>
               </div>
-              <div className="mt-5 grid gap-4 md:grid-cols-3">
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                </div>
+              </div>
+              <div className="reviews-content relative mt-5">
+                <div className="reviews-page reviews-page-1 grid gap-4 md:grid-cols-3">
+                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                    ></div>
+                    <div className="relative z-10">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Ayse K.
+                            Ayşe K.
                       </p>
                       <p className="text-xs text-slate-500 dark:text-slate-400">
-                        Hukuk Danismani
+                            Hukuk Danışmanı
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -1127,19 +1290,23 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="mt-3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                    facilisis, sapien in cursus placerat, lorem neque. Integer ac
-                    ullamcorper lacus, ac dignissim nulla. Nulla facilisi.
+                        "Eskiden saatler süren mevzuat taramalarımı dakikalara indirdi. En sevdiğim yanı, yapay zekanın cevabı uydurmayıp doğrudan kanun maddesine link vermesi ve güven puanını göstermesi. Hata payı olmaması benim için kritikti, İlBilge bunu başarmış."
                   </p>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  </div>
+                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                    ></div>
+                    <div className="relative z-10">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
                         Mehmet S.
                       </p>
                       <p className="text-xs text-slate-500 dark:text-slate-400">
-                        Uyum Uzmani
+                            Uyum Uzmanı
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -1166,19 +1333,23 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="mt-3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                    varius, nisl sed rutrum porta, erat. Cras ut lorem vitae nibh
-                    efficitur luctus.
+                        "Sürekli değişen yönetmelikleri takip etmek bizim işin en zor kısmıydı. İlBilge’nin kamu kurumlarının güncel listelerini otomatik taraması büyük kolaylık. Anahtar kelimeye takılmadan, konuyu anlayıp nokta atışı mevzuat getirmesi çok etkileyici."
                   </p>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  </div>
+                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                    ></div>
+                    <div className="relative z-10">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
                         Elif D.
                       </p>
                       <p className="text-xs text-slate-500 dark:text-slate-400">
-                        Arastirma Ekibi
+                            Araştırma Ekibi
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -1205,10 +1376,142 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="mt-3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                    posuere, justo nec sagittis eleifend. Pellentesque habitant morbi
-                    tristique senectus et netus.
-                  </p>
+                        "Karmaşık ve uzun içtihatları özetleme yeteneği muazzam. Cevabın dayanağı olan orijinal PDF'e tek tıkla ulaşabilmek ve RAG teknolojisiyle bilginin kaynağını doğrulamak araştırma sürecimizi inanılmaz hızlandırdı. Ekibimizin eli ayağı oldu."
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="reviews-page reviews-page-2 grid gap-4 md:grid-cols-3">
+                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                    ></div>
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-base font-semibold text-slate-900 dark:text-white">
+                            Caner Y.
+                          </p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400">
+                            Mali Müşavir
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-xs text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                            5/5
+                          </span>
+                          <div className="flex items-center text-amber-500">
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="mt-3">
+                        "Vergi kanunlarındaki karmaşık maddeleri analiz etmek için kullanıyorum. Tam kanun adını hatırlamasam bile, semantik arama özelliği sayesinde konuyu tarif ettiğimde ilgili tebliği saniyesinde bulup önüme getiriyor. Mesleki hızım iki katına çıktı."
+                      </p>
+                    </div>
+                  </div>
+                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                    ></div>
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-base font-semibold text-slate-900 dark:text-white">
+                            Selin B.
+                          </p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400">
+                            Kurumsal Hukuk Müdürü
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-xs text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                            5/5
+                          </span>
+                          <div className="flex items-center text-amber-500">
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="mt-3">
+                        "Ekibim için Dashboard üzerinden kredi takibi yapabilmek harika. Hem maliyetleri kontrol altında tutuyoruz hem de departmanın hangi mevzuatlara yoğunlaştığını raporlayabiliyoruz. Kurumsal hafıza ve bütçe yönetimi için vazgeçilmez bir araç."
+                      </p>
+                    </div>
+                  </div>
+                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
+                    ></div>
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-base font-semibold text-slate-900 dark:text-white">
+                            Hakan T.
+                          </p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400">
+                            İç Denetçi
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-xs text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
+                            5/5
+                          </span>
+                          <div className="flex items-center text-amber-500">
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                            <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current" aria-hidden>
+                              <path d="M10 15.27l-4.18 2.2 1-4.66-3.5-3.22 4.72-.44L10 5l1.96 4.15 4.72.44-3.5 3.22 1 4.66L10 15.27z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="mt-3">
+                        "Yapay zekaya güvenmekte tereddütlerim vardı ancak İlBilge’nin 'Güven Puanı' sistemi beni ikna etti. Kaynakla cevap arasındaki tutarlılığı yüzdesel olarak görmek ve şeffaf bir analiz almak, raporlamalarımda içimi rahatlatıyor."
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -1223,8 +1526,12 @@ export default function Home() {
                 </p>
               </div>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-start gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M12 3a6 6 0 00-6 6" />
@@ -1234,17 +1541,20 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        IlBilge nedir?
+                        İlBilge tam olarak nedir?
                       </p>
                       <p className="mt-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                        vitae nunc.
+                        İlBilge, Türk mevzuatını RAG (Retrieval-Augmented Generation) ve vektör teknolojisiyle tarayan, sorularınıza kaynaklı ve güven puanlı yanıtlar veren yapay zeka asistanıdır.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-start gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M7 12l3 3 7-7" />
@@ -1252,17 +1562,20 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Kaynaklar nasil dogrulaniyor?
+                        Verdiği cevaplar güvenilir mi?
                       </p>
                       <p className="mt-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                        posuere ante at.
+                        Sistem, cevapları "kafadan uydurmaz"; doğrudan resmi belgelere dayandırır. Her yanıtın yanında dayanak aldığı kaynak metni ve bir Güven Skoru (%) sunar.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-start gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M12 4v16" />
@@ -1271,17 +1584,20 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Hangi mevzuatlar kapsanir?
+                        Hangi kaynakları kapsıyor?
                       </p>
                       <p className="mt-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                        convallis.
+                        Resmi Gazete, T.C. Kanunları, KHK'lar, Yönetmelikler ve kamu kurumlarının (Gelir İdaresi, SPK vb.) resmi web sitelerinde yayınladığı mevzuat listelerini kapsar.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-start gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M4 6h16v12H4z" />
@@ -1291,17 +1607,20 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Raporlar nasil olusturulur?
+                        İlBilge bir avukat yerine geçer mi?
                       </p>
                       <p className="mt-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-                        facilisis.
+                        Hayır. İlBilge bir araştırma ve hızlandırma aracıdır, hukuki danışman değildir. Nihai hukuki kararlarınızda mutlaka bir uzmana danışmalısınız.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-start gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-amber-500/10 text-amber-600 dark:bg-amber-500/20 dark:text-amber-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M12 6v6l4 2" />
@@ -1310,17 +1629,20 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Yanitlar ne kadar hizli gelir?
+                        Mevzuat bilgileri ne kadar güncel?
                       </p>
                       <p className="mt-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                        venenatis.
+                        Sistemimiz kamu kurumlarının listelerini belirli aralıklarla otomatik tarar. Yeni eklenen veya değişen mevzuatlar hızla vektörize edilerek kullanıma sunulur.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-start gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M5 12h14" />
@@ -1329,17 +1651,20 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Takimlarla nasil paylasilir?
+                        RAG teknolojisi bana ne sağlar?
                       </p>
                       <p className="mt-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-                        blandit.
+                        RAG, yapay zekanın "halüsinasyon" görmesini engeller. Sorunuzun cevabını kendi hafızasından değil, gerçek mevzuat belgelerinin içinden bulup getirerek üretir.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-start gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-teal-500/10 text-teal-600 dark:bg-teal-500/20 dark:text-teal-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <circle cx="12" cy="12" r="8" />
@@ -1348,17 +1673,20 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Guncelleme sikligi nedir?
+                        Sistemi kullanmak ücretli mi?
                       </p>
                       <p className="mt-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                        finibus.
+                        İlBilge kredi sistemiyle çalışır. İhtiyacınıza göre esnek kredi paketleri satın alabilir veya kurumsal abonelik seçeneklerini değerlendirebilirsiniz.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-start gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-lime-500/10 text-lime-600 dark:bg-lime-500/20 dark:text-lime-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M6 8h12" />
@@ -1368,17 +1696,20 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Cikti formatlari nelerdir?
+                        Sesli sorgu yapabilir miyim?
                       </p>
                       <p className="mt-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                        posuere.
+                        Evet. Gelişmiş Türkçe doğal dil işleme yeteneği sayesinde sorularınızı mikrofon aracılığıyla sesli sorabilir ve yanıtları dinleyebilirsiniz.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-start gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-cyan-500/10 text-cyan-600 dark:bg-cyan-500/20 dark:text-cyan-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M12 4a4 4 0 014 4c0 2-2 3-4 5-2-2-4-3-4-5a4 4 0 014-4z" />
@@ -1387,17 +1718,20 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Veri guvenligi nasil saglanir?
+                        Verilerim ve aramalarım güvende mi?
                       </p>
                       <p className="mt-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                        facilisis.
+                        Kesinlikle. Sorgularınız ve kullanıcı verileriniz endüstri standartlarında şifreleme (encryption) yöntemleriyle korunur ve 3. şahıslarla paylaşılmaz.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div className="flex items-start gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                  ></div>
+                  <div className="relative z-10 flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-violet-500/10 text-violet-600 dark:bg-violet-500/20 dark:text-violet-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M5 6h14" />
@@ -1408,11 +1742,10 @@ export default function Home() {
                     </span>
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
-                        Kurumsal paketler mevcut mu?
+                        Yanıtın orijinal belgesini görebilir miyim?
                       </p>
                       <p className="mt-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                        erat volutpat.
+                        Evet. Üretilen her cevabın altındaki kaynak kartına tıklayarak, bilginin alındığı orijinal PDF veya resmi web sayfası bağlantısına ulaşabilirsiniz.
                       </p>
                     </div>
                   </div>
@@ -1543,7 +1876,12 @@ export default function Home() {
 
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-4">
-            <div className="rounded-3xl bg-gradient-to-r from-blue-600/90 to-indigo-600/90 px-4 py-12 text-center text-white shadow-2xl md:px-10 dark:from-blue-600/70 dark:to-indigo-700/70">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600/90 to-indigo-600/90 px-4 py-12 text-center text-white shadow-2xl md:px-10 dark:from-blue-600/70 dark:to-indigo-700/70">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+              ></div>
+              <div className="relative z-10">
               <h2 className="text-2xl font-semibold md:text-3xl">
                 İlBilge ile mevzuat araştırmalarınızı bugün hızlandırın
               </h2>
@@ -1564,6 +1902,7 @@ export default function Home() {
                 >
                   Giriş Yap
                 </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -1695,6 +2034,28 @@ export default function Home() {
               transform: scaleY(1.3);
               opacity: 1;
             }
+          }
+
+          .reviews-page {
+            display: none;
+          }
+
+          #reviews-page-1:checked ~ .reviews-content .reviews-page-1 {
+            display: grid;
+          }
+
+          #reviews-page-2:checked ~ .reviews-content .reviews-page-2 {
+            display: grid;
+          }
+
+          #reviews-page-1:checked ~ .reviews-header .reviews-nav .prev {
+            opacity: 0.4;
+            pointer-events: none;
+          }
+
+          #reviews-page-2:checked ~ .reviews-header .reviews-nav .next {
+            opacity: 0.4;
+            pointer-events: none;
           }
 
         `}</style>
