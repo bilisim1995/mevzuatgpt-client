@@ -9,9 +9,39 @@ import HowItWorksModal from '@/components/landing/how-it-works-modal';
 import { VoiceAssistantAnimation } from '@/components/dashboard/voice-assistant-animation';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ilbilge.tr'),
   title: 'İlBilge | Mevzuat ve İçtihat Asistanı',
   description:
     'İlBilge, mevzuat ve içtihat araştırmalarını hızlandıran, güvenilir kaynaklarla çalışan yapay zeka destekli asistan.',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: 'İlBilge | Mevzuat ve İçtihat Asistanı',
+    description:
+      'İlBilge, mevzuat ve içtihat araştırmalarını hızlandıran, güvenilir kaynaklarla çalışan yapay zeka destekli asistan.',
+    images: [
+      {
+        url: '/logo.svg',
+        width: 1200,
+        height: 630,
+        alt: 'İlBilge',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'İlBilge | Mevzuat ve İçtihat Asistanı',
+    description:
+      'İlBilge, mevzuat ve içtihat araştırmalarını hızlandıran, güvenilir kaynaklarla çalışan yapay zeka destekli asistan.',
+    images: ['/logo.svg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const features = [
