@@ -94,8 +94,9 @@ const useCases = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 text-foreground dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
-      <header className="sticky top-0 z-40 border-b border-white/20 bg-white/80 backdrop-blur-md dark:border-slate-700/30 dark:bg-slate-900/80">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <header className="sticky top-0 z-40">
+        <div className="mx-auto max-w-6xl px-4 py-4">
+          <div className="flex items-center justify-between rounded-[32px] border border-white/20 bg-white/80 px-4 py-3 shadow-[0_6px_18px_rgba(15,23,42,0.08)] backdrop-blur-md dark:border-slate-700/30 dark:bg-slate-900/80 dark:shadow-[0_6px_18px_rgba(0,0,0,0.32)]">
           <div className="flex items-center gap-3">
             <img
               src="/logo.svg"
@@ -131,10 +132,11 @@ export default function Home() {
             <ThemeToggle />
             <Link
               href="/register"
-              className="hidden rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90 md:inline-flex"
+              className="hidden rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-[0_6px_16px_rgba(15,23,42,0.12)] hover:opacity-90 dark:shadow-[0_6px_16px_rgba(0,0,0,0.35)] md:inline-flex"
             >
-              Hemen Başla
+              Ücretsiz Kullan
             </Link>
+          </div>
           </div>
         </div>
       </header>
