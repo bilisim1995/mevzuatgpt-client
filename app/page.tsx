@@ -74,45 +74,28 @@ export default function Home() {
               loading="lazy"
             />
           </div>
-          <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
+          <nav className="hidden items-center gap-6 text-base font-medium md:flex">
             <HomeRefreshButton className="hover:text-primary" />
-            <a href="#ozellikler" className="flex items-center gap-2 hover:text-primary">
-              <span className="text-slate-400 dark:text-slate-300" aria-hidden>
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+            <button type="button" className="flex items-center gap-2 hover:text-primary">
+              <span className="rounded-full border border-slate-200/70 bg-white/80 p-1.5 text-slate-500 shadow-sm dark:border-slate-700/60 dark:bg-slate-900/70 dark:text-slate-300" aria-hidden>
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
                   <path d="M4 7h16" />
                   <path d="M4 12h16" />
                   <path d="M4 17h10" />
                 </svg>
               </span>
-              Özellikler
-            </a>
-            <a href="#nasil-calisir" className="flex items-center gap-2 hover:text-primary">
-              <span className="text-slate-400 dark:text-slate-300" aria-hidden>
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <path d="M6 12l4 4L18 8" />
+              Hakkımızda
+            </button>
+            <button type="button" className="flex items-center gap-2 hover:text-primary">
+              <span className="rounded-full border border-slate-200/70 bg-white/80 p-1.5 text-slate-500 shadow-sm dark:border-slate-700/60 dark:bg-slate-900/70 dark:text-slate-300" aria-hidden>
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <path d="M4 5h16v14H4z" />
+                  <path d="M8 9h8" />
+                  <path d="M8 13h6" />
                 </svg>
               </span>
-              Nasıl Çalışır
-            </a>
-            <a href="#kullanim-alanlari" className="flex items-center gap-2 hover:text-primary">
-              <span className="text-slate-400 dark:text-slate-300" aria-hidden>
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <circle cx="12" cy="12" r="8" />
-                  <path d="M8 12h8" />
-                </svg>
-              </span>
-              Kullanım Alanları
-            </a>
-            <a href="#sss" className="flex items-center gap-2 hover:text-primary">
-              <span className="text-slate-400 dark:text-slate-300" aria-hidden>
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <path d="M12 4a4 4 0 00-4 4" />
-                  <path d="M12 10v4" />
-                  <circle cx="12" cy="18" r="1" />
-                </svg>
-              </span>
-              SSS
-            </a>
+              İletişim
+            </button>
           </nav>
           <div className="flex items-center gap-3">
             <ThemeToggle />
@@ -328,7 +311,7 @@ export default function Home() {
                       Kurumsal Değer Önerileri
                     </p>
                     <h2 className="text-2xl font-semibold text-slate-900 md:text-3xl dark:text-white">
-                      Enterprise-grade, Secure, Integrations
+                      Standartlar, Güvenlik, Entegrasyonlar
                     </h2>
                     <p className="text-base text-slate-600 dark:text-slate-300">
                       İlBilge, profesyonel ekiplerin ihtiyaç duyduğu yüksek erişilebilirlik, veri gizliliği ve sorunsuz entegrasyon standartlarını karşılamak üzere tasarlanmıştır. Vektör tabanlı RAG mimarimiz, kurumsal iş yüklerinde bile kesintisiz, hızlı ve güvenilir bir mevzuat asistanı deneyimi sunar.
@@ -363,8 +346,8 @@ export default function Home() {
                   <div className="overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 shadow-md dark:border-slate-700/60 dark:bg-slate-800">
                     <img
                       id="value-prop-image"
-                      src="https://placehold.co/640x420/png?text=Lorem"
-                      alt="Örnek gösterim görseli"
+                      src="/standartlar.svg"
+                      alt="Standartlar görseli"
                       className="h-full w-full object-cover"
                       loading="lazy"
                     />
@@ -373,12 +356,12 @@ export default function Home() {
                     <button
                       type="button"
                       data-value-tab
-                      data-image="https://placehold.co/640x420/png?text=Lorem"
-                      data-alt="Lorem örnek görseli"
+                      data-image="/standartlar.svg"
+                      data-alt="Standartlar görseli"
                       data-active="true"
                       className="rounded-xl border border-slate-200/60 bg-white/70 px-3 py-2 text-center transition data-[active=true]:bg-white data-[active=true]:text-slate-900 data-[active=true]:ring-2 data-[active=true]:ring-indigo-500/40 dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-400 dark:data-[active=true]:bg-slate-900/80 dark:data-[active=true]:text-white"
                     >
-                      Lorem
+                      Standartlar
                     </button>
                     <button
                       type="button"
@@ -387,7 +370,7 @@ export default function Home() {
                       data-alt="Ipsum örnek görseli"
                       className="rounded-xl border border-slate-200/60 bg-white/70 px-3 py-2 text-center transition data-[active=true]:bg-white data-[active=true]:text-slate-900 data-[active=true]:ring-2 data-[active=true]:ring-indigo-500/40 dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-400 dark:data-[active=true]:bg-slate-900/80 dark:data-[active=true]:text-white"
                     >
-                      Ipsum
+                      Güvenlik
                     </button>
                     <button
                       type="button"
@@ -396,7 +379,7 @@ export default function Home() {
                       data-alt="Dolor örnek görseli"
                       className="rounded-xl border border-slate-200/60 bg-white/70 px-3 py-2 text-center transition data-[active=true]:bg-white data-[active=true]:text-slate-900 data-[active=true]:ring-2 data-[active=true]:ring-indigo-500/40 dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-400 dark:data-[active=true]:bg-slate-900/80 dark:data-[active=true]:text-white"
                     >
-                      Dolor
+                      Entegrasyonlar
                     </button>
                   </div>
                 </div>
@@ -424,14 +407,15 @@ export default function Home() {
               </div>
 
               <div className="relative mt-6 overflow-hidden">
-                <div className="value-carousel-track flex items-center gap-4">
+                <div className="value-carousel-track flex items-center gap-4 dark:hidden">
                   {[
-                    'https://placehold.co/420x260/png?text=Case+01',
-                    'https://placehold.co/420x260/png?text=Case+02',
-                    'https://placehold.co/420x260/png?text=Case+03',
-                    'https://placehold.co/420x260/png?text=Case+04',
-                    'https://placehold.co/420x260/png?text=Case+05',
-                    'https://placehold.co/420x260/png?text=Case+06',
+                    '/b1.png',
+                    '/b2.png',
+                    '/b3.png',
+                    '/b4.png',
+                    '/b5.png',
+                    '/b6.png',
+                    '/b7.png',
                   ].map((src) => (
                     <div
                       key={src}
@@ -443,19 +427,30 @@ export default function Home() {
                         className="h-40 w-full object-cover sm:h-44 md:h-48"
                         loading="lazy"
                       />
-                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent px-3 py-2 text-xs text-white">
-                        Lorem ipsum
-                      </div>
+                      <button
+                        type="button"
+                        data-carousel-modal
+                        data-image={src}
+                        data-alt="Karosel görseli"
+                        className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/60 bg-white/90 text-slate-700 shadow-md transition hover:scale-105 hover:bg-white hover:text-slate-900 dark:border-slate-700/60 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:text-white"
+                        aria-label="Görseli büyüt"
+                      >
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+                          <circle cx="11" cy="11" r="7" />
+                          <path d="M21 21l-4.2-4.2" />
+                        </svg>
+                      </button>
                     </div>
                   ))}
 
                   {[
-                    'https://placehold.co/420x260/png?text=Case+01',
-                    'https://placehold.co/420x260/png?text=Case+02',
-                    'https://placehold.co/420x260/png?text=Case+03',
-                    'https://placehold.co/420x260/png?text=Case+04',
-                    'https://placehold.co/420x260/png?text=Case+05',
-                    'https://placehold.co/420x260/png?text=Case+06',
+                    '/b1.png',
+                    '/b2.png',
+                    '/b3.png',
+                    '/b4.png',
+                    '/b5.png',
+                    '/b6.png',
+                    '/b7.png',
                   ].map((src) => (
                     <div
                       key={`${src}-dup`}
@@ -467,9 +462,90 @@ export default function Home() {
                         className="h-40 w-full object-cover sm:h-44 md:h-48"
                         loading="lazy"
                       />
-                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent px-3 py-2 text-xs text-white">
-                        Lorem ipsum
+                      <button
+                        type="button"
+                        data-carousel-modal
+                        data-image={src}
+                        data-alt="Karosel görseli"
+                        className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/60 bg-white/90 text-slate-700 shadow-md transition hover:scale-105 hover:bg-white hover:text-slate-900 dark:border-slate-700/60 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:text-white"
+                        aria-label="Görseli büyüt"
+                      >
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+                          <circle cx="11" cy="11" r="7" />
+                          <path d="M21 21l-4.2-4.2" />
+                        </svg>
+                      </button>
                       </div>
+                  ))}
+                </div>
+                <div className="value-carousel-track hidden items-center gap-4 dark:flex">
+                  {[
+                    '/s1.png',
+                    '/s2.png',
+                    '/s3.png',
+                    '/s4.png',
+                    '/s5.png',
+                    '/s6.png',
+                    '/s7.png',
+                  ].map((src) => (
+                    <div
+                      key={src}
+                      className="value-carousel-card relative min-w-[220px] overflow-hidden rounded-2xl border border-slate-200/70 bg-white/50 shadow-md dark:border-slate-700/60 dark:bg-slate-900/40"
+                    >
+                      <img
+                        src={src}
+                        alt="Karosel örnek görseli"
+                        className="h-40 w-full object-cover sm:h-44 md:h-48"
+                        loading="lazy"
+                      />
+                      <button
+                        type="button"
+                        data-carousel-modal
+                        data-image={src}
+                        data-alt="Karosel görseli"
+                        className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/60 bg-white/90 text-slate-700 shadow-md transition hover:scale-105 hover:bg-white hover:text-slate-900 dark:border-slate-700/60 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:text-white"
+                        aria-label="Görseli büyüt"
+                      >
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+                          <circle cx="11" cy="11" r="7" />
+                          <path d="M21 21l-4.2-4.2" />
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+
+                  {[
+                    '/s1.png',
+                    '/s2.png',
+                    '/s3.png',
+                    '/s4.png',
+                    '/s5.png',
+                    '/s6.png',
+                    '/s7.png',
+                  ].map((src) => (
+                    <div
+                      key={`${src}-dup`}
+                      className="value-carousel-card relative min-w-[220px] overflow-hidden rounded-2xl border border-slate-200/70 bg-white/50 shadow-md dark:border-slate-700/60 dark:bg-slate-900/40"
+                    >
+                      <img
+                        src={src}
+                        alt="Karosel örnek görseli"
+                        className="h-40 w-full object-cover sm:h-44 md:h-48"
+                        loading="lazy"
+                      />
+                      <button
+                        type="button"
+                        data-carousel-modal
+                        data-image={src}
+                        data-alt="Karosel görseli"
+                        className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/60 bg-white/90 text-slate-700 shadow-md transition hover:scale-105 hover:bg-white hover:text-slate-900 dark:border-slate-700/60 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:text-white"
+                        aria-label="Görseli büyüt"
+                      >
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+                          <circle cx="11" cy="11" r="7" />
+                          <path d="M21 21l-4.2-4.2" />
+                        </svg>
+                      </button>
                     </div>
                   ))}
                 </div>
@@ -605,6 +681,29 @@ export default function Home() {
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
                   Öne Çıkan Özellikler
                 </h3>
+                <div className="neural-flow hidden items-center gap-3 md:flex" aria-hidden="true">
+                  <div className="rounded-xl border border-slate-200/70 bg-white/70 px-2.5 py-2 text-[10px] text-slate-500 shadow-sm dark:border-slate-700/60 dark:bg-slate-900/60 dark:text-slate-300">
+                    <div className="flex items-center gap-1.5">
+                      <span className="neural-node h-2 w-2 rounded-full bg-indigo-500/60"></span>
+                      <span className="neural-node h-2 w-2 rounded-full bg-indigo-500/40" style={{ animationDelay: '0.2s' }}></span>
+                      <span className="neural-node h-2 w-2 rounded-full bg-indigo-500/50" style={{ animationDelay: '0.4s' }}></span>
+                    </div>
+                    <div className="mt-1.5 text-[9px] uppercase tracking-widest">İstemci</div>
+                  </div>
+                  <div className="neural-bridge">
+                    <span className="neural-dot"></span>
+                    <span className="neural-dot" style={{ animationDelay: '0.4s' }}></span>
+                    <span className="neural-dot" style={{ animationDelay: '0.8s' }}></span>
+                  </div>
+                  <div className="rounded-xl border border-slate-200/70 bg-white/70 px-2.5 py-2 text-[10px] text-slate-500 shadow-sm dark:border-slate-700/60 dark:bg-slate-900/60 dark:text-slate-300">
+                    <div className="flex items-center gap-1.5">
+                      <span className="neural-node h-2 w-2 rounded-full bg-emerald-500/60"></span>
+                      <span className="neural-node h-2 w-2 rounded-full bg-emerald-500/40" style={{ animationDelay: '0.2s' }}></span>
+                      <span className="neural-node h-2 w-2 rounded-full bg-emerald-500/50" style={{ animationDelay: '0.4s' }}></span>
+                    </div>
+                    <div className="mt-1.5 text-[9px] uppercase tracking-widest">Model</div>
+                  </div>
+                </div>
               </div>
               <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
@@ -772,13 +871,13 @@ export default function Home() {
               <div className="relative mt-6">
                 <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 shadow-md dark:border-slate-700/60 dark:bg-slate-800">
                   <img
-                    src="/ana-beyaz.png"
+                    src="/main_template_white.png"
                     alt="Ürün arayüzü görseli"
                     className="h-full w-full object-cover dark:hidden"
                     loading="lazy"
                   />
                   <img
-                    src="/ana-siyah.png"
+                    src="/main_template.png"
                     alt="Ürün arayüzü görseli"
                     className="hidden h-full w-full object-cover dark:block"
                     loading="lazy"
@@ -1603,6 +1702,29 @@ export default function Home() {
           </div>
         </section>
 
+        <div
+          id="carousel-modal"
+          className="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 px-4 py-6"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-xl dark:bg-slate-900">
+            <button
+              type="button"
+              id="carousel-modal-close"
+              className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/70 bg-white/90 text-slate-700 shadow-sm transition hover:bg-white dark:border-slate-700/60 dark:bg-slate-900/80 dark:text-slate-200"
+              aria-label="Kapat"
+            >
+              ×
+            </button>
+            <img
+              id="carousel-modal-image"
+              src="/b1.png"
+              alt="Karosel görseli"
+              className="hidden h-[60vh] w-full object-contain"
+            />
+          </div>
+        </div>
         <Script id="value-prop-image-switcher" strategy="afterInteractive">
           {`
             (function () {
@@ -1627,6 +1749,54 @@ export default function Home() {
                 tab.addEventListener('click', function () {
                   activate(tab);
                 });
+              });
+            })();
+          `}
+        </Script>
+        <Script id="carousel-modal" strategy="afterInteractive">
+          {`
+            (function () {
+              var modal = document.getElementById('carousel-modal');
+              var modalImage = document.getElementById('carousel-modal-image');
+              var closeButton = document.getElementById('carousel-modal-close');
+              var triggers = document.querySelectorAll('[data-carousel-modal]');
+              if (!modal || !modalImage || !closeButton || !triggers.length) return;
+
+              function openModal(button) {
+                var src = button.getAttribute('data-image') || '';
+                var alt = button.getAttribute('data-alt') || 'Karosel görseli';
+                if (!src) return;
+                modalImage.setAttribute('src', src);
+                modalImage.setAttribute('alt', alt);
+                modalImage.classList.remove('hidden');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+              }
+
+              function closeModal() {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                modalImage.classList.add('hidden');
+              }
+
+              triggers.forEach(function (button) {
+                button.addEventListener('click', function () {
+                  openModal(button);
+                });
+              });
+
+              closeButton.addEventListener('click', closeModal);
+
+              modal.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                  closeModal();
+                }
+              });
+
+              window.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                  closeModal();
+                }
               });
             })();
           `}
@@ -1821,6 +1991,14 @@ export default function Home() {
               animation: none;
             }
 
+            .neural-dot {
+              animation: none;
+            }
+
+            .neural-node {
+              animation: none;
+            }
+
           }
 
           .voice-bar {
@@ -1872,6 +2050,30 @@ export default function Home() {
             animation: soundwave-pulse 1.4s ease-in-out infinite;
           }
 
+          .neural-bridge {
+            position: relative;
+            height: 2px;
+            width: 84px;
+            border-radius: 9999px;
+            background: rgba(148, 163, 184, 0.5);
+          }
+
+          .neural-dot {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 6px;
+            width: 6px;
+            border-radius: 9999px;
+            background: rgba(79, 70, 229, 0.7);
+            transform: translate(-8px, -50%);
+            animation: neural-flow 1.8s linear infinite;
+          }
+
+          .neural-node {
+            animation: neural-pulse 1.6s ease-in-out infinite;
+          }
+
           @keyframes soundwave-pulse {
             0%,
             100% {
@@ -1880,6 +2082,35 @@ export default function Home() {
             }
             50% {
               transform: scaleY(1.3);
+              opacity: 1;
+            }
+          }
+
+          @keyframes neural-flow {
+            0% {
+              transform: translate(-8px, -50%);
+              opacity: 0;
+            }
+            15% {
+              opacity: 1;
+            }
+            85% {
+              opacity: 1;
+            }
+            100% {
+              transform: translate(92px, -50%);
+              opacity: 0;
+            }
+          }
+
+          @keyframes neural-pulse {
+            0%,
+            100% {
+              transform: scale(0.9);
+              opacity: 0.6;
+            }
+            50% {
+              transform: scale(1.2);
               opacity: 1;
             }
           }
