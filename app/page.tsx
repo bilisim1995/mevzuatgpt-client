@@ -217,7 +217,7 @@ export default function Home() {
             <div className="relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white/85 p-6 shadow-lg backdrop-blur md:p-8 dark:border-slate-700/50 dark:bg-slate-900/70">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:240px_240px] bg-center opacity-40"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:240px_240px] bg-center opacity-60 dark:opacity-40"
               ></div>
               <div className="relative z-10">
               <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
@@ -235,12 +235,8 @@ export default function Home() {
               </div>
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex flex-col items-center text-center gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex flex-col items-center text-center gap-3">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <path d="M4 7.5C4 6.12 5.12 5 6.5 5H18" />
@@ -259,12 +255,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex flex-col items-center text-center gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex flex-col items-center text-center gap-3">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <path d="M5 12l4 4L19 6" />
@@ -280,12 +272,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex flex-col items-center text-center gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex flex-col items-center text-center gap-3">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <circle cx="12" cy="12" r="6.5" />
@@ -302,12 +290,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex flex-col items-center text-center gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-5 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex flex-col items-center text-center gap-3">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
                       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
                         <path d="M4 16c1.5-3 4-4.5 8-4.5S18.5 13 20 16" />
@@ -335,7 +319,7 @@ export default function Home() {
             <div className="relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-xl backdrop-blur md:p-10 dark:border-slate-700/50 dark:bg-slate-900/70">
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-60 dark:opacity-40"
                 ></div>
               <div className="relative z-10 grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-center">
                 <div className="space-y-6">
@@ -352,12 +336,8 @@ export default function Home() {
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                      ></div>
-                      <div className="relative z-10">
+                    <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                      <div>
                       <h3 className="text-base font-semibold text-slate-900 dark:text-white">
                           Integrations (Tam Entegrasyon)
                       </h3>
@@ -366,12 +346,8 @@ export default function Home() {
                       </p>
                     </div>
                     </div>
-                    <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                      ></div>
-                      <div className="relative z-10">
+                    <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                      <div>
                       <h3 className="text-base font-semibold text-slate-900 dark:text-white">
                           Secure (Veri Güvenliği)
                       </h3>
@@ -430,7 +406,7 @@ export default function Home() {
             <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/70 p-6 shadow-lg backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-60 dark:opacity-40"
               ></div>
               <div className="relative z-10">
               <div className="flex items-center justify-between gap-4">
@@ -459,7 +435,7 @@ export default function Home() {
                   ].map((src) => (
                     <div
                       key={src}
-                      className="value-carousel-card relative min-w-[220px] overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-md dark:border-slate-700/60 dark:bg-slate-900"
+                      className="value-carousel-card relative min-w-[220px] overflow-hidden rounded-2xl border border-slate-200/70 bg-white/50 shadow-md dark:border-slate-700/60 dark:bg-slate-900/40"
                     >
                       <img
                         src={src}
@@ -483,7 +459,7 @@ export default function Home() {
                   ].map((src) => (
                     <div
                       key={`${src}-dup`}
-                      className="value-carousel-card relative min-w-[220px] overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-md dark:border-slate-700/60 dark:bg-slate-900"
+                      className="value-carousel-card relative min-w-[220px] overflow-hidden rounded-2xl border border-slate-200/70 bg-white/50 shadow-md dark:border-slate-700/60 dark:bg-slate-900/40"
                     >
                       <img
                         src={src}
@@ -506,7 +482,7 @@ export default function Home() {
             <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-60 dark:opacity-40"
               ></div>
               <div className="relative z-10 grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
                 <div className="space-y-4">
@@ -527,11 +503,7 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="relative flex items-start gap-3 overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                      ></div>
+                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/50 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                       <span className="relative z-10 mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                           <path d="M12 4v10" />
@@ -549,11 +521,7 @@ export default function Home() {
                       </p>
                       </div>
                     </div>
-                    <div className="relative flex items-start gap-3 overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                      ></div>
+                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/50 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                       <span className="relative z-10 mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                           <path d="M5 12l3 3 8-8" />
@@ -569,11 +537,7 @@ export default function Home() {
                       </p>
                       </div>
                     </div>
-                    <div className="relative flex items-start gap-3 overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                      ></div>
+                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/50 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                       <span className="relative z-10 mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                           <path d="M4 12h16" />
@@ -590,11 +554,7 @@ export default function Home() {
                       </p>
                       </div>
                     </div>
-                    <div className="relative flex items-start gap-3 overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                      ></div>
+                    <div className="flex items-start gap-3 rounded-2xl border border-slate-200/60 bg-white/50 p-3 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                       <span className="relative z-10 mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                           <path d="M6 8h12" />
@@ -638,7 +598,7 @@ export default function Home() {
             <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-60 dark:opacity-40"
               ></div>
               <div className="relative z-10">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -647,11 +607,7 @@ export default function Home() {
                 </h3>
               </div>
               <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                  ></div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                   <div className="relative z-10 flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-600 shadow-sm ring-1 ring-white/60 dark:bg-indigo-500/20 dark:text-indigo-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -669,11 +625,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                  ></div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                   <div className="relative z-10 flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-600 shadow-sm ring-1 ring-white/60 dark:bg-emerald-500/20 dark:text-emerald-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -690,11 +642,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                  ></div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                   <div className="relative z-10 flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500/10 text-sky-600 shadow-sm ring-1 ring-white/60 dark:bg-sky-500/20 dark:text-sky-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -712,11 +660,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                  ></div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                   <div className="relative z-10 flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-fuchsia-500/10 text-fuchsia-600 shadow-sm ring-1 ring-white/60 dark:bg-fuchsia-500/20 dark:text-fuchsia-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -735,11 +679,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                  ></div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                   <div className="relative z-10 flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-600 shadow-sm ring-1 ring-white/60 dark:bg-amber-500/20 dark:text-amber-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -756,11 +696,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                  ></div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                   <div className="relative z-10 flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-rose-500/10 text-rose-600 shadow-sm ring-1 ring-white/60 dark:bg-rose-500/20 dark:text-rose-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -779,11 +715,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                  ></div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                   <div className="relative z-10 flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-teal-500/10 text-teal-600 shadow-sm ring-1 ring-white/60 dark:bg-teal-500/20 dark:text-teal-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -801,11 +733,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                  ></div>
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
                   <div className="relative z-10 flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-500/10 text-purple-600 shadow-sm ring-1 ring-white/60 dark:bg-purple-500/20 dark:text-purple-200 dark:ring-white/10">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -830,7 +758,7 @@ export default function Home() {
             <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-4 shadow-md backdrop-blur md:p-5 dark:border-slate-700/50 dark:bg-slate-900/60">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-60 dark:opacity-40"
               ></div>
               <div className="relative z-10">
               <div className="flex items-center justify-between">
@@ -863,7 +791,7 @@ export default function Home() {
             <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-60 dark:opacity-40"
               ></div>
               <div className="relative z-10 grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
                 <div className="space-y-4">
@@ -881,12 +809,8 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                      ></div>
-                      <div className="relative z-10">
+                    <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                      <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
                         Klasik Arama
                       </p>
@@ -897,12 +821,8 @@ export default function Home() {
                       </ul>
                     </div>
                     </div>
-                    <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                      ></div>
-                      <div className="relative z-10">
+                    <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                      <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
                         Vektör Araması
                       </p>
@@ -914,12 +834,8 @@ export default function Home() {
                     </div>
                   </div>
                   </div>
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                    <div
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                    ></div>
-                    <div className="relative z-10">
+                  <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                    <div>
                     <p className="text-base font-semibold text-slate-900 dark:text-white">
                       Rakiplerimizden farkımız
                     </p>
@@ -953,7 +869,7 @@ export default function Home() {
             <div className="relative mt-8 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-60 dark:opacity-40"
               ></div>
               <div className="relative z-10">
               <div className="flex items-center justify-between">
@@ -1115,7 +1031,7 @@ export default function Home() {
             <div className="relative mt-8 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-60 dark:opacity-40"
               ></div>
               <div className="pointer-events-none absolute -left-10 top-6 h-32 w-32 rounded-full bg-rose-500/10 blur-3xl dark:bg-rose-500/20"></div>
               <div className="pointer-events-none absolute -right-8 bottom-8 h-36 w-36 rounded-full bg-emerald-500/10 blur-3xl dark:bg-emerald-500/20"></div>
@@ -1167,11 +1083,7 @@ export default function Home() {
                 <span className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-200/70 bg-white/90 px-3 py-1 text-xs font-semibold text-slate-500 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/80 dark:text-slate-300 md:inline-flex">
                   VS
                 </span>
-                <div className="relative overflow-hidden rounded-2xl border border-rose-200/70 bg-rose-50/70 p-4 text-sm text-slate-700 shadow-sm dark:border-rose-500/30 dark:bg-rose-950/30 dark:text-slate-200">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                  ></div>
+                <div className="rounded-2xl border border-rose-200/70 bg-rose-50/70 p-4 text-sm text-slate-700 shadow-sm dark:border-rose-500/30 dark:bg-rose-950/30 dark:text-slate-200">
                   <div className="relative z-10 flex items-center justify-between">
                     <p className="text-base font-semibold text-rose-700 dark:text-rose-200">
                       LLM Cevabı (Uydurma)
@@ -1184,11 +1096,7 @@ export default function Home() {
                     Soruyu görmek için “Sor” butonuna tıklayın.
                   </p>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-emerald-200/70 bg-emerald-50/70 p-4 text-sm text-slate-700 shadow-sm dark:border-emerald-500/30 dark:bg-emerald-950/30 dark:text-slate-200">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                  ></div>
+                <div className="rounded-2xl border border-emerald-200/70 bg-emerald-50/70 p-4 text-sm text-slate-700 shadow-sm dark:border-emerald-500/30 dark:bg-emerald-950/30 dark:text-slate-200">
                   <div className="relative z-10 flex items-center justify-between">
                     <p className="text-base font-semibold text-emerald-700 dark:text-emerald-200">
                       İlBilge RAG Cevabı
@@ -1210,7 +1118,7 @@ export default function Home() {
             <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-60 dark:opacity-40"
               ></div>
               <div className="relative z-10">
                 <input
@@ -1251,12 +1159,8 @@ export default function Home() {
               </div>
               <div className="reviews-content relative mt-5">
                 <div className="reviews-page reviews-page-1 grid gap-4 md:grid-cols-3">
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                    <div
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                    ></div>
-                    <div className="relative z-10">
+                  <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                    <div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
@@ -1294,12 +1198,8 @@ export default function Home() {
                   </p>
                 </div>
                   </div>
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                    <div
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                    ></div>
-                    <div className="relative z-10">
+                  <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                    <div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
@@ -1337,12 +1237,8 @@ export default function Home() {
                   </p>
                 </div>
                   </div>
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                    <div
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                    ></div>
-                    <div className="relative z-10">
+                  <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                    <div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-base font-semibold text-slate-900 dark:text-white">
@@ -1382,12 +1278,8 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="reviews-page reviews-page-2 grid gap-4 md:grid-cols-3">
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                    <div
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                    ></div>
-                    <div className="relative z-10">
+                  <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                    <div>
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-base font-semibold text-slate-900 dark:text-white">
@@ -1425,12 +1317,8 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                    <div
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                    ></div>
-                    <div className="relative z-10">
+                  <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                    <div>
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-base font-semibold text-slate-900 dark:text-white">
@@ -1468,12 +1356,8 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                    <div
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:200px_200px] bg-center opacity-40"
-                    ></div>
-                    <div className="relative z-10">
+                  <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                    <div>
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-base font-semibold text-slate-900 dark:text-white">
@@ -1516,8 +1400,12 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-16 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className="relative mt-16 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/60">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-60 dark:opacity-40"
+              ></div>
+              <div className="relative z-10 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
                   Sıkça Sorulan Sorular
                 </h3>
@@ -1525,13 +1413,9 @@ export default function Home() {
                   10 maddelik kısa yanıtlar.
                 </p>
               </div>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex items-start gap-3">
+              <div className="relative z-10 mt-5 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M12 3a6 6 0 00-6 6" />
@@ -1549,12 +1433,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex items-start gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M7 12l3 3 7-7" />
@@ -1570,12 +1450,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex items-start gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-500/20 dark:text-sky-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M12 4v16" />
@@ -1592,12 +1468,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex items-start gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-fuchsia-500/10 text-fuchsia-600 dark:bg-fuchsia-500/20 dark:text-fuchsia-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M4 6h16v12H4z" />
@@ -1615,12 +1487,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex items-start gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-amber-500/10 text-amber-600 dark:bg-amber-500/20 dark:text-amber-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M12 6v6l4 2" />
@@ -1637,12 +1505,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex items-start gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M5 12h14" />
@@ -1659,12 +1523,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex items-start gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-teal-500/10 text-teal-600 dark:bg-teal-500/20 dark:text-teal-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <circle cx="12" cy="12" r="8" />
@@ -1681,12 +1541,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex items-start gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-lime-500/10 text-lime-600 dark:bg-lime-500/20 dark:text-lime-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M6 8h12" />
@@ -1704,12 +1560,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex items-start gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-cyan-500/10 text-cyan-600 dark:bg-cyan-500/20 dark:text-cyan-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M12 4a4 4 0 014 4c0 2-2 3-4 5-2-2-4-3-4-5a4 4 0 014-4z" />
@@ -1726,12 +1578,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/60 dark:text-slate-300">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-[url('/selcuklu-ucgen.svg')] bg-[length:220px_220px] bg-center opacity-40"
-                  ></div>
-                  <div className="relative z-10 flex items-start gap-3">
+                <div className="rounded-2xl border border-slate-200/60 bg-white/50 p-4 text-sm text-slate-600 shadow-sm dark:border-slate-700/50 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-violet-500/10 text-violet-600 dark:bg-violet-500/20 dark:text-violet-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                         <path d="M5 6h14" />
