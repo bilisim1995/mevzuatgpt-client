@@ -131,7 +131,7 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <Link
-              href="/register"
+              href="/login"
               className="hidden rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-[0_6px_16px_rgba(15,23,42,0.12)] hover:opacity-90 dark:shadow-[0_6px_16px_rgba(0,0,0,0.35)] md:inline-flex"
             >
               Ücretsiz Kullan
@@ -190,7 +190,7 @@ export default function Home() {
               <QuoteInfoDialog />
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/register"
+                  href="/login"
                   className="group inline-flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-105 active:scale-95"
                 >
                   <span className="relative rounded-full p-[2px]">

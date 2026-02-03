@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
@@ -278,339 +277,334 @@ export function QuestionAnswerCard({
   }
 
   return (
-    <Card className="w-full max-w-4xl mx-auto shadow-lg border border-gray-200/50 dark:border-gray-700/30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm rounded-xl">
-      <CardContent className="p-6 space-y-4">
-        {/* Soru Bölümü */}
-        <div className="space-y-3">
-          <div className="flex items-start justify-between">
-            <div className="space-y-3 flex-1 mr-4">
-              <div className="flex items-center space-x-3">
-                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Soru:</span>
-                <span className="text-xs text-gray-500 dark:text-gray-500 italic">
-                  (MevzuatGPT hata yapabilir. Cevabı kontrol edin.)
-                </span>
-              </div>
-              <p className="text-base font-normal text-gray-900 dark:text-white leading-relaxed">
-                {question}
-              </p>
-            </div>
-            <button 
-              onClick={() => setPerformanceModalOpen(true)}
-              className="flex items-center text-xs text-gray-900 dark:text-gray-400 hover:text-blue-400 transition-colors cursor-pointer flex-shrink-0"
-            >
-              <Clock className="w-3 h-3 mr-1.5" />
-              {timestamp}
-            </button>
+    <div className="w-full max-w-4xl mx-auto space-y-4">
+      {/* Soru Balonu */}
+      <div className="flex justify-end">
+        <div className="max-w-[85%] sm:max-w-[70%] rounded-2xl bg-blue-600 px-4 py-3 text-white shadow-lg">
+          <div className="flex items-center justify-between text-[11px] uppercase tracking-wide text-blue-100">
+            <span>Soru</span>
+            <span className="italic">(MevzuatGPT hata yapabilir.)</span>
           </div>
-          
-          <div className="border-t border-gray-200/50 dark:border-gray-700/40 mt-4"></div>
+          <p className="mt-2 text-sm leading-relaxed">
+            {question}
+          </p>
+          <button
+            onClick={() => setPerformanceModalOpen(true)}
+            className="mt-3 inline-flex items-center justify-end text-[11px] text-blue-100 hover:text-white transition-colors"
+          >
+            <Clock className="mr-1.5 h-3 w-3" />
+            {timestamp}
+          </button>
         </div>
+      </div>
 
-        {/* Cevap Bölümü */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-light text-gray-900 dark:text-gray-400">Cevap:</span>
-            
-            <div className="flex items-center space-x-6 text-xs">
-              <button 
-                onClick={() => setReliabilityModalOpen(true)}
-                className="flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700/30 px-2 py-1 rounded-md transition-colors"
-              >
-                <div className={`w-2 h-2 rounded-full ${getReliabilityDotColor(actualReliabilityScore)}`}></div>
-                <span className={`font-medium ${getReliabilityColor(actualReliabilityScore)}`}>
-                  {actualReliabilityScore}% Güvenirlik
-                </span>
-                <Info className="w-3 h-3 text-gray-900 dark:text-gray-400" />
-              </button>
-              
-              <button 
-                onClick={() => setSourcesModalOpen(true)}
-                className="flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700/30 px-2 py-1 rounded-md transition-colors cursor-pointer"
-              >
-                <FileText className="w-3 h-3 text-gray-900 dark:text-gray-400" />
-                <span className="text-gray-900 dark:text-gray-400 font-light">Kaynaklar ({sources})</span>
-              </button>
+      {/* Cevap Balonu */}
+      <div className="flex justify-start">
+        <div className="w-full max-w-[85%] sm:max-w-[70%] rounded-2xl border border-gray-200/60 bg-white/95 shadow-lg dark:border-gray-700/40 dark:bg-gray-900/95">
+          <div className="space-y-4 p-4">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-light text-gray-900 dark:text-gray-400">Cevap</span>
+              <div className="flex items-center space-x-4 text-xs">
+                <button 
+                  onClick={() => setReliabilityModalOpen(true)}
+                  className="flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700/30 px-2 py-1 rounded-md transition-colors"
+                >
+                  <div className={`w-2 h-2 rounded-full ${getReliabilityDotColor(actualReliabilityScore)}`}></div>
+                  <span className={`font-medium ${getReliabilityColor(actualReliabilityScore)}`}>
+                    {actualReliabilityScore}% Güvenirlik
+                  </span>
+                  <Info className="w-3 h-3 text-gray-900 dark:text-gray-400" />
+                </button>
+                
+                <button 
+                  onClick={() => setSourcesModalOpen(true)}
+                  className="flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700/30 px-2 py-1 rounded-md transition-colors cursor-pointer"
+                >
+                  <FileText className="w-3 h-3 text-gray-900 dark:text-gray-400" />
+                  <span className="text-gray-900 dark:text-gray-400 font-light">Kaynaklar ({sources})</span>
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="relative">
-            {/* Blur Warning Overlay */}
-            {showBlurWarning && (
-              <div className="absolute inset-0 z-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center">
-                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700/30 rounded-lg p-4 max-w-sm mx-4">
-                  <p className="text-xs text-yellow-700 dark:text-yellow-300 leading-relaxed mb-3">
-                    MevzuatGPT hata yapabilir. Cevabın kesinlik içermediğini unutmayın. 
-                    Bilgileri kontrol edin ve doğrulayın.
-                  </p>
-                  <Button
-                    onClick={() => setShowBlurWarning(false)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded text-xs font-medium transition-colors w-full"
+            <div className="relative">
+              {/* Blur Warning Overlay */}
+              {showBlurWarning && (
+                <div className="absolute inset-0 z-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center">
+                  <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700/30 rounded-lg p-4 max-w-sm mx-4">
+                    <p className="text-xs text-yellow-700 dark:text-yellow-300 leading-relaxed mb-3">
+                      MevzuatGPT hata yapabilir. Cevabın kesinlik içermediğini unutmayın. 
+                      Bilgileri kontrol edin ve doğrulayın.
+                    </p>
+                    <Button
+                      onClick={() => setShowBlurWarning(false)}
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded text-xs font-medium transition-colors w-full"
+                    >
+                      Tamam, Anladım
+                    </Button>
+                  </div>
+                </div>
+              )}
+              
+              <div className={`bg-gray-100 dark:bg-gray-800/50 rounded-xl p-4 shadow-inner border border-gray-200/50 dark:border-gray-700/30 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-800 hover:scrollbar-thumb-gray-500 dark:hover:scrollbar-thumb-gray-500 ${showBlurWarning ? 'blur-sm' : ''}`}>
+                <div className="markdown-content">
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    skipHtml={false}
+                    components={{
+                      // Başlıklar
+                      h1: ({children}) => (
+                        <h1 className="text-2xl font-bold mb-4 mt-6 text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">
+                          {children}
+                        </h1>
+                      ),
+                      h2: ({children}) => (
+                        <h2 className="text-xl font-semibold mb-3 mt-5 text-gray-900 dark:text-white border-l-4 border-blue-500 pl-3">
+                          {children}
+                        </h2>
+                      ),
+                      h3: ({children}) => (
+                        <h3 className="text-lg font-semibold mb-3 mt-4 text-gray-900 dark:text-white border-l-3 border-green-500 pl-3 bg-green-50 dark:bg-green-900/20 py-2 rounded-r-md">
+                          {children}
+                        </h3>
+                      ),
+                      h4: ({children}) => (
+                        <h4 className="text-base font-medium mb-2 mt-3 text-gray-800 dark:text-gray-200">
+                          {children}
+                        </h4>
+                      ),
+                      h5: ({children}) => (
+                        <h5 className="text-sm font-medium mb-1 mt-2 text-gray-700 dark:text-gray-300">
+                          {children}
+                        </h5>
+                      ),
+                      h6: ({children}) => (
+                        <h6 className="text-xs font-medium mb-1 mt-2 text-gray-600 dark:text-gray-400">
+                          {children}
+                        </h6>
+                      ),
+                      
+                      // Paragraflar
+                      p: ({children}) => (
+                        <p className="mb-4 text-gray-800 dark:text-gray-200 leading-relaxed text-base">
+                          {children}
+                        </p>
+                      ),
+                      
+                      // Listeler
+                      ul: ({children}) => (
+                        <ul className="mb-4 pl-6 space-y-2 text-gray-800 dark:text-gray-200 list-disc marker:text-blue-500 dark:marker:text-blue-400">
+                          {children}
+                        </ul>
+                      ),
+                      ol: ({children}) => (
+                        <ol className="mb-4 pl-6 space-y-2 text-gray-800 dark:text-gray-200 list-decimal marker:font-bold marker:text-blue-500 dark:marker:text-blue-400">
+                          {children}
+                        </ol>
+                      ),
+                      li: ({children}) => (
+                        <li className="text-gray-800 dark:text-gray-200 leading-relaxed">
+                          {children}
+                        </li>
+                      ),
+                      
+                      // Metin formatları
+                      strong: ({children}) => (
+                        <strong className="font-semibold text-gray-900 dark:text-white">
+                          {children}
+                        </strong>
+                      ),
+                      em: ({children}) => (
+                        <em className="italic text-gray-700 dark:text-gray-300">
+                          {children}
+                        </em>
+                      ),
+                      del: ({children}) => (
+                        <del className="line-through text-gray-500 dark:text-gray-500">
+                          {children}
+                        </del>
+                      ),
+                      
+                      // Kod blokları
+                      code: ({children}) => (
+                        <code className="bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 px-2 py-1 rounded text-sm font-mono border border-gray-200 dark:border-gray-700">
+                          {children}
+                        </code>
+                      ),
+                      pre: ({children}) => (
+                        <pre className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4 text-sm font-mono border border-gray-700 dark:border-gray-600">
+                          {children}
+                        </pre>
+                      ),
+                      
+                      // Blockquote
+                      blockquote: ({children}) => (
+                        <blockquote className="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 pl-4 py-3 mb-4 rounded-r-lg italic text-gray-700 dark:text-gray-300">
+                          {children}
+                        </blockquote>
+                      ),
+                      
+                      // Linkler
+                      a: ({href, children}) => (
+                        <a 
+                          href={href} 
+                          className="text-blue-600 dark:text-blue-400 underline hover:text-blue-500 dark:hover:text-blue-300 hover:no-underline transition-colors" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                        >
+                          {children}
+                        </a>
+                      ),
+                      
+                      // Tablolar
+                      table: ({children}) => (
+                        <div className="overflow-x-auto mb-4">
+                          <table className="min-w-full border-collapse border border-gray-300 dark:border-gray-600 rounded-lg">
+                            {children}
+                          </table>
+                        </div>
+                      ),
+                      thead: ({children}) => (
+                        <thead className="bg-gray-100 dark:bg-gray-800">
+                          {children}
+                        </thead>
+                      ),
+                      tbody: ({children}) => (
+                        <tbody className="bg-white dark:bg-gray-900">
+                          {children}
+                        </tbody>
+                      ),
+                      tr: ({children}) => (
+                        <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                          {children}
+                        </tr>
+                      ),
+                      th: ({children}) => (
+                        <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left font-semibold text-gray-900 dark:text-white">
+                          {children}
+                        </th>
+                      ),
+                      td: ({children}) => (
+                        <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-200">
+                          {children}
+                        </td>
+                      ),
+                      
+                      // Yatay çizgi
+                      hr: () => (
+                        <hr className="my-6 border-gray-300 dark:border-gray-600" />
+                      ),
+                      
+                      // Satır sonları
+                      br: () => <br className="mb-2" />,
+                    }}
                   >
-                    Tamam, Anladım
-                  </Button>
+                    {cleanAnswerText(answer)}
+                  </ReactMarkdown>
                 </div>
               </div>
-            )}
-            
-            <div className={`bg-gray-100 dark:bg-gray-800/50 rounded-xl p-4 mt-3 shadow-inner border border-gray-200/50 dark:border-gray-700/30 h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-800 hover:scrollbar-thumb-gray-500 dark:hover:scrollbar-thumb-gray-500 ${showBlurWarning ? 'blur-sm' : ''}`}>
-              <div className="markdown-content">
-                <ReactMarkdown 
-                  remarkPlugins={[remarkGfm]}
-                  skipHtml={false}
-                  components={{
-                    // Başlıklar
-                    h1: ({children}) => (
-                      <h1 className="text-2xl font-bold mb-4 mt-6 text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">
-                        {children}
-                      </h1>
-                    ),
-                    h2: ({children}) => (
-                      <h2 className="text-xl font-semibold mb-3 mt-5 text-gray-900 dark:text-white border-l-4 border-blue-500 pl-3">
-                        {children}
-                      </h2>
-                    ),
-                    h3: ({children}) => (
-                      <h3 className="text-lg font-semibold mb-3 mt-4 text-gray-900 dark:text-white border-l-3 border-green-500 pl-3 bg-green-50 dark:bg-green-900/20 py-2 rounded-r-md">
-                        {children}
-                      </h3>
-                    ),
-                    h4: ({children}) => (
-                      <h4 className="text-base font-medium mb-2 mt-3 text-gray-800 dark:text-gray-200">
-                        {children}
-                      </h4>
-                    ),
-                    h5: ({children}) => (
-                      <h5 className="text-sm font-medium mb-1 mt-2 text-gray-700 dark:text-gray-300">
-                        {children}
-                      </h5>
-                    ),
-                    h6: ({children}) => (
-                      <h6 className="text-xs font-medium mb-1 mt-2 text-gray-600 dark:text-gray-400">
-                        {children}
-                      </h6>
-                    ),
-                    
-                    // Paragraflar
-                    p: ({children}) => (
-                      <p className="mb-4 text-gray-800 dark:text-gray-200 leading-relaxed text-base">
-                        {children}
-                      </p>
-                    ),
-                    
-                    // Listeler
-                    ul: ({children}) => (
-                      <ul className="mb-4 pl-6 space-y-2 text-gray-800 dark:text-gray-200 list-disc marker:text-blue-500 dark:marker:text-blue-400">
-                        {children}
-                      </ul>
-                    ),
-                    ol: ({children}) => (
-                      <ol className="mb-4 pl-6 space-y-2 text-gray-800 dark:text-gray-200 list-decimal marker:font-bold marker:text-blue-500 dark:marker:text-blue-400">
-                        {children}
-                      </ol>
-                    ),
-                    li: ({children}) => (
-                      <li className="text-gray-800 dark:text-gray-200 leading-relaxed">
-                        {children}
-                      </li>
-                    ),
-                    
-                    // Metin formatları
-                    strong: ({children}) => (
-                      <strong className="font-semibold text-gray-900 dark:text-white">
-                        {children}
-                      </strong>
-                    ),
-                    em: ({children}) => (
-                      <em className="italic text-gray-700 dark:text-gray-300">
-                        {children}
-                      </em>
-                    ),
-                    del: ({children}) => (
-                      <del className="line-through text-gray-500 dark:text-gray-500">
-                        {children}
-                      </del>
-                    ),
-                    
-                    // Kod blokları
-                    code: ({children}) => (
-                      <code className="bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 px-2 py-1 rounded text-sm font-mono border border-gray-200 dark:border-gray-700">
-                        {children}
-                      </code>
-                    ),
-                    pre: ({children}) => (
-                      <pre className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4 text-sm font-mono border border-gray-700 dark:border-gray-600">
-                        {children}
-                      </pre>
-                    ),
-                    
-                    // Blockquote
-                    blockquote: ({children}) => (
-                      <blockquote className="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 pl-4 py-3 mb-4 rounded-r-lg italic text-gray-700 dark:text-gray-300">
-                        {children}
-                      </blockquote>
-                    ),
-                    
-                    // Linkler
-                    a: ({href, children}) => (
-                      <a 
-                        href={href} 
-                        className="text-blue-600 dark:text-blue-400 underline hover:text-blue-500 dark:hover:text-blue-300 hover:no-underline transition-colors" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                      >
-                        {children}
-                      </a>
-                    ),
-                    
-                    // Tablolar
-                    table: ({children}) => (
-                      <div className="overflow-x-auto mb-4">
-                        <table className="min-w-full border-collapse border border-gray-300 dark:border-gray-600 rounded-lg">
-                          {children}
-                        </table>
-                      </div>
-                    ),
-                    thead: ({children}) => (
-                      <thead className="bg-gray-100 dark:bg-gray-800">
-                        {children}
-                      </thead>
-                    ),
-                    tbody: ({children}) => (
-                      <tbody className="bg-white dark:bg-gray-900">
-                        {children}
-                      </tbody>
-                    ),
-                    tr: ({children}) => (
-                      <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                        {children}
-                      </tr>
-                    ),
-                    th: ({children}) => (
-                      <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left font-semibold text-gray-900 dark:text-white">
-                        {children}
-                      </th>
-                    ),
-                    td: ({children}) => (
-                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-200">
-                        {children}
-                      </td>
-                    ),
-                    
-                    // Yatay çizgi
-                    hr: () => (
-                      <hr className="my-6 border-gray-300 dark:border-gray-600" />
-                    ),
-                    
-                    // Satır sonları
-                    br: () => <br className="mb-2" />,
-                  }}
-                >
-                  {cleanAnswerText(answer)}
-                </ReactMarkdown>
-              </div>
             </div>
-          </div>
-        </div>
 
-        {/* Alt Bilgiler ve Aksiyonlar */}
-        <div className="pt-4 border-t border-gray-200 dark:border-gray-700/40">
-          {/* Mobil: Kredi üstte, butonlar altta */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-            {/* Kredi Bilgisi */}
-            <div className="flex items-center justify-center lg:justify-start mb-3 lg:mb-0">
-              <button 
-                onClick={() => setCreditInfoModalOpen(true)}
-                className="flex items-center text-xs text-gray-900 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
-              >
-                <Coins className="h-3 w-3 mr-1" />
-                <span className="font-light">{creditsUsed} Kredi Kullanıldı</span>
-              </button>
-            </div>
-            
-            {/* Butonlar - Geniş ekranda tek satırda */}
-            <div className="flex items-center justify-center lg:justify-end space-x-2">
-              <div className="flex items-center space-x-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleLikeClick}
-                  disabled={feedbackLoading}
-                  data-feedback="like"
-                  className={`h-8 w-8 p-0 rounded-md ${liked === true ? 'text-green-400 bg-green-900/20' : 'text-gray-600 dark:text-gray-400 hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700/50'} ${feedbackLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                >
-                  <ThumbsUp className="h-4 w-4" />
-                </Button>
+            {/* Alt Bilgiler ve Aksiyonlar */}
+            <div className="pt-4 border-t border-gray-200 dark:border-gray-700/40">
+              {/* Mobil: Kredi üstte, butonlar altta */}
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                {/* Kredi Bilgisi */}
+                <div className="flex items-center justify-center lg:justify-start mb-3 lg:mb-0">
+                  <button 
+                    onClick={() => setCreditInfoModalOpen(true)}
+                    className="flex items-center text-xs text-gray-900 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
+                  >
+                    <Coins className="h-3 w-3 mr-1" />
+                    <span className="font-light">{creditsUsed} Kredi Kullanıldı</span>
+                  </button>
+                </div>
                 
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleDislikeClick}
-                  disabled={feedbackLoading}
-                  data-feedback="dislike"
-                  className={`h-8 w-8 p-0 rounded-md ${liked === false ? 'text-red-400 bg-red-900/20' : 'text-gray-600 dark:text-gray-400 hover:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700/50'} ${feedbackLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                >
-                  <ThumbsDown className="h-4 w-4" />
-                </Button>
-              </div>
-              
-              <div className="h-5 w-px bg-gray-300 dark:bg-slate-600/40"></div>
-              
-              <div className="flex items-center space-x-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleCopy}
-                  className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
-                >
-                  <Copy className="h-4 w-4 mr-1" />
-                  Kopyala
-                </Button>
-                
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setFullscreenModalOpen(true)}
-                  className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
-                >
-                  <Search className="h-4 w-4 mr-1" />
-                  Büyüt
-                </Button>
-                
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
+                {/* Butonlar - Geniş ekranda tek satırda */}
+                <div className="flex items-center justify-center lg:justify-end space-x-2">
+                  <div className="flex items-center space-x-2">
                     <Button
                       variant="ghost"
                       size="sm"
+                      onClick={handleLikeClick}
+                      disabled={feedbackLoading}
+                      data-feedback="like"
+                      className={`h-8 w-8 p-0 rounded-md ${liked === true ? 'text-green-400 bg-green-900/20' : 'text-gray-600 dark:text-gray-400 hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700/50'} ${feedbackLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                      <ThumbsUp className="h-4 w-4" />
+                    </Button>
+                    
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleDislikeClick}
+                      disabled={feedbackLoading}
+                      data-feedback="dislike"
+                      className={`h-8 w-8 p-0 rounded-md ${liked === false ? 'text-red-400 bg-red-900/20' : 'text-gray-600 dark:text-gray-400 hover:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700/50'} ${feedbackLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                      <ThumbsDown className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  
+                  <div className="h-5 w-px bg-gray-300 dark:bg-slate-600/40"></div>
+                  
+                  <div className="flex items-center space-x-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleCopy}
                       className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
                     >
-                      <Share2 className="h-4 w-4 mr-1" />
-                      Paylaş
+                      <Copy className="h-4 w-4 mr-1" />
+                      Kopyala
                     </Button>
-                  </DropdownMenuTrigger>
-              <DropdownMenuContent 
-                align="end" 
-                className="w-48 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white"
-              >
-                <DropdownMenuItem 
-                  onClick={handleEmailShare}
-                  className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 text-gray-900 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  <Mail className="h-4 w-4 mr-2" />
-                  E-posta ile Gönder
-                </DropdownMenuItem>
-                <DropdownMenuItem 
-                  onClick={handleWhatsAppShare}
-                  className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 text-gray-900 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  <MessageCircle className="h-4 w-4 mr-2" />
-                  WhatsApp ile Gönder
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-              </DropdownMenu>
+                    
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setFullscreenModalOpen(true)}
+                      className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
+                    >
+                      <Search className="h-4 w-4 mr-1" />
+                      Büyüt
+                    </Button>
+                    
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
+                        >
+                          <Share2 className="h-4 w-4 mr-1" />
+                          Paylaş
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent 
+                        align="end" 
+                        className="w-48 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white"
+                      >
+                        <DropdownMenuItem 
+                          onClick={handleEmailShare}
+                          className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 text-gray-900 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                        >
+                          <Mail className="h-4 w-4 mr-2" />
+                          E-posta ile Gönder
+                        </DropdownMenuItem>
+                        <DropdownMenuItem 
+                          onClick={handleWhatsAppShare}
+                          className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 text-gray-900 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                        >
+                          <MessageCircle className="h-4 w-4 mr-2" />
+                          WhatsApp ile Gönder
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </CardContent>
+      </div>
 
       {/* Dislike Feedback Modal */}
       <Dialog open={dislikeModalOpen} onOpenChange={handleDislikeModalClose}>
@@ -703,6 +697,6 @@ export function QuestionAnswerCard({
         answer={answer}
         question={question}
       />
-    </Card>
+    </div>
   )
 }

@@ -160,10 +160,7 @@ export default function DashboardPage() {
 
   const handleSendMessage = async (message: string, filters?: any) => {
     if (isAsking) return
-    
-    // Yeni arama başladığında mevcut kartı hemen temizle
-    setQuestionAnswers([])
-    
+
     setIsAsking(true)
     try {
       // ÖNCE kredi kontrolü yap - ask endpoint'ini çağırmadan önce
@@ -213,8 +210,7 @@ export default function DashboardPage() {
           sourcesData: response.data.sources
         }
         
-        setQuestionAnswers(prev => [newQA, ...prev])
-        setQuestionAnswers([newQA])
+        setQuestionAnswers(prev => [...prev, newQA])
         
         // Kredi bilgilerini güncelle
         if (userCredits && !userCredits.unlimited) {
@@ -702,7 +698,7 @@ export default function DashboardPage() {
       </header>
 
       {/* Ana İçerik */}
-      <main className="max-w-5xl mx-auto px-6 pt-24 pb-40 h-full">
+      <main className="max-w-5xl mx-auto px-6 pt-24 pb-40 h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain">
         {announcementsPanelOpen ? (
           <div className="bg-blue-50/10 dark:bg-blue-900/10 border border-blue-200/30 dark:border-blue-700/30 rounded-2xl p-8 flex flex-col shadow-lg">
             <div className="text-center mb-6">
