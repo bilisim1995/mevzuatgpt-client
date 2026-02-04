@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { authService } from '@/services/auth'
@@ -88,6 +88,7 @@ export default function DashboardPage() {
   const [announcementsPanelOpen, setAnnouncementsPanelOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const mainScrollRef = useRef<HTMLDivElement | null>(null)
   
   // Sesli asistan hook'u
   const { audioLevel, isListening, startListening, stopListening, error, waveform, isUploading, finalizeAndUpload, isBoosting, isPlaying, stopAudio, questionText } = useVoiceAnalysis()
@@ -115,6 +116,26 @@ export default function DashboardPage() {
     
     setLoading(false)
   }, [])
+
+  useEffect(() => {
+    if (!mainScrollRef.current) return
+    requestAnimationFrame(() => {
+      mainScrollRef.current?.scrollTo({
+        top: mainScrollRef.current.scrollHeight,
+        behavior: 'smooth'
+      })
+    })
+  }, [questionAnswers.length])
+
+  useEffect(() => {
+    if (!mainScrollRef.current || !isAsking) return
+    requestAnimationFrame(() => {
+      mainScrollRef.current?.scrollTo({
+        top: mainScrollRef.current.scrollHeight,
+        behavior: 'smooth'
+      })
+    })
+  }, [isAsking])
 
   // Modal state'lerini temizle - sadece gerekli temizlik
   useEffect(() => {
@@ -698,7 +719,7 @@ export default function DashboardPage() {
       </header>
 
       {/* Ana İçerik */}
-      <main className="max-w-5xl mx-auto px-6 pt-24 pb-40 h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain">
+      <main ref={mainScrollRef} className="max-w-5xl mx-auto px-6 pt-24 pb-40 h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain">
         {announcementsPanelOpen ? (
           <div className="bg-blue-50/10 dark:bg-blue-900/10 border border-blue-200/30 dark:border-blue-700/30 rounded-2xl p-8 flex flex-col shadow-lg">
             <div className="text-center mb-6">
@@ -850,35 +871,23 @@ export default function DashboardPage() {
         />
       )}
 
-      {/* İletişim paneli, kurumsal sözleşmeler paneli, destek paneli, sorgu geçmişi paneli, profil paneli veya hizmet satın alma paneli açıkken sadece footer yazıları */}
-      {(contactPanelOpen || corporateContractsPanelOpen || supportPanelOpen || searchHistoryPanelOpen || profilePanelOpen || creditPurchasePanelOpen) && (
-        <div className="fixed bottom-0 left-0 right-0 p-6 z-40">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="flex items-center justify-between text-xs text-gray-400">
-                <div className="flex-1 text-left">
-                  <a
-                    href="https://orbitinovasyon.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
-                  >
-                    Orbit İnovasyon Ltd.
-                  </a>
-                  {' '}tarafından geliştirildi - v0.1
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span>Durum:</span>
-                  <div className="flex items-center space-x-1">
-                    <Circle className="w-2 h-2 text-green-400 fill-green-400" />
-                    <span className="text-green-400">Aktif</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Sol dikey imza */}
+      <div className="fixed left-3 top-1/2 -translate-y-1/2 z-40">
+        <span
+          className="whitespace-nowrap text-xs text-gray-400 opacity-50 hover:opacity-100 transition-all duration-300"
+          style={{ writingMode: 'vertical-rl', textOrientation: 'mixed', transform: 'rotate(180deg)' }}
+        >
+          <a
+            href="https://orbitinovasyon.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
+          >
+            Orbit İnovasyon Ltd.
+          </a>
+          {' '}tarafından geliştirildi - v0.1
+        </span>
+      </div>
 
       {/* Credit Warning Modal */}
       <CreditWarningModal

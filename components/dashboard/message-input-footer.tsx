@@ -390,43 +390,6 @@ export function MessageInputFooter({
           </div>
         </form>
         
-        {/* Orbit İnovasyon Footer - Test ekranı açıkken gizle */}
-        {!hideFooter && (
-          <div className="text-center mt-4">
-            <div className="flex items-center justify-between text-xs text-gray-400">
-              <div className="flex-1 text-left">
-                <a
-                  href="https://orbitinovasyon.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
-                >
-                  Orbit İnovasyon Ltd.
-                </a>
-                {' '}tarafından geliştirildi - v0.1
-              </div>
-              <div className="flex items-center space-x-2">
-                <span>Durum:</span>
-                <div className="flex items-center space-x-1">
-                  <Circle 
-                    className={`w-2 h-2 ${
-                      healthStatus.isHealthy 
-                        ? 'text-green-400 fill-green-400' 
-                        : 'text-red-400 fill-red-400'
-                    }`} 
-                  />
-                  <span className={
-                    healthStatus.isHealthy 
-                      ? 'text-green-400' 
-                      : 'text-red-400'
-                  }>
-                    {healthStatus.isHealthy ? 'Aktif' : 'Pasif'}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
       
       {/* Advanced Filters Modal */}
@@ -436,6 +399,31 @@ export function MessageInputFooter({
         settings={filterSettings}
         onSettingsChange={setFilterSettings}
       />
+
+      {/* Sistem Durumu - Sağ Alt */}
+      {!hideFooter && (
+        <div className="fixed bottom-4 right-4 z-40">
+          <div className="flex items-center space-x-2 rounded-full bg-white/80 dark:bg-gray-800/70 px-3 py-1 text-[10px] text-gray-400 border border-gray-200/50 dark:border-gray-700/40 shadow-sm backdrop-blur opacity-60 hover:opacity-100 transition-all duration-300">
+            <span>Durum:</span>
+            <div className="flex items-center space-x-1">
+              <Circle 
+                className={`w-2 h-2 ${
+                  healthStatus.isHealthy 
+                    ? 'text-green-400 fill-green-400' 
+                    : 'text-red-400 fill-red-400'
+                }`} 
+              />
+              <span className={
+                healthStatus.isHealthy 
+                  ? 'text-green-400' 
+                  : 'text-red-400'
+              }>
+                {healthStatus.isHealthy ? 'Aktif' : 'Pasif'}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Mikrofon İzin Modalı */}
       <Dialog open={permissionModalOpen} onOpenChange={setPermissionModalOpen}>

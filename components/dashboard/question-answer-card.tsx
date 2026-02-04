@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { ThumbsUp, ThumbsDown, Copy, Share2, Clock, Coins, Info, FileText, Mail, MessageCircle, Search } from 'lucide-react'
+import { ThumbsUp, ThumbsDown, Copy, Share2, Clock, Coins, Info, FileText, Mail, MessageCircle } from 'lucide-react'
 import { toast } from 'sonner'
 import { apiService } from '@/services/api' // SearchStats tipi apiService içinde export ediliyor varsayımıyla
 import ReactMarkdown from 'react-markdown'
@@ -14,7 +14,6 @@ import { ReliabilityModal } from './modals/reliability-modal'
 import { SourcesModal } from './modals/sources-modal'
 import { PerformanceModal } from './modals/performance-modal'
 import { CreditInfoModal } from './modals/credit-info-modal'
-import { FullscreenAnswerModal } from './modals/fullscreen-answer-modal'
 
 import { SearchStats } from '@/services/api'
 
@@ -114,8 +113,6 @@ export function QuestionAnswerCard({
   const [sourcesModalOpen, setSourcesModalOpen] = useState(false)
   const [performanceModalOpen, setPerformanceModalOpen] = useState(false)
   const [creditInfoModalOpen, setCreditInfoModalOpen] = useState(false)
-  const [fullscreenModalOpen, setFullscreenModalOpen] = useState(false)
-  const [showBlurWarning, setShowBlurWarning] = useState(true)
 
   // Güvenirlik skorunu tutarlı hale getir - önce reliabilityData'dan al, yoksa reliability prop'unu kullan
   const actualReliabilityScore = reliabilityData?.overall_score ?? reliability
@@ -281,11 +278,7 @@ export function QuestionAnswerCard({
       {/* Soru Balonu */}
       <div className="flex justify-end">
         <div className="max-w-[85%] sm:max-w-[70%] rounded-2xl bg-blue-600 px-4 py-3 text-white shadow-lg">
-          <div className="flex items-center justify-between text-[11px] uppercase tracking-wide text-blue-100">
-            <span>Soru</span>
-            <span className="italic">(MevzuatGPT hata yapabilir.)</span>
-          </div>
-          <p className="mt-2 text-sm leading-relaxed">
+          <p className="text-sm leading-relaxed">
             {question}
           </p>
           <button
@@ -300,51 +293,10 @@ export function QuestionAnswerCard({
 
       {/* Cevap Balonu */}
       <div className="flex justify-start">
-        <div className="w-full max-w-[85%] sm:max-w-[70%] rounded-2xl border border-gray-200/60 bg-white/95 shadow-lg dark:border-gray-700/40 dark:bg-gray-900/95">
+        <div className="w-full max-w-[95%] sm:max-w-[85%]">
           <div className="space-y-4 p-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-light text-gray-900 dark:text-gray-400">Cevap</span>
-              <div className="flex items-center space-x-4 text-xs">
-                <button 
-                  onClick={() => setReliabilityModalOpen(true)}
-                  className="flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700/30 px-2 py-1 rounded-md transition-colors"
-                >
-                  <div className={`w-2 h-2 rounded-full ${getReliabilityDotColor(actualReliabilityScore)}`}></div>
-                  <span className={`font-medium ${getReliabilityColor(actualReliabilityScore)}`}>
-                    {actualReliabilityScore}% Güvenirlik
-                  </span>
-                  <Info className="w-3 h-3 text-gray-900 dark:text-gray-400" />
-                </button>
-                
-                <button 
-                  onClick={() => setSourcesModalOpen(true)}
-                  className="flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700/30 px-2 py-1 rounded-md transition-colors cursor-pointer"
-                >
-                  <FileText className="w-3 h-3 text-gray-900 dark:text-gray-400" />
-                  <span className="text-gray-900 dark:text-gray-400 font-light">Kaynaklar ({sources})</span>
-                </button>
-              </div>
-            </div>
             <div className="relative">
-              {/* Blur Warning Overlay */}
-              {showBlurWarning && (
-                <div className="absolute inset-0 z-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center">
-                  <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700/30 rounded-lg p-4 max-w-sm mx-4">
-                    <p className="text-xs text-yellow-700 dark:text-yellow-300 leading-relaxed mb-3">
-                      MevzuatGPT hata yapabilir. Cevabın kesinlik içermediğini unutmayın. 
-                      Bilgileri kontrol edin ve doğrulayın.
-                    </p>
-                    <Button
-                      onClick={() => setShowBlurWarning(false)}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded text-xs font-medium transition-colors w-full"
-                    >
-                      Tamam, Anladım
-                    </Button>
-                  </div>
-                </div>
-              )}
-              
-              <div className={`bg-gray-100 dark:bg-gray-800/50 rounded-xl p-4 shadow-inner border border-gray-200/50 dark:border-gray-700/30 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-800 hover:scrollbar-thumb-gray-500 dark:hover:scrollbar-thumb-gray-500 ${showBlurWarning ? 'blur-sm' : ''}`}>
+              <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-4 shadow-inner border border-gray-200/50 dark:border-gray-700/30">
                 <div className="markdown-content">
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
@@ -507,8 +459,8 @@ export function QuestionAnswerCard({
             <div className="pt-4 border-t border-gray-200 dark:border-gray-700/40">
               {/* Mobil: Kredi üstte, butonlar altta */}
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-                {/* Kredi Bilgisi */}
-                <div className="flex items-center justify-center lg:justify-start mb-3 lg:mb-0">
+                {/* Kredi Bilgisi + Güvenirlik/Kaynaklar */}
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-3 lg:mb-0">
                   <button 
                     onClick={() => setCreditInfoModalOpen(true)}
                     className="flex items-center text-xs text-gray-900 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
@@ -516,6 +468,27 @@ export function QuestionAnswerCard({
                     <Coins className="h-3 w-3 mr-1" />
                     <span className="font-light">{creditsUsed} Kredi Kullanıldı</span>
                   </button>
+                  
+                  <div className="flex items-center space-x-4 text-xs">
+                    <button 
+                      onClick={() => setReliabilityModalOpen(true)}
+                      className="flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700/30 px-2 py-1 rounded-md transition-colors"
+                    >
+                      <div className={`w-2 h-2 rounded-full ${getReliabilityDotColor(actualReliabilityScore)}`}></div>
+                      <span className={`font-medium ${getReliabilityColor(actualReliabilityScore)}`}>
+                        {actualReliabilityScore}% Güvenirlik
+                      </span>
+                      <Info className="w-3 h-3 text-gray-900 dark:text-gray-400" />
+                    </button>
+                    
+                    <button 
+                      onClick={() => setSourcesModalOpen(true)}
+                      className="flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700/30 px-2 py-1 rounded-md transition-colors cursor-pointer"
+                    >
+                      <FileText className="w-3 h-3 text-gray-900 dark:text-gray-400" />
+                      <span className="text-gray-900 dark:text-gray-400 font-light">Kaynaklar ({sources})</span>
+                    </button>
+                  </div>
                 </div>
                 
                 {/* Butonlar - Geniş ekranda tek satırda */}
@@ -551,20 +524,10 @@ export function QuestionAnswerCard({
                       variant="ghost"
                       size="sm"
                       onClick={handleCopy}
-                      className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
+                      className="h-8 w-8 p-0 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
+                      aria-label="Kopyala"
                     >
-                      <Copy className="h-4 w-4 mr-1" />
-                      Kopyala
-                    </Button>
-                    
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setFullscreenModalOpen(true)}
-                      className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
-                    >
-                      <Search className="h-4 w-4 mr-1" />
-                      Büyüt
+                      <Copy className="h-4 w-4" />
                     </Button>
                     
                     <DropdownMenu>
@@ -572,10 +535,10 @@ export function QuestionAnswerCard({
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 px-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
+                          className="h-8 w-8 p-0 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-md font-light"
+                          aria-label="Paylaş"
                         >
-                          <Share2 className="h-4 w-4 mr-1" />
-                          Paylaş
+                          <Share2 className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent 
@@ -691,12 +654,6 @@ export function QuestionAnswerCard({
         creditsUsed={creditsUsed}
       />
       
-      <FullscreenAnswerModal
-        open={fullscreenModalOpen}
-        onOpenChange={setFullscreenModalOpen}
-        answer={answer}
-        question={question}
-      />
     </div>
   )
 }
