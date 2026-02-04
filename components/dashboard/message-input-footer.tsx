@@ -1,10 +1,11 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react'
+import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Send, Circle, MoreVertical, X, Mic, MicIcon } from 'lucide-react'
+import { Send, Circle, MoreVertical, X, Mic, MicIcon, Sun, Moon } from 'lucide-react'
 import { AdvancedFiltersModal, FilterSettings } from './advanced-filters-modal'
 
 import { buildApiUrl, API_CONFIG } from '@/lib/config'
@@ -53,6 +54,7 @@ export function MessageInputFooter({
   isVoiceActive = false,
   onVoiceStop
 }: MessageInputFooterProps) {
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [message, setMessage] = useState('')
   const [showExamples, setShowExamples] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
@@ -72,6 +74,7 @@ export function MessageInputFooter({
   const containerRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<HTMLDivElement>(null)
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const isDarkTheme = theme === 'dark' || (theme === 'system' && resolvedTheme === 'dark')
 
   // Health check fonksiyonu
   const checkHealth = async () => {
@@ -402,8 +405,21 @@ export function MessageInputFooter({
 
       {/* Sistem Durumu - Sağ Alt */}
       {!hideFooter && (
-        <div className="fixed bottom-4 right-4 z-40">
-          <div className="flex items-center space-x-2 rounded-full bg-white/80 dark:bg-gray-800/70 px-3 py-1 text-[10px] text-gray-400 border border-gray-200/50 dark:border-gray-700/40 shadow-sm backdrop-blur opacity-60 hover:opacity-100 transition-all duration-300">
+        <div className="fixed bottom-4 right-4 z-40 flex items-center space-x-2 text-[10px] text-gray-400">
+          <button
+            type="button"
+            onClick={() => setTheme(isDarkTheme ? 'light' : 'dark')}
+            className="inline-flex items-center space-x-1 rounded-full px-2 py-1 bg-white/70 dark:bg-gray-800/60 border border-gray-200/50 dark:border-gray-700/40 shadow-sm backdrop-blur opacity-60 hover:opacity-100 transition-all duration-300"
+            aria-label={isDarkTheme ? 'Gündüz moda geç' : 'Gece moda geç'}
+          >
+            <span>Tema</span>
+            {isDarkTheme ? (
+              <Moon className="h-3 w-3 text-gray-500" />
+            ) : (
+              <Sun className="h-3 w-3 text-amber-500" />
+            )}
+          </button>
+          <div className="flex items-center space-x-2 rounded-full bg-white/80 dark:bg-gray-800/70 px-3 py-1 border border-gray-200/50 dark:border-gray-700/40 shadow-sm backdrop-blur opacity-60 hover:opacity-100 transition-all duration-300">
             <span>Durum:</span>
             <div className="flex items-center space-x-1">
               <Circle 
