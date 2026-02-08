@@ -13,7 +13,6 @@ import { Megaphone } from 'lucide-react'
 import { QuestionAnswerCard } from '@/components/dashboard/question-answer-card'
 import { MessageInputFooter } from '@/components/dashboard/message-input-footer'
 import { CreditWarningModal } from '@/components/dashboard/credit-warning-modal'
-import { SearchHistoryPanel } from '@/components/dashboard/search-history-panel'
 import { ProfilePanel } from '@/components/dashboard/profile-panel'
 import { CreditPurchasePanel } from '@/components/dashboard/credit-purchase-panel'
 import { AIChatInterface } from '@/components/dashboard/ai-chat-interface'
@@ -113,7 +112,6 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
   const [corporateContractsModalOpen, setCorporateContractsModalOpen] = useState(false)
   const [corporateContractsPanelOpen, setCorporateContractsPanelOpen] = useState(false)
   const [contactPanelOpen, setContactPanelOpen] = useState(false)
-  const [searchHistoryPanelOpen, setSearchHistoryPanelOpen] = useState(false)
   const [profilePanelOpen, setProfilePanelOpen] = useState(false)
   const [creditPurchasePanelOpen, setCreditPurchasePanelOpen] = useState(false)
   const [announcementsPanelOpen, setAnnouncementsPanelOpen] = useState(false)
@@ -565,7 +563,6 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
     setAnnouncementsPanelOpen(false)
     setContactPanelOpen(false)
     setCorporateContractsPanelOpen(false)
-    setSearchHistoryPanelOpen(false)
     setProfilePanelOpen(false)
     setCreditPurchasePanelOpen(false)
     setSupportPanelOpen(false)
@@ -874,7 +871,6 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
                 setAnnouncementsPanelOpen(true)
                 setContactPanelOpen(false)
                 setCorporateContractsPanelOpen(false)
-                setSearchHistoryPanelOpen(false)
                 setProfilePanelOpen(false)
                 setCreditPurchasePanelOpen(false)
                 setSupportPanelOpen(false)
@@ -892,7 +888,6 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
                 setAnnouncementsPanelOpen(false)
                 setCorporateContractsPanelOpen(false)
                 setSupportPanelOpen(false)
-                setSearchHistoryPanelOpen(false)
                 setCreditPurchasePanelOpen(false)
               }}
               className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 text-gray-900 dark:text-gray-200"
@@ -907,7 +902,6 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
                 setContactPanelOpen(false)
                 setAnnouncementsPanelOpen(false)
                 setCorporateContractsPanelOpen(false)
-                setSearchHistoryPanelOpen(false)
                 setProfilePanelOpen(false)
                 setCreditPurchasePanelOpen(false)
               }}
@@ -919,27 +913,10 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
             
             <DropdownMenuItem 
               onClick={() => {
-                setSearchHistoryPanelOpen(true)
-                setContactPanelOpen(false)
-                setAnnouncementsPanelOpen(false)
-                setCorporateContractsPanelOpen(false)
-                setSupportPanelOpen(false)
-                setProfilePanelOpen(false)
-                setCreditPurchasePanelOpen(false)
-              }}
-              className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700 text-gray-900 dark:text-gray-200"
-            >
-              <History className="h-4 w-4 mr-2" />
-              Sorgu Geçmişi
-            </DropdownMenuItem>
-            
-            <DropdownMenuItem 
-              onClick={() => {
                 setCorporateContractsPanelOpen(true)
                 setContactPanelOpen(false)
                 setAnnouncementsPanelOpen(false)
                 setSupportPanelOpen(false)
-                setSearchHistoryPanelOpen(false)
                 setProfilePanelOpen(false)
                 setCreditPurchasePanelOpen(false)
               }}
@@ -954,7 +931,6 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
                 setContactPanelOpen(true)
                 setCorporateContractsPanelOpen(false)
                 setSupportPanelOpen(false)
-                setSearchHistoryPanelOpen(false)
                 setProfilePanelOpen(false)
                 setCreditPurchasePanelOpen(false)
               }}
@@ -978,7 +954,6 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
                     setAnnouncementsPanelOpen(false)
                     setCorporateContractsPanelOpen(false)
                     setSupportPanelOpen(false)
-                    setSearchHistoryPanelOpen(false)
                     setProfilePanelOpen(false)
                   }}
                 >
@@ -1063,20 +1038,6 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
             {/* Destek Panel İçeriği */}
             <div className="flex-1 max-w-4xl mx-auto w-full">
               <SupportPanel />
-            </div>
-          </div>
-        ) : searchHistoryPanelOpen ? (
-          <div className="relative bg-indigo-50/10 dark:bg-indigo-900/10 border border-indigo-200/30 dark:border-indigo-700/30 rounded-2xl p-8 flex flex-col shadow-lg">
-            {closeButton}
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                Sorgu Geçmişi
-              </h2>
-            </div>
-            
-            {/* Sorgu Geçmişi Panel İçeriği */}
-            <div className="max-w-4xl mx-auto w-full">
-              <SearchHistoryPanel />
             </div>
           </div>
         ) : profilePanelOpen ? (
@@ -1170,7 +1131,7 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
       </main>
 
       {/* Sabit Alt Mesaj Giriş Alanı - İletişim paneli, kurumsal sözleşmeler paneli, destek paneli, sorgu geçmişi paneli, profil paneli veya hizmet satın alma paneli açıkken gizle */}
-      {!contactPanelOpen && !corporateContractsPanelOpen && !supportPanelOpen && !searchHistoryPanelOpen && !profilePanelOpen && !creditPurchasePanelOpen && (
+      {!contactPanelOpen && !corporateContractsPanelOpen && !supportPanelOpen && !profilePanelOpen && !creditPurchasePanelOpen && (
         <MessageInputFooter
           onSendMessage={handleSendMessage}
           disabled={isAsking}
