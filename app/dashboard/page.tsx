@@ -8,7 +8,7 @@ import { apiService, SearchStats } from '@/services/api'
 import { maintenanceService } from '@/services/maintenance'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Coins, User, Mail, LogOut, ChevronDown, MessageSquare, Headphones, History, Settings, Bell, X, Circle, FileText, CreditCard, Shield, Zap, Clock, Sun, Moon, PanelLeftClose, PanelLeftOpen, Activity } from 'lucide-react'
+import { Coins, User, Mail, LogOut, ChevronDown, MessageSquare, Headphones, History, Settings, Bell, X, Circle, FileText, CreditCard, Shield, Zap, Clock, Sun, Moon, PanelLeftClose, PanelLeftOpen, Activity, Trash2 } from 'lucide-react'
 import { Megaphone } from 'lucide-react'
 import { QuestionAnswerCard } from '@/components/dashboard/question-answer-card'
 import { MessageInputFooter } from '@/components/dashboard/message-input-footer'
@@ -26,6 +26,7 @@ import { ContactForm } from '@/components/dashboard/contact-form'
 import { SupportPanel } from '@/components/dashboard/support-panel'
 import { toast } from 'sonner'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { buildApiUrl, API_CONFIG } from '@/lib/config'
 
 interface DashboardPageProps {
@@ -66,6 +67,7 @@ interface QuestionAnswer {
   sources: number
   creditsUsed: number
   timestamp: string
+  responseTimeSeconds?: number
   reliabilityData?: any
   performanceData?: { search_stats: SearchStats }
   sourcesData?: Array<{
@@ -107,6 +109,8 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
   const [conversationsLoading, setConversationsLoading] = useState(false)
   const [conversationSearch, setConversationSearch] = useState('')
   const [isConversationPanelCollapsed, setIsConversationPanelCollapsed] = useState(false)
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [deleteTarget, setDeleteTarget] = useState<ConversationListItem | null>(null)
   const [creditWarningModalOpen, setCreditWarningModalOpen] = useState(false)
   const [supportPanelOpen, setSupportPanelOpen] = useState(false)
   const [corporateContractsModalOpen, setCorporateContractsModalOpen] = useState(false)
@@ -411,6 +415,7 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
     sources: Array<any>
     reliability_score: number
     credits_used: number
+    execution_time?: number | null
   }>) => {
     const historyMap = new Map<string, typeof historyItems[number]>()
     historyItems.forEach(item => {
@@ -429,7 +434,8 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
         reliability: Math.round(historyItem.reliability_score * 100),
         creditsUsed: historyItem.credits_used,
         sources: historyItem.sources ? historyItem.sources.length : 0,
-        sourcesData: mappedSources
+        sourcesData: mappedSources,
+        responseTimeSeconds: typeof historyItem.execution_time === 'number' ? historyItem.execution_time : answer.responseTimeSeconds
       }
     })
   }
@@ -464,6 +470,31 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
     setConversationId(item.conversation_id)
     window.history.replaceState(null, '', `/dashboard/sohbet/${item.conversation_id}`)
     loadConversation(item.conversation_id)
+  }
+
+  const handleConversationDeleteClick = (item: ConversationListItem) => {
+    setDeleteTarget(item)
+    setDeleteDialogOpen(true)
+  }
+
+  const confirmConversationDelete = async () => {
+    if (!deleteTarget) return
+    try {
+      const response = await apiService.deleteConversation(deleteTarget.conversation_id)
+      if (response.success) {
+        if (conversationId === deleteTarget.conversation_id) {
+          await loadConversations()
+          window.location.href = '/dashboard'
+          return
+        }
+        setConversations(prev => prev.filter(conversation => conversation.conversation_id !== deleteTarget.conversation_id))
+      }
+    } catch (error: any) {
+      toast.error(error.message || 'Sohbet silinirken bir hata oluştu.')
+    } finally {
+      setDeleteDialogOpen(false)
+      setDeleteTarget(null)
+    }
   }
 
   const handleSendMessage = async (message: string, filters?: any) => {
@@ -520,6 +551,9 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
           sources: response.data.sources ? response.data.sources.length : 0,
           creditsUsed: response.data.credit_info.credits_used || 0,
           timestamp: formatTimestamp(response.timestamp),
+          responseTimeSeconds: typeof response.data.search_stats?.total_pipeline_time_ms === 'number'
+            ? Math.round((response.data.search_stats.total_pipeline_time_ms / 1000) * 100) / 100
+            : undefined,
           reliabilityData: response.data.confidence_breakdown || null,
           performanceData: { search_stats: response.data.search_stats },
           sourcesData: response.data.sources
@@ -683,7 +717,7 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
         <div className={`bg-white/90 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/60 dark:border-slate-600/40 rounded-2xl shadow-lg p-3 h-full flex flex-col transition-opacity ${isConversationPanelCollapsed ? 'items-center' : 'opacity-80 hover:opacity-100'}`}>
           <div className={`flex items-center ${isConversationPanelCollapsed ? 'justify-center' : 'justify-between'} mb-3 w-full`}>
             {!isConversationPanelCollapsed && (
-              <span className="text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center space-x-2">
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 flex items-center space-x-2">
                 <History className="h-3 w-3" />
                 <span>Sohbet Geçmişi</span>
               </span>
@@ -733,40 +767,66 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
                 value={conversationSearch}
                 onChange={(event) => setConversationSearch(event.target.value)}
                 placeholder="Sohbetlerde ara..."
-                className="mb-3 h-9 w-full rounded-xl border border-slate-200/70 dark:border-slate-600/50 bg-white/80 dark:bg-slate-900/40 px-3 text-xs text-gray-700 dark:text-gray-200 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400/40"
+                className="mb-3 h-10 w-full rounded-xl border border-slate-200/70 dark:border-slate-600/50 bg-white/80 dark:bg-slate-900/40 px-3 text-sm text-gray-700 dark:text-gray-200 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400/40"
               />
 
-              <div className="flex-1 overflow-y-auto">
+              <div className="flex-1">
                 {conversationsLoading ? (
                   <div className="space-y-2">
-                    <div className="h-10 rounded-lg bg-gray-100 dark:bg-slate-700/40 animate-pulse"></div>
-                    <div className="h-10 rounded-lg bg-gray-100 dark:bg-slate-700/40 animate-pulse"></div>
-                    <div className="h-10 rounded-lg bg-gray-100 dark:bg-slate-700/40 animate-pulse"></div>
+                    <div className="h-10 w-11/12 rounded-lg bg-gray-100 dark:bg-slate-700/40 animate-pulse"></div>
+                    <div className="h-10 w-10/12 rounded-lg bg-gray-100 dark:bg-slate-700/40 animate-pulse"></div>
+                    <div className="h-10 w-9/12 rounded-lg bg-gray-100 dark:bg-slate-700/40 animate-pulse"></div>
                   </div>
                 ) : filteredConversations.length === 0 ? (
-                  <div className="text-xs text-gray-500 dark:text-gray-400 py-2">
+                  <div className="text-sm text-gray-500 dark:text-gray-400 py-2">
                     {conversations.length === 0 ? 'Henüz sohbet yok.' : 'Aramanıza uygun sohbet bulunamadı.'}
                   </div>
                 ) : (
                   <div className="space-y-2">
                     {filteredConversations.map(item => (
-                      <button
+                      <div
                         key={item.conversation_id}
-                        onClick={() => handleConversationSelect(item)}
                         className={`w-full text-left p-2 rounded-lg border transition-colors ${
                           conversationId === item.conversation_id
                             ? 'border-blue-400/60 bg-blue-50/80 dark:bg-blue-900/20'
                             : 'border-transparent hover:border-gray-200 dark:hover:border-slate-600/50 hover:bg-gray-50 dark:hover:bg-slate-700/30'
-                        }`}
+                        } overflow-hidden`}
                       >
-                        <div className="text-xs font-medium text-gray-800 dark:text-gray-100 truncate">
-                          {item.title}
+                        <div
+                          onClick={() => handleConversationSelect(item)}
+                          className="flex-1 text-left min-w-0 cursor-pointer"
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                              event.preventDefault()
+                              handleConversationSelect(item)
+                            }
+                          }}
+                        >
+                          <div className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate max-w-full">
+                            {item.title}
+                          </div>
+                          <div className="mt-1 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                            <span>{formatConversationDate(item.created_at)}</span>
+                            <div className="flex items-center space-x-2">
+                              <span>{item.message_count} mesaj</span>
+                              <button
+                                type="button"
+                                onClick={(event) => {
+                                  event.stopPropagation()
+                                  handleConversationDeleteClick(item)
+                                }}
+                                className="h-6 w-6 flex items-center justify-center rounded-full border border-gray-200/60 dark:border-slate-600/50 text-gray-400 hover:text-red-500 hover:border-red-300 dark:hover:border-red-500/50 transition-colors"
+                                title="Sohbeti sil"
+                                aria-label="Sohbeti sil"
+                              >
+                                <Trash2 className="h-3.5 w-3.5" />
+                              </button>
+                            </div>
+                          </div>
                         </div>
-                        <div className="mt-1 flex items-center justify-between text-[10px] text-gray-500 dark:text-gray-400">
-                          <span>{formatConversationDate(item.created_at)}</span>
-                          <span>{item.message_count} mesaj</span>
-                        </div>
-                      </button>
+                      </div>
                     ))}
                   </div>
                 )}
@@ -1096,6 +1156,7 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
                 sources={qa.sources}
                 creditsUsed={qa.creditsUsed}
                 timestamp={qa.timestamp}
+                responseTimeSeconds={qa.responseTimeSeconds}
                 reliabilityData={qa.reliabilityData}
                 performanceData={qa.performanceData}
                 sourcesData={qa.sourcesData}
@@ -1149,6 +1210,33 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
         currentBalance={userCredits?.current_balance || 0}
       />
 
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Sohbeti Sil</DialogTitle>
+            <DialogDescription>
+              {deleteTarget ? (
+                <>
+                  <span className="block">
+                    "{deleteTarget.title}" sorunuzla başlayan ve {deleteTarget.message_count} mesajlı bu geçmiş silinmek isteniyor mu?
+                  </span>
+                  <span className="block mt-2">
+                    Silerseniz bu sohbetteki içerikler geri alınamayacak.
+                  </span>
+                </>
+              ) : null}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="mt-4">
+            <Button variant="outline" onClick={() => setDeleteDialogOpen(false)}>
+              Vazgeç
+            </Button>
+            <Button variant="destructive" onClick={confirmConversationDelete}>
+              Sil
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
 
 

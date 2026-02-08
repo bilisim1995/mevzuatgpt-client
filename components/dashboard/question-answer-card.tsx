@@ -76,6 +76,7 @@ interface QuestionAnswerCardProps {
   sources: number
   creditsUsed: number
   timestamp: string
+  responseTimeSeconds?: number
   reliabilityData?: any
   performanceData?: { search_stats: SearchStats }
   searchLogId?: string
@@ -99,6 +100,7 @@ export function QuestionAnswerCard({
   sources,
   creditsUsed,
   timestamp,
+  responseTimeSeconds,
   reliabilityData,
   performanceData,
   searchLogId,
@@ -488,6 +490,12 @@ export function QuestionAnswerCard({
                       <FileText className="w-3 h-3 text-gray-900 dark:text-gray-400" />
                       <span className="text-gray-900 dark:text-gray-400 font-light">Kaynaklar ({sources})</span>
                     </button>
+                    {typeof responseTimeSeconds === 'number' && (
+                      <div className="flex items-center space-x-2 px-2 py-1 text-xs text-gray-900 dark:text-gray-400">
+                        <Clock className="w-3 h-3" />
+                        <span className="font-light">{responseTimeSeconds}s</span>
+                      </div>
+                    )}
                   </div>
                 </div>
                 
@@ -500,7 +508,7 @@ export function QuestionAnswerCard({
                       onClick={handleLikeClick}
                       disabled={feedbackLoading}
                       data-feedback="like"
-                      className={`h-8 w-8 p-0 rounded-md ${liked === true ? 'text-green-400 bg-green-900/20' : 'text-gray-600 dark:text-gray-400 hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700/50'} ${feedbackLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      className={`h-8 w-8 p-0 rounded-md ${liked === true ? 'text-green-600 bg-green-100/70 dark:text-green-400 dark:bg-green-900/20' : 'text-gray-600 dark:text-gray-400 hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700/50'} ${feedbackLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
                     >
                       <ThumbsUp className="h-4 w-4" />
                     </Button>

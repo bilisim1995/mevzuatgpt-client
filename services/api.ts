@@ -259,6 +259,15 @@ export interface ConversationsResponse {
   }
 }
 
+export interface DeleteConversationResponse {
+  success: boolean
+  timestamp: string
+  data: {
+    conversation_id: string
+    deleted_count: number
+  }
+}
+
 import { buildApiUrl, API_CONFIG } from '@/lib/config'
 
 export interface SearchStats {
@@ -836,6 +845,45 @@ export const apiService = {
         throw new Error('Bu işlem için yetkiniz bulunmuyor.')
       }
       const errorMessage = data?.message || data?.detail || data?.error || `Sohbet listesi alınırken bir hata oluştu. (HTTP ${response.status})`
+      throw new Error(errorMessage)
+    }
+
+    return data
+  },
+
+  async deleteConversation(conversationId: string): Promise<DeleteConversationResponse> {
+    const token = localStorage.getItem('access_token')
+
+    if (!token) {
+      throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
+    }
+
+    const url = buildApiUrl(`${API_CONFIG.ENDPOINTS.USER_CONVERSATIONS}/${conversationId}`)
+
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+
+    const responseText = await response.text()
+
+    let data
+    try {
+      data = JSON.parse(responseText)
+    } catch (parseError) {
+      throw new Error('Sunucudan geçersiz JSON yanıtı alındı.')
+    }
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
+      }
+      if (response.status === 403) {
+        throw new Error('Bu işlem için yetkiniz bulunmuyor.')
+      }
+      const errorMessage = data?.message || data?.detail || data?.error || `Sohbet silinirken bir hata oluştu. (HTTP ${response.status})`
       throw new Error(errorMessage)
     }
 
