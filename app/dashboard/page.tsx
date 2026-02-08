@@ -1,14 +1,14 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { authService } from '@/services/auth'
 import { apiService, SearchStats } from '@/services/api'
 import { maintenanceService } from '@/services/maintenance'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Coins, User, Mail, LogOut, ChevronDown, MessageSquare, Headphones, History, Settings, Bell, X, Circle, FileText, CreditCard, Shield, Zap, Clock, Sun, Moon, PanelLeftClose, PanelLeftOpen, Activity, Trash2 } from 'lucide-react'
+import { Coins, User, Mail, LogOut, ChevronDown, MessageSquare, Headphones, History, Settings, Bell, X, Circle, FileText, CreditCard, Shield, Zap, Clock, Sun, Moon, PanelLeftClose, PanelLeftOpen, Activity, Trash2, Plus } from 'lucide-react'
 import { Megaphone } from 'lucide-react'
 import { QuestionAnswerCard } from '@/components/dashboard/question-answer-card'
 import { MessageInputFooter } from '@/components/dashboard/message-input-footer'
@@ -92,6 +92,7 @@ interface ConversationListItem {
 
 export default function DashboardPage({ initialConversationId }: DashboardPageProps) {
   const router = useRouter()
+  const pathname = usePathname()
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
@@ -873,7 +874,20 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
       </div>
 
       {/* Profil - Sağ Sabit */}
-      <div className="fixed right-4 top-4 z-[60]">
+      <div className="fixed right-4 top-4 z-[60] flex items-center space-x-2">
+        {pathname?.startsWith('/dashboard/sohbet/') && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              window.location.href = '/dashboard'
+            }}
+            className="h-10 px-3 rounded-full bg-white/90 dark:bg-slate-800/70 hover:bg-white dark:hover:bg-slate-700/70 backdrop-blur-sm border border-slate-200/60 dark:border-slate-600/40 flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <Plus className="h-4 w-4" />
+            <span className="text-xs font-medium">Yeni Sohbet Başlat</span>
+          </Button>
+        )}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button

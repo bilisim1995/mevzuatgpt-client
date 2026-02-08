@@ -298,7 +298,7 @@ export function QuestionAnswerCard({
         <div className="w-full max-w-[95%] sm:max-w-[85%]">
           <div className="space-y-4 p-4">
             <div className="relative">
-              <div className="bg-gray-100 dark:bg-gray-800/50 rounded-xl p-4 shadow-inner border border-gray-200/50 dark:border-gray-700/30">
+              <div className="bg-white/70 dark:bg-slate-900/60 backdrop-blur-sm rounded-xl p-4 shadow-inner border border-gray-200/50 dark:border-slate-700/40">
                 <div className="markdown-content">
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
