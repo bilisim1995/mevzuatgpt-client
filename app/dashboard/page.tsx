@@ -387,10 +387,10 @@ export default function DashboardPage() {
             <Button
               variant="ghost"
               size="sm"
-              className="h-10 px-3 rounded-full bg-white/90 dark:bg-slate-800/70 hover:bg-white dark:hover:bg-slate-700/70 backdrop-blur-sm border border-white/30 dark:border-slate-700/30 flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="h-10 px-3 rounded-full bg-white/90 dark:bg-slate-800/70 hover:bg-white dark:hover:bg-slate-700/70 backdrop-blur-sm border border-slate-200/60 dark:border-slate-600/40 flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-300"
               disabled={isAnyModalOpen}
             >
-              <Avatar className="h-8 w-8">
+              <Avatar className="h-8 w-8 border border-slate-700/70 dark:border-slate-200/70">
                 {profileImageUrl && (
                   <AvatarImage src={profileImageUrl} alt={user?.full_name || 'Profil'} />
                 )}
@@ -531,18 +531,12 @@ export default function DashboardPage() {
             
             <DropdownMenuSeparator className="bg-gray-200 dark:bg-gray-700" />
 
-            <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
-              <span className="text-sm font-medium text-gray-900 dark:text-gray-200">
-                Kalan Hizmet Hakkı
-              </span>
-            </div>
-            
             <div className="p-3">
               <div className="flex items-center space-x-2">
                 {renderCreditsDisplay()}
                 <Button
                   size="sm"
-                  className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1"
+                  className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 rounded-full"
                   onClick={() => {
                     setCreditPurchasePanelOpen(true)
                     setContactPanelOpen(false)
