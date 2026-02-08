@@ -305,17 +305,40 @@ export function SearchHistoryPanel() {
                           <div key={index} className="bg-white dark:bg-gray-800/30 rounded-xl p-2 border border-gray-200 dark:border-gray-600/30">
                             <div className="flex items-start justify-between">
                               <div className="flex-1">
-                                <button
-                                  onClick={() => window.open(source.pdf_url, '_blank')}
-                                  className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 text-xs font-medium flex items-center transition-colors group"
-                                >
-                                  <FileText className="w-3 h-3 mr-1" />
-                                  {source.title}
-                                  <ExternalLink className="w-2 h-2 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                </button>
+                                {source.pdf_url ? (
+                                  <button
+                                    onClick={() => window.open(source.pdf_url, '_blank')}
+                                    className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 text-xs font-medium flex items-center transition-colors group"
+                                  >
+                                    <FileText className="w-3 h-3 mr-1" />
+                                    {source.document_title}
+                                    <ExternalLink className="w-2 h-2 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                  </button>
+                                ) : (
+                                  <div className="text-gray-600 dark:text-gray-400 text-xs font-medium flex items-center">
+                                    <FileText className="w-3 h-3 mr-1 text-gray-400 dark:text-gray-500" />
+                                    {source.document_title}
+                                  </div>
+                                )}
                                 <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                                  {source.institution}
+                                  {source.source_institution}
                                 </p>
+                                {(source.citation || typeof source.page_number === 'number') && (
+                                  <p className="text-[10px] text-gray-500 dark:text-gray-500 mt-1">
+                                    {source.citation && <span>{source.citation}</span>}
+                                    {typeof source.page_number === 'number' && (
+                                      <span>{source.citation ? ' • ' : ''}Sayfa {source.page_number}</span>
+                                    )}
+                                    {typeof source.line_start === 'number' && typeof source.line_end === 'number' && (
+                                      <span> • Satır {source.line_start}-{source.line_end}</span>
+                                    )}
+                                  </p>
+                                )}
+                                {source.content_preview && (
+                                  <p className="text-[10px] text-gray-500 dark:text-gray-500 mt-1">
+                                    {source.content_preview}
+                                  </p>
+                                )}
                               </div>
                               <div className="flex items-center space-x-1 ml-2">
                                 <Star className="w-2 h-2 text-yellow-400" />

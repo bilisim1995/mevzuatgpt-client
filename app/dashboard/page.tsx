@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useTheme } from 'next-themes'
 import { authService } from '@/services/auth'
 import { apiService, SearchStats } from '@/services/api'
 import { maintenanceService } from '@/services/maintenance'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Coins, User, Mail, LogOut, ChevronDown, MessageSquare, Headphones, History, Settings, Bell, X, Circle, FileText, CreditCard, Shield, Zap, Clock } from 'lucide-react'
+import { Coins, User, Mail, LogOut, ChevronDown, MessageSquare, Headphones, History, Settings, Bell, X, Circle, FileText, CreditCard, Shield, Zap, Clock, Sun, Moon, PanelLeftClose, PanelLeftOpen, Activity } from 'lucide-react'
 import { Megaphone } from 'lucide-react'
 import { QuestionAnswerCard } from '@/components/dashboard/question-answer-card'
 import { MessageInputFooter } from '@/components/dashboard/message-input-footer'
@@ -26,6 +27,11 @@ import { ContactForm } from '@/components/dashboard/contact-form'
 import { SupportPanel } from '@/components/dashboard/support-panel'
 import { toast } from 'sonner'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { buildApiUrl, API_CONFIG } from '@/lib/config'
+
+interface DashboardPageProps {
+  initialConversationId?: string
+}
 
 interface User {
   id: string
@@ -47,6 +53,11 @@ interface UserCredits {
   unlimited: boolean
 }
 
+interface HealthStatus {
+  isHealthy: boolean
+  lastChecked: Date | null
+}
+
 interface QuestionAnswer {
   id: string
   searchLogId?: string
@@ -60,25 +71,43 @@ interface QuestionAnswer {
   performanceData?: { search_stats: SearchStats }
   sourcesData?: Array<{
     document_title: string
-    pdf_url: string
-    page_number: number
-    line_start: number
-    line_end: number
+    pdf_url?: string
+    page_number?: number
+    line_start?: number
+    line_end?: number
     citation: string
     content_preview: string
     similarity_score: number
-    chunk_index: number
+    chunk_index?: number
   }>
 }
 
-export default function DashboardPage() {
+interface ConversationListItem {
+  conversation_id: string
+  title: string
+  created_at: string
+  message_count: number
+}
+
+export default function DashboardPage({ initialConversationId }: DashboardPageProps) {
   const router = useRouter()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [userCredits, setUserCredits] = useState<UserCredits | null>(null)
   const [creditsLoading, setCreditsLoading] = useState(true)
+  const [healthStatus, setHealthStatus] = useState<HealthStatus>({
+    isHealthy: false,
+    lastChecked: null
+  })
   const [questionAnswers, setQuestionAnswers] = useState<QuestionAnswer[]>([])
   const [isAsking, setIsAsking] = useState(false)
+  const [isConversationLoading, setIsConversationLoading] = useState(false)
+  const [conversationId, setConversationId] = useState<string | null>(initialConversationId || null)
+  const [conversations, setConversations] = useState<ConversationListItem[]>([])
+  const [conversationsLoading, setConversationsLoading] = useState(false)
+  const [conversationSearch, setConversationSearch] = useState('')
+  const [isConversationPanelCollapsed, setIsConversationPanelCollapsed] = useState(false)
   const [creditWarningModalOpen, setCreditWarningModalOpen] = useState(false)
   const [supportPanelOpen, setSupportPanelOpen] = useState(false)
   const [corporateContractsModalOpen, setCorporateContractsModalOpen] = useState(false)
@@ -96,6 +125,7 @@ export default function DashboardPage() {
 
   // Modal açıkken dropdown menülerin focus'unu yönet - sadece kritik modallar
   const isAnyModalOpen = false
+  const isDarkTheme = theme === 'dark' || (theme === 'system' && resolvedTheme === 'dark')
 
   useEffect(() => {
     setMounted(true)
@@ -114,9 +144,18 @@ export default function DashboardPage() {
     
     // Kredi bilgilerini yükle
     loadUserCredits()
+
+    // Sohbet listesini yükle
+    loadConversations()
     
     setLoading(false)
   }, [])
+
+  useEffect(() => {
+    if (!initialConversationId) return
+    if (!authService.isAuthenticated()) return
+    loadConversation(initialConversationId)
+  }, [initialConversationId])
 
   useEffect(() => {
     if (!mainScrollRef.current) return
@@ -148,6 +187,31 @@ export default function DashboardPage() {
     }
   }, [])
 
+  const checkHealth = async () => {
+    try {
+      const response = await fetch(buildApiUrl(API_CONFIG.ENDPOINTS.HEALTH))
+      const data = await response.json()
+      setHealthStatus({
+        isHealthy: response.ok && data.success === true,
+        lastChecked: new Date()
+      })
+    } catch (error) {
+      setHealthStatus({
+        isHealthy: false,
+        lastChecked: new Date()
+      })
+    }
+  }
+
+  useEffect(() => {
+    checkHealth()
+    const interval = setInterval(() => {
+      checkHealth()
+    }, 15 * 60 * 1000)
+
+    return () => clearInterval(interval)
+  }, [])
+
 
   const checkMaintenanceStatus = async () => {
     try {
@@ -175,9 +239,233 @@ export default function DashboardPage() {
     }
   }
 
+  const loadConversations = async () => {
+    setConversationsLoading(true)
+    try {
+      const response = await apiService.getConversations()
+      if (response.success) {
+        setConversations(response.data.conversations || [])
+      }
+    } catch (error: any) {
+      toast.error(error.message || 'Sohbet listesi yüklenirken bir hata oluştu.')
+    } finally {
+      setConversationsLoading(false)
+    }
+  }
+
   const handleLogout = () => {
     authService.logout()
     router.push('/login')
+  }
+
+  const createConversationId = () => {
+    if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
+      return crypto.randomUUID()
+    }
+    return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`
+  }
+
+  const formatTimestamp = (value?: string) => {
+    return new Date(value || Date.now()).toLocaleString('tr-TR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'Europe/Istanbul'
+    })
+  }
+
+  const formatConversationDate = (value: string) => {
+    return new Date(value).toLocaleDateString('tr-TR', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      timeZone: 'Europe/Istanbul'
+    })
+  }
+
+  const filteredConversations = conversations.filter(item =>
+    conversationSearch.trim() === '' ||
+    item.title.toLowerCase().includes(conversationSearch.trim().toLowerCase())
+  )
+
+  const buildQuestionAnswersFromMessages = (messages: Array<{
+    id: string
+    role: 'user' | 'assistant'
+    query?: string | null
+    response?: string | null
+    search_log_id?: string | null
+    credits_used?: number | null
+    reliability_score?: number | null
+    sources?: Array<{
+      document_id: string
+      document_title: string
+      similarity_score: number
+      source_institution: string
+      citation: string
+      content_preview: string
+    }> | null
+    created_at: string
+  }>) => {
+    const result: QuestionAnswer[] = []
+
+    messages.forEach(message => {
+      if (message.role === 'user') {
+        result.push({
+          id: message.id,
+          searchLogId: message.search_log_id || undefined,
+          question: message.query || '',
+          answer: '',
+          reliability: 0,
+          sources: 0,
+          creditsUsed: message.credits_used || 0,
+          timestamp: formatTimestamp(message.created_at),
+          reliabilityData: null,
+        })
+        return
+      }
+
+      const searchLogId = message.search_log_id || undefined
+      const sourcesData = message.sources
+        ? message.sources.map(source => ({
+            document_title: source.document_title,
+            citation: source.citation,
+            content_preview: source.content_preview,
+            similarity_score: source.similarity_score
+          }))
+        : undefined
+      const reliabilityScore = typeof message.reliability_score === 'number'
+        ? Math.round(message.reliability_score * 100)
+        : 0
+      let targetIndex = -1
+      for (let i = result.length - 1; i >= 0; i -= 1) {
+        const candidate = result[i]
+        if (candidate.answer) continue
+        if (!searchLogId || candidate.searchLogId === searchLogId) {
+          targetIndex = i
+          break
+        }
+      }
+
+      if (targetIndex === -1) {
+        result.push({
+          id: message.id,
+          searchLogId,
+          question: '',
+          answer: message.response || '',
+          reliability: reliabilityScore,
+          sources: message.sources ? message.sources.length : 0,
+          creditsUsed: message.credits_used || 0,
+          timestamp: formatTimestamp(message.created_at),
+          reliabilityData: null,
+          sourcesData
+        })
+        return
+      }
+
+      result[targetIndex] = {
+        ...result[targetIndex],
+        id: message.id,
+        answer: message.response || '',
+        reliability: reliabilityScore || result[targetIndex].reliability,
+        sources: message.sources ? message.sources.length : result[targetIndex].sources,
+        creditsUsed: message.credits_used || result[targetIndex].creditsUsed,
+        timestamp: formatTimestamp(message.created_at),
+        sourcesData: sourcesData || result[targetIndex].sourcesData
+      }
+    })
+
+    return result
+  }
+
+  const mapHistorySources = (sources?: Array<{
+    document_id: string
+    document_title: string
+    source_institution: string
+    content?: string | null
+    similarity_score: number
+    category?: string | null
+    publish_date?: string | null
+    pdf_url?: string | null
+    citation?: string | null
+    page_number?: number | null
+    line_start?: number | null
+    line_end?: number | null
+    content_preview?: string | null
+  }> | null) => {
+    if (!sources || sources.length === 0) return undefined
+    return sources.map(source => ({
+      document_title: source.document_title,
+      pdf_url: source.pdf_url || undefined,
+      page_number: source.page_number ?? undefined,
+      line_start: source.line_start ?? undefined,
+      line_end: source.line_end ?? undefined,
+      citation: source.citation || '',
+      content_preview: source.content_preview || source.content || '',
+      similarity_score: source.similarity_score
+    }))
+  }
+
+  const enrichAnswersWithHistory = (answers: QuestionAnswer[], historyItems: Array<{
+    query: string
+    response: string | null
+    sources: Array<any>
+    reliability_score: number
+    credits_used: number
+  }>) => {
+    const historyMap = new Map<string, typeof historyItems[number]>()
+    historyItems.forEach(item => {
+      const key = `${item.query}||${item.response || ''}`
+      historyMap.set(key, item)
+    })
+
+    return answers.map(answer => {
+      const key = `${answer.question}||${answer.answer}`
+      const historyItem = historyMap.get(key)
+      if (!historyItem) return answer
+
+      const mappedSources = mapHistorySources(historyItem.sources)
+      return {
+        ...answer,
+        reliability: Math.round(historyItem.reliability_score * 100),
+        creditsUsed: historyItem.credits_used,
+        sources: historyItem.sources ? historyItem.sources.length : 0,
+        sourcesData: mappedSources
+      }
+    })
+  }
+
+  const loadConversation = async (activeConversationId: string) => {
+    setIsConversationLoading(true)
+    try {
+      const response = await apiService.getConversation(activeConversationId)
+      if (response.success) {
+        setConversationId(response.data.conversation_id)
+        const baseAnswers = buildQuestionAnswersFromMessages(response.data.messages)
+        setQuestionAnswers(baseAnswers)
+        try {
+          const historyResponse = await apiService.getSearchHistory({ page: 1, limit: 20 })
+          if (historyResponse.success) {
+            setQuestionAnswers(enrichAnswersWithHistory(baseAnswers, historyResponse.data.items))
+          }
+        } catch (historyError) {
+          console.error('Sorgu geçmişi alınamadı:', historyError)
+        }
+      }
+    } catch (error: any) {
+      toast.error(error.message || 'Sohbet yüklenirken bir hata oluştu.')
+    } finally {
+      setIsConversationLoading(false)
+    }
+  }
+
+  const handleConversationSelect = (item: ConversationListItem) => {
+    if (conversationId === item.conversation_id) return
+    setQuestionAnswers([])
+    setConversationId(item.conversation_id)
+    window.history.replaceState(null, '', `/dashboard/sohbet/${item.conversation_id}`)
+    loadConversation(item.conversation_id)
   }
 
   const handleSendMessage = async (message: string, filters?: any) => {
@@ -207,10 +495,24 @@ export default function DashboardPage() {
         return
       }
       
+      let activeConversationId = conversationId
+      const isNewConversation = !activeConversationId
+      if (!activeConversationId) {
+        activeConversationId = createConversationId()
+        setConversationId(activeConversationId)
+        window.history.replaceState(null, '', `/dashboard/sohbet/${activeConversationId}`)
+      }
+
       // Kredi yeterliyse ask endpoint'ini çağır - filtreleri her zaman gönder
-      const response = await apiService.askQuestion(message, filters)
+      const response = await apiService.askQuestion(message, filters, activeConversationId || undefined)
       
       if (response.success) {
+        const returnedConversationId = response.data.conversation_id
+        if (returnedConversationId && returnedConversationId !== conversationId) {
+          setConversationId(returnedConversationId)
+          window.history.replaceState(null, '', `/dashboard/sohbet/${returnedConversationId}`)
+        }
+
         const newQA: QuestionAnswer = {
           id: Date.now().toString(),
           searchLogId: response.data.search_log_id || Date.now().toString(), // API'den gelen search_log_id
@@ -219,20 +521,17 @@ export default function DashboardPage() {
           reliability: response.data.confidence_breakdown?.overall_score || Math.round((response.data.confidence_score || 0) * 100),
           sources: response.data.sources ? response.data.sources.length : 0,
           creditsUsed: response.data.credit_info.credits_used || 0,
-          timestamp: new Date(response.timestamp).toLocaleString('tr-TR', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZone: 'Europe/Istanbul'
-          }),
+          timestamp: formatTimestamp(response.timestamp),
           reliabilityData: response.data.confidence_breakdown || null,
           performanceData: { search_stats: response.data.search_stats },
           sourcesData: response.data.sources
         }
         
         setQuestionAnswers(prev => [...prev, newQA])
+
+        if (isNewConversation) {
+          loadConversations()
+        }
         
         // Kredi bilgilerini güncelle
         if (userCredits && !userCredits.unlimited) {
@@ -373,11 +672,147 @@ export default function DashboardPage() {
           src="/logo.svg"
           alt="Mevzuat GPT" 
           className="h-12 w-auto drop-shadow-sm cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={() => window.location.reload()}
+          onClick={() => {
+            window.location.href = '/dashboard'
+          }}
           onError={(e) => {
             (e.target as HTMLImageElement).src = "/logo.svg"
           }}
         />
+      </div>
+
+      {/* Sol Sohbet Listesi */}
+      <div className={`fixed left-4 top-20 bottom-6 z-[50] ${isConversationPanelCollapsed ? 'w-12' : 'w-64'}`}>
+        <div className={`bg-white/90 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/60 dark:border-slate-600/40 rounded-2xl shadow-lg p-3 h-full flex flex-col transition-opacity ${isConversationPanelCollapsed ? 'items-center' : 'opacity-80 hover:opacity-100'}`}>
+          <div className={`flex items-center ${isConversationPanelCollapsed ? 'justify-center' : 'justify-between'} mb-3 w-full`}>
+            {!isConversationPanelCollapsed && (
+              <span className="text-xs font-semibold text-gray-700 dark:text-gray-200 flex items-center space-x-2">
+                <History className="h-3 w-3" />
+                <span>Sohbet Geçmişi</span>
+              </span>
+            )}
+            <button
+              type="button"
+              onClick={() => setIsConversationPanelCollapsed(prev => !prev)}
+              className="h-7 w-7 rounded-full border border-gray-200/60 dark:border-slate-600/50 bg-white/70 dark:bg-slate-900/40 hover:bg-white dark:hover:bg-slate-700/60 flex items-center justify-center text-gray-500 dark:text-gray-300 transition-colors"
+              aria-label={isConversationPanelCollapsed ? 'Sohbet geçmişini aç' : 'Sohbet geçmişini küçült'}
+              title={isConversationPanelCollapsed ? 'Aç' : 'Küçült'}
+            >
+              {isConversationPanelCollapsed ? (
+                <PanelLeftOpen className="h-4 w-4" />
+              ) : (
+                <PanelLeftClose className="h-4 w-4" />
+              )}
+            </button>
+            {!isConversationPanelCollapsed && conversationsLoading && (
+              <div className="h-2 w-2 rounded-full bg-blue-400 animate-pulse"></div>
+            )}
+          </div>
+
+          {isConversationPanelCollapsed ? (
+            <div className="flex flex-col items-center h-full w-full">
+              <History className="h-4 w-4 text-gray-500 dark:text-gray-300 mt-2" />
+              <div className="mt-auto flex flex-col items-center space-y-3 pb-1">
+                <button
+                  type="button"
+                  onClick={() => setTheme(isDarkTheme ? 'light' : 'dark')}
+                  className="h-8 w-8 rounded-full border border-gray-200/60 dark:border-slate-600/50 bg-white/70 dark:bg-slate-900/40 flex items-center justify-center text-gray-500 dark:text-gray-300"
+                  aria-label={isDarkTheme ? 'Gündüz moda geç' : 'Gece moda geç'}
+                  title="Tema"
+                >
+                  {isDarkTheme ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+                </button>
+                <div
+                  className="h-8 w-8 rounded-full border border-gray-200/60 dark:border-slate-600/50 bg-white/70 dark:bg-slate-900/40 flex items-center justify-center"
+                  title={healthStatus.isHealthy ? 'Durum: Aktif' : 'Durum: Pasif'}
+                >
+                  <Activity className={`h-4 w-4 ${healthStatus.isHealthy ? 'text-green-400' : 'text-red-400'}`} />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <>
+              <input
+                value={conversationSearch}
+                onChange={(event) => setConversationSearch(event.target.value)}
+                placeholder="Sohbetlerde ara..."
+                className="mb-3 h-9 w-full rounded-xl border border-slate-200/70 dark:border-slate-600/50 bg-white/80 dark:bg-slate-900/40 px-3 text-xs text-gray-700 dark:text-gray-200 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400/40"
+              />
+
+              <div className="flex-1 overflow-y-auto">
+                {conversationsLoading ? (
+                  <div className="space-y-2">
+                    <div className="h-10 rounded-lg bg-gray-100 dark:bg-slate-700/40 animate-pulse"></div>
+                    <div className="h-10 rounded-lg bg-gray-100 dark:bg-slate-700/40 animate-pulse"></div>
+                    <div className="h-10 rounded-lg bg-gray-100 dark:bg-slate-700/40 animate-pulse"></div>
+                  </div>
+                ) : filteredConversations.length === 0 ? (
+                  <div className="text-xs text-gray-500 dark:text-gray-400 py-2">
+                    {conversations.length === 0 ? 'Henüz sohbet yok.' : 'Aramanıza uygun sohbet bulunamadı.'}
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    {filteredConversations.map(item => (
+                      <button
+                        key={item.conversation_id}
+                        onClick={() => handleConversationSelect(item)}
+                        className={`w-full text-left p-2 rounded-lg border transition-colors ${
+                          conversationId === item.conversation_id
+                            ? 'border-blue-400/60 bg-blue-50/80 dark:bg-blue-900/20'
+                            : 'border-transparent hover:border-gray-200 dark:hover:border-slate-600/50 hover:bg-gray-50 dark:hover:bg-slate-700/30'
+                        }`}
+                      >
+                        <div className="text-xs font-medium text-gray-800 dark:text-gray-100 truncate">
+                          {item.title}
+                        </div>
+                        <div className="mt-1 flex items-center justify-between text-[10px] text-gray-500 dark:text-gray-400">
+                          <span>{formatConversationDate(item.created_at)}</span>
+                          <span>{item.message_count} mesaj</span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="mt-3 border-t border-gray-200 dark:border-slate-700/50 pt-2">
+                <div className="flex items-center justify-between text-[10px] text-gray-500 dark:text-gray-400">
+                  <button
+                    type="button"
+                    onClick={() => setTheme(isDarkTheme ? 'light' : 'dark')}
+                    className="inline-flex items-center space-x-1 rounded-full px-2 py-1 bg-white/70 dark:bg-gray-800/60 border border-gray-200/50 dark:border-gray-700/40 shadow-sm backdrop-blur hover:opacity-100 transition-all duration-300"
+                    aria-label={isDarkTheme ? 'Gündüz moda geç' : 'Gece moda geç'}
+                  >
+                    <span>{isDarkTheme ? 'Gündüz' : 'Gece'}</span>
+                    {isDarkTheme ? <Moon className="h-3 w-3 text-gray-500" /> : <Sun className="h-3 w-3 text-amber-500" />}
+                  </button>
+                  <div className="flex items-center space-x-1 rounded-full bg-white/80 dark:bg-gray-800/70 px-2 py-1 border border-gray-200/50 dark:border-gray-700/40 shadow-sm backdrop-blur">
+                    <span>Durum:</span>
+                    <Circle
+                      className={`w-2 h-2 ${
+                        healthStatus.isHealthy ? 'text-green-400 fill-green-400' : 'text-red-400 fill-red-400'
+                      }`}
+                    />
+                    <span className={healthStatus.isHealthy ? 'text-green-400' : 'text-red-400'}>
+                      {healthStatus.isHealthy ? 'Aktif' : 'Pasif'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-3 border-t border-gray-200 dark:border-slate-700/50 pt-2 text-[10px] text-gray-400 dark:text-gray-500">
+                <a
+                  href="https://orbitinovasyon.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                >
+                  Orbit İnovasyon Ltd.
+                </a>
+                {' '}tarafından geliştirildi - v0.1
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
       {/* Profil - Sağ Sabit */}
@@ -669,6 +1104,26 @@ export default function DashboardPage() {
           </div>
         ) : (
           <div className="space-y-8">
+            {isConversationLoading && questionAnswers.length === 0 && (
+              <div className="space-y-6">
+                <div className="bg-white/90 dark:bg-slate-800/60 border border-gray-200/50 dark:border-slate-700/40 rounded-2xl p-6 shadow-lg animate-pulse">
+                  <div className="h-4 w-1/3 bg-gray-200 dark:bg-slate-700 rounded"></div>
+                  <div className="mt-4 space-y-2">
+                    <div className="h-3 w-full bg-gray-200 dark:bg-slate-700 rounded"></div>
+                    <div className="h-3 w-5/6 bg-gray-200 dark:bg-slate-700 rounded"></div>
+                  </div>
+                </div>
+                <div className="bg-white/90 dark:bg-slate-800/60 border border-gray-200/50 dark:border-slate-700/40 rounded-2xl p-6 shadow-lg animate-pulse">
+                  <div className="h-4 w-1/4 bg-gray-200 dark:bg-slate-700 rounded"></div>
+                  <div className="mt-4 space-y-2">
+                    <div className="h-3 w-full bg-gray-200 dark:bg-slate-700 rounded"></div>
+                    <div className="h-3 w-4/5 bg-gray-200 dark:bg-slate-700 rounded"></div>
+                    <div className="h-3 w-3/5 bg-gray-200 dark:bg-slate-700 rounded"></div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Soru-Cevap Kartları */}
             {questionAnswers.map((qa) => (
               <QuestionAnswerCard
@@ -687,7 +1142,7 @@ export default function DashboardPage() {
             ))}
             
             {/* AI Chat Interface - Sadece soru-cevap yoksa göster */}
-            {questionAnswers.length === 0 && !isAsking && (
+            {questionAnswers.length === 0 && !isAsking && !isConversationLoading && (
               <AIChatInterface 
                 userCredits={userCredits} 
                 onCreditPurchase={() => setCreditPurchasePanelOpen(true)}
@@ -725,24 +1180,6 @@ export default function DashboardPage() {
           isVoiceActive={isListening}
         />
       )}
-
-      {/* Sol dikey imza */}
-      <div className="fixed left-3 top-1/2 -translate-y-1/2 z-40">
-        <span
-          className="whitespace-nowrap text-xs text-gray-400 opacity-50 hover:opacity-100 transition-all duration-300"
-          style={{ writingMode: 'vertical-rl', textOrientation: 'mixed', transform: 'rotate(180deg)' }}
-        >
-          <a
-            href="https://orbitinovasyon.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
-          >
-            Orbit İnovasyon Ltd.
-          </a>
-          {' '}tarafından geliştirildi - v0.1
-        </span>
-      </div>
 
       {/* Credit Warning Modal */}
       <CreditWarningModal

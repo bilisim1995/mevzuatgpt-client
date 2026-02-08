@@ -19,7 +19,9 @@ export const API_CONFIG = {
     USER_FEEDBACK_HISTORY: '/api/user/feedback/my',
     USER_SEARCH_HISTORY: '/api/user/search-history',
     USER_SEARCH_HISTORY_STATS: '/api/user/search-history/stats',
+    USER_CONVERSATIONS: '/api/user/conversations',
     USER_TICKETS: '/api/user/tickets',
+    USER_CONVERSATION: '/api/user/conversations',
     
     // System endpoints
     MAINTENANCE_STATUS: '/api/maintenance/status',

@@ -6,6 +6,7 @@ interface AskResponse {
     query: string
     answer: string
     search_log_id: string
+    conversation_id?: string
     confidence_score: number
     sources: any[]
     institution_filter: string | null
@@ -134,10 +135,18 @@ export interface SearchHistoryItem {
   response: string | null // DÜZELTME: API'den null gelebileceği için bu alan güncellendi.
   sources: Array<{
     document_id: string
-    title: string
-    institution: string
+    document_title: string
+    source_institution: string
+    content?: string | null
     similarity_score: number
-    pdf_url: string
+    category?: string | null
+    publish_date?: string | null
+    pdf_url?: string | null
+    citation?: string | null
+    page_number?: number | null
+    line_start?: number | null
+    line_end?: number | null
+    content_preview?: string | null
   }>
   reliability_score: number
   credits_used: number
@@ -202,6 +211,54 @@ export interface UpdateProfileResponse {
   data: UserProfile
 }
 
+export interface ConversationMessage {
+  id: string
+  conversation_id: string
+  user_id: string
+  role: 'user' | 'assistant'
+  query?: string | null
+  response?: string | null
+  search_log_id?: string | null
+  credits_used?: number | null
+  reliability_score?: number | null
+  sources?: Array<{
+    document_id: string
+    document_title: string
+    similarity_score: number
+    source_institution: string
+    citation: string
+    content_preview: string
+  }> | null
+  feedback_type?: string | null
+  created_at: string
+}
+
+export interface ConversationResponse {
+  success: boolean
+  timestamp: string
+  data: {
+    conversation_id: string
+    messages: ConversationMessage[]
+    total_count: number
+  }
+}
+
+export interface ConversationListItem {
+  conversation_id: string
+  title: string
+  created_at: string
+  message_count: number
+}
+
+export interface ConversationsResponse {
+  success: boolean
+  timestamp: string
+  data: {
+    conversations: ConversationListItem[]
+    total_count: number
+  }
+}
+
 import { buildApiUrl, API_CONFIG } from '@/lib/config'
 
 export interface SearchStats {
@@ -249,7 +306,7 @@ export const apiService = {
 
     return await response.json()
   },
-  async askQuestion(query: string, filters?: any): Promise<AskResponse> {
+  async askQuestion(query: string, filters?: any, conversationId?: string): Promise<AskResponse> {
     const token = localStorage.getItem('access_token')
     
     if (!token) {
@@ -261,6 +318,9 @@ export const apiService = {
     console.log('📋 Filtreler:', filters)
 
     const requestBody: any = { query }
+    if (conversationId) {
+      requestBody.conversation_id = conversationId
+    }
     
     // Filtreler varsa değerlerini kontrol et ve gönder
     if (filters) {
@@ -630,6 +690,7 @@ export const apiService = {
    
     
     const data = await response.json()
+    console.log('📥 Sorgu geçmişi response:', data)
  
     
     if (!response.ok) {
@@ -697,6 +758,87 @@ export const apiService = {
       throw new Error(errorMessage)
     }
     
+    return data
+  },
+
+  async getConversation(conversationId: string): Promise<ConversationResponse> {
+    const token = localStorage.getItem('access_token')
+
+    if (!token) {
+      throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
+    }
+
+    const url = buildApiUrl(`${API_CONFIG.ENDPOINTS.USER_CONVERSATION}/${conversationId}`)
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+
+    const responseText = await response.text()
+
+    let data
+    try {
+      data = JSON.parse(responseText)
+    } catch (parseError) {
+      throw new Error('Sunucudan geçersiz JSON yanıtı alındı.')
+    }
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
+      }
+      if (response.status === 403) {
+        throw new Error('Bu işlem için yetkiniz bulunmuyor.')
+      }
+      if (response.status === 404) {
+        throw new Error('Bu sohbet bulunamadı veya size ait değil.')
+      }
+      const errorMessage = data?.message || data?.detail || data?.error || `Sohbet alınırken bir hata oluştu. (HTTP ${response.status})`
+      throw new Error(errorMessage)
+    }
+
+    return data
+  },
+
+  async getConversations(): Promise<ConversationsResponse> {
+    const token = localStorage.getItem('access_token')
+
+    if (!token) {
+      throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
+    }
+
+    const url = buildApiUrl(API_CONFIG.ENDPOINTS.USER_CONVERSATIONS)
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+
+    const responseText = await response.text()
+
+    let data
+    try {
+      data = JSON.parse(responseText)
+    } catch (parseError) {
+      throw new Error('Sunucudan geçersiz JSON yanıtı alındı.')
+    }
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Oturum süresi dolmuş. Lütfen tekrar giriş yapın.')
+      }
+      if (response.status === 403) {
+        throw new Error('Bu işlem için yetkiniz bulunmuyor.')
+      }
+      const errorMessage = data?.message || data?.detail || data?.error || `Sohbet listesi alınırken bir hata oluştu. (HTTP ${response.status})`
+      throw new Error(errorMessage)
+    }
+
     return data
   },
 

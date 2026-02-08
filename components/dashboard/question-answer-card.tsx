@@ -81,14 +81,14 @@ interface QuestionAnswerCardProps {
   searchLogId?: string
   sourcesData?: Array<{
     document_title: string
-    pdf_url: string
-    page_number: number
-    line_start: number
-    line_end: number
+    pdf_url?: string
+    page_number?: number
+    line_start?: number
+    line_end?: number
     citation: string
     content_preview: string
     similarity_score: number
-    chunk_index: number
+    chunk_index?: number
   }>
 }
 

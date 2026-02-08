@@ -9,14 +9,14 @@ interface SourcesModalProps {
   sources: number
   sourcesData?: Array<{
     document_title: string
-    pdf_url: string
-    page_number: number
-    line_start: number
-    line_end: number
+    pdf_url?: string
+    page_number?: number
+    line_start?: number
+    line_end?: number
     citation: string
     content_preview: string
     similarity_score: number
-    chunk_index: number
+    chunk_index?: number
   }>
 }
 
@@ -44,20 +44,23 @@ export function SourcesModal({ open, onOpenChange, sources, sourcesData }: Sourc
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
-                    <button
-                      onClick={() => {
-                        if (source.pdf_url) {
+                    {source.pdf_url ? (
+                      <button
+                        onClick={() => {
                           window.open(source.pdf_url, '_blank', 'noopener,noreferrer')
-                        } else {
-                          console.warn('PDF URL bulunamadı:', source)
-                        }
-                      }}
-                      className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium text-sm flex items-center transition-colors group cursor-pointer"
-                    >
-                      <FileText className="w-4 h-4 mr-2 text-blue-600 dark:text-blue-400" />
-                      {source.document_title || 'Belge'}
-                      <ExternalLink className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </button>
+                        }}
+                        className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium text-sm flex items-center transition-colors group cursor-pointer"
+                      >
+                        <FileText className="w-4 h-4 mr-2 text-blue-600 dark:text-blue-400" />
+                        {source.document_title || 'Belge'}
+                        <ExternalLink className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </button>
+                    ) : (
+                      <div className="text-gray-600 dark:text-gray-400 font-medium text-sm flex items-center">
+                        <FileText className="w-4 h-4 mr-2 text-gray-400 dark:text-gray-500" />
+                        {source.document_title || 'Belge'}
+                      </div>
+                    )}
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       {source.citation}
                     </p>
@@ -80,9 +83,15 @@ export function SourcesModal({ open, onOpenChange, sources, sourcesData }: Sourc
                 
                 <div className="flex items-center justify-between text-xs text-gray-600 dark:text-gray-500">
                   <div className="flex items-center space-x-4">
-                    <span>Sayfa {source.page_number}</span>
-                    <span>Satır {source.line_start}-{source.line_end}</span>
-                    <span>Chunk #{source.chunk_index}</span>
+                    {typeof source.page_number === 'number' && (
+                      <span>Sayfa {source.page_number}</span>
+                    )}
+                    {typeof source.line_start === 'number' && typeof source.line_end === 'number' && (
+                      <span>Satır {source.line_start}-{source.line_end}</span>
+                    )}
+                    {typeof source.chunk_index === 'number' && (
+                      <span>Chunk #{source.chunk_index}</span>
+                    )}
                   </div>
                   {source.pdf_url && (
                     <button
