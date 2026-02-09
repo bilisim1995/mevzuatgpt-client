@@ -288,10 +288,12 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
     })
   }
 
-  const filteredConversations = conversations.filter(item =>
-    conversationSearch.trim() === '' ||
-    item.title.toLowerCase().includes(conversationSearch.trim().toLowerCase())
-  )
+  const filteredConversations = conversations
+    .filter(item =>
+      conversationSearch.trim() === '' ||
+      item.title.toLowerCase().includes(conversationSearch.trim().toLowerCase())
+    )
+    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
   const buildQuestionAnswersFromMessages = (messages: Array<{
     id: string
