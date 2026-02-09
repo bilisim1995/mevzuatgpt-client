@@ -16,6 +16,33 @@ interface CriterionData {
   description?: string
   details?: string[]
 }
+const getCriterionLabel = (key: string) => {
+  switch (key) {
+    case 'source_quality':
+    case 'source_reliability':
+      return 'Kaynak Güvenilirliği'
+    case 'content_consistency':
+      return 'İçerik Tutarlılığı'
+    case 'technical_accuracy':
+      return 'Teknik Doğruluk'
+    case 'currency':
+      return 'Güncellik'
+    default:
+      return key
+  }
+}
+
+const getCriterionWeight = (criteria: Record<string, CriterionData>, key: string) => {
+  if (criteria[key]?.weight !== undefined) return criteria[key]?.weight || 0
+  if (key === 'source_reliability' && criteria.source_quality?.weight !== undefined) {
+    return criteria.source_quality?.weight || 0
+  }
+  if (key === 'source_quality' && criteria.source_reliability?.weight !== undefined) {
+    return criteria.source_reliability?.weight || 0
+  }
+  return 0
+}
+
 export function ReliabilityModal({ open, onOpenChange, reliabilityData }: ReliabilityModalProps) {
   // Güvenlik kontrolü - reliabilityData null ise varsayılan değerleri kullan
   const safeReliabilityData = reliabilityData || {
@@ -78,10 +105,7 @@ export function ReliabilityModal({ open, onOpenChange, reliabilityData }: Reliab
               <div key={key} className="bg-gray-50 dark:bg-slate-800/30 rounded-lg p-4 border border-gray-200 dark:border-slate-700/30">
                 <div className="flex items-center justify-between mb-3">
                   <h4 className="font-medium text-gray-900 dark:text-white text-sm">
-                    {key === 'source_reliability' && 'Kaynak Güvenilirliği'}
-                    {key === 'content_consistency' && 'İçerik Tutarlılığı'}
-                    {key === 'technical_accuracy' && 'Teknik Doğruluk'}
-                    {key === 'currency' && 'Güncellik'}
+                    {getCriterionLabel(key)}
                   </h4>
                   <span className={`text-sm font-semibold ${getScoreColor(criterionData.score || 0)}`}>
                     {(criterionData.score || 0)}%
@@ -158,7 +182,7 @@ export function ReliabilityModal({ open, onOpenChange, reliabilityData }: Reliab
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-700 dark:text-gray-300">Kaynak Güvenilirliği</span>
-                    <span className="text-gray-600 dark:text-gray-400">%{(safeReliabilityData.criteria.source_reliability as CriterionData)?.weight || 0}</span>
+                    <span className="text-gray-600 dark:text-gray-400">%{getCriterionWeight(safeReliabilityData.criteria, 'source_reliability')}</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-700 dark:text-gray-300">İçerik Tutarlılığı</span>

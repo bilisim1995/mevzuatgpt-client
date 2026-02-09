@@ -149,6 +149,72 @@ export interface SearchHistoryItem {
     content_preview?: string | null
   }>
   reliability_score: number
+  confidence_breakdown?: {
+    overall_score: number
+    explanation: string
+    criteria: {
+      source_quality?: {
+        score: number
+        weight: number
+        description: string
+        details: string[]
+      }
+      source_reliability?: {
+        score: number
+        weight: number
+        description: string
+        details: string[]
+      }
+      content_consistency?: {
+        score: number
+        weight: number
+        description: string
+        details: string[]
+      }
+      technical_accuracy?: {
+        score: number
+        weight: number
+        description: string
+        details: string[]
+      }
+      currency?: {
+        score: number
+        weight: number
+        description: string
+        details: string[]
+      }
+    }
+    score_ranges: {
+      high: {
+        min: number
+        max: number
+        desc: string
+      }
+      medium: {
+        min: number
+        max: number
+        desc: string
+      }
+      low: {
+        min: number
+        max: number
+        desc: string
+      }
+    }
+  }
+  search_stats?: {
+    total_chunks_found: number
+    embedding_time_ms: number
+    search_time_ms: number
+    generation_time_ms: number
+    reliability_time_ms: number
+    total_pipeline_time_ms: number
+    cache_used: boolean
+    rate_limit_remaining: number
+    low_confidence?: boolean
+    confidence_threshold?: number
+    credits_waived?: boolean
+  }
   credits_used: number
   institution_filter: string | null
   results_count: number

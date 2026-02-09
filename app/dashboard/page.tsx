@@ -412,23 +412,34 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
     }))
   }
 
+  const normalizeHistoryValue = (value: string) => value.trim().toLowerCase().replace(/\s+/g, ' ')
+
+  const buildHistoryKey = (query: string, response: string | null) => {
+    return `${normalizeHistoryValue(query)}||${normalizeHistoryValue(response || '')}`
+  }
+
   const enrichAnswersWithHistory = (answers: QuestionAnswer[], historyItems: Array<{
+    id: string
     query: string
     response: string | null
     sources: Array<any>
     reliability_score: number
     credits_used: number
     execution_time?: number | null
+    confidence_breakdown?: any
+    search_stats?: SearchStats
   }>) => {
-    const historyMap = new Map<string, typeof historyItems[number]>()
+    const historyById = new Map<string, typeof historyItems[number]>()
+    const historyByKey = new Map<string, typeof historyItems[number]>()
     historyItems.forEach(item => {
-      const key = `${item.query}||${item.response || ''}`
-      historyMap.set(key, item)
+      historyById.set(item.id, item)
+      historyByKey.set(buildHistoryKey(item.query, item.response), item)
     })
 
     return answers.map(answer => {
-      const key = `${answer.question}||${answer.answer}`
-      const historyItem = historyMap.get(key)
+      const historyItem = answer.searchLogId
+        ? historyById.get(answer.searchLogId)
+        : historyByKey.get(buildHistoryKey(answer.question, answer.answer))
       if (!historyItem) return answer
 
       const mappedSources = mapHistorySources(historyItem.sources)
@@ -438,7 +449,9 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
         creditsUsed: historyItem.credits_used,
         sources: historyItem.sources ? historyItem.sources.length : 0,
         sourcesData: mappedSources,
-        responseTimeSeconds: typeof historyItem.execution_time === 'number' ? historyItem.execution_time : answer.responseTimeSeconds
+        responseTimeSeconds: typeof historyItem.execution_time === 'number' ? historyItem.execution_time : answer.responseTimeSeconds,
+        reliabilityData: historyItem.confidence_breakdown || answer.reliabilityData,
+        performanceData: historyItem.search_stats ? { search_stats: historyItem.search_stats } : answer.performanceData
       }
     })
   }

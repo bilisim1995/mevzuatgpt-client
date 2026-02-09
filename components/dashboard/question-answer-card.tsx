@@ -278,7 +278,7 @@ export function QuestionAnswerCard({
             <div className="flex items-center gap-2.5 px-5 pt-4 pb-2">
               
               <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800/50">
-                  AI
+                  Not:
                 </span>
           
               <div className="flex items-center gap-2">
