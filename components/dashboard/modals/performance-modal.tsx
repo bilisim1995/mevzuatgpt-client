@@ -1,7 +1,7 @@
 "use client"
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Activity, Search, Cpu, Database, Zap, Info, Clock, HardDrive } from 'lucide-react'
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Activity, Search, Cpu, Database, Zap, Info, Clock, HardDrive, Gauge, BadgeCheck, BadgeX, AlertTriangle, X } from 'lucide-react'
 import { SearchStats } from '@/services/api'
 
 interface PerformanceModalProps {
@@ -10,14 +10,14 @@ interface PerformanceModalProps {
   performanceData: { search_stats: SearchStats }
   sourcesData?: Array<{
     document_title: string
-    pdf_url: string
-    page_number: number
-    line_start: number
-    line_end: number
+    pdf_url?: string
+    page_number?: number
+    line_start?: number
+    line_end?: number
     citation: string
     content_preview: string
     similarity_score: number
-    chunk_index: number
+    chunk_index?: number
   }>
 }
 
@@ -25,6 +25,9 @@ export function PerformanceModal({ open, onOpenChange, performanceData, sourcesD
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto bg-white dark:bg-slate-900 border-gray-200 dark:border-slate-700 rounded-3xl">
+        <DialogClose className="absolute right-4 top-4 rounded-full p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+          <X className="h-4 w-4" />
+        </DialogClose>
         <DialogHeader>
           <DialogTitle className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
             <Activity className="inline-block w-5 h-5 mr-2" />
@@ -92,6 +95,42 @@ export function PerformanceModal({ open, onOpenChange, performanceData, sourcesD
             </div>
             <div className="text-gray-900 dark:text-white font-semibold text-base">
               {performanceData.search_stats.cache_used ? 'Kullanıldı' : 'Kullanılmadı'}
+            </div>
+          </div>
+
+          <div className="bg-slate-50 dark:bg-slate-800/40 rounded-lg p-2.5 border border-slate-200 dark:border-slate-700/40">
+            <div className="flex items-center mb-2">
+              <Gauge className="w-4 h-4 text-slate-600 dark:text-slate-300 mr-2" />
+              <div className="text-slate-700 dark:text-slate-300 font-medium text-xs">Güven Eşiği</div>
+            </div>
+            <div className="text-gray-900 dark:text-white font-semibold text-base">
+              {typeof performanceData.search_stats.confidence_threshold === 'number'
+                ? performanceData.search_stats.confidence_threshold
+                : '-'}
+            </div>
+          </div>
+
+          <div className="bg-rose-50 dark:bg-rose-900/20 rounded-lg p-2.5 border border-rose-200 dark:border-rose-700/30">
+            <div className="flex items-center mb-2">
+              <AlertTriangle className="w-4 h-4 text-rose-600 dark:text-rose-300 mr-2" />
+              <div className="text-rose-700 dark:text-rose-300 font-medium text-xs">Düşük Güvenirlik</div>
+            </div>
+            <div className="text-gray-900 dark:text-white font-semibold text-base">
+              {performanceData.search_stats.low_confidence ? 'Evet' : 'Hayır'}
+            </div>
+          </div>
+
+          <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-lg p-2.5 border border-emerald-200 dark:border-emerald-700/30">
+            <div className="flex items-center mb-2">
+              {performanceData.search_stats.credits_waived ? (
+                <BadgeCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-300 mr-2" />
+              ) : (
+                <BadgeX className="w-4 h-4 text-emerald-600 dark:text-emerald-300 mr-2" />
+              )}
+              <div className="text-emerald-700 dark:text-emerald-300 font-medium text-xs">Kredi Muafiyeti</div>
+            </div>
+            <div className="text-gray-900 dark:text-white font-semibold text-base">
+              {performanceData.search_stats.credits_waived ? 'Uygulandı' : 'Yok'}
             </div>
           </div>
         </div>

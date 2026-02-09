@@ -279,6 +279,9 @@ export interface SearchStats {
   total_pipeline_time_ms: number
   cache_used: boolean
   rate_limit_remaining: number
+  low_confidence?: boolean
+  confidence_threshold?: number
+  credits_waived?: boolean
 }
 
 // ================== DÜZELTME BURADA ==================

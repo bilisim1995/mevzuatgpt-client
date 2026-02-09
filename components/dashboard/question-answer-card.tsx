@@ -283,19 +283,16 @@ export function QuestionAnswerCard({
           <p className="text-sm leading-relaxed">
             {question}
           </p>
-          <button
-            onClick={() => setPerformanceModalOpen(true)}
-            className="mt-3 inline-flex items-center justify-end text-[11px] text-blue-100 hover:text-white transition-colors"
-          >
+          <div className="mt-3 inline-flex items-center justify-end text-[11px] text-blue-100">
             <Clock className="mr-1.5 h-3 w-3" />
             {timestamp}
-          </button>
+          </div>
         </div>
       </div>
 
       {/* Cevap Balonu */}
       <div className="flex justify-start">
-        <div className="w-full max-w-[95%] sm:max-w-[85%]">
+        <div className="w-full max-w-[95%] sm:max-w-[85%] ml-3">
           <div className="space-y-4 p-4">
             <div className="relative">
               <div className="bg-white/70 dark:bg-slate-900/60 backdrop-blur-sm rounded-xl p-4 shadow-inner border border-gray-200/50 dark:border-slate-700/40">
@@ -491,10 +488,13 @@ export function QuestionAnswerCard({
                       <span className="text-gray-900 dark:text-gray-400 font-light">Kaynaklar ({sources})</span>
                     </button>
                     {typeof responseTimeSeconds === 'number' && (
-                      <div className="flex items-center space-x-2 px-2 py-1 text-xs text-gray-900 dark:text-gray-400">
+                      <button
+                        onClick={() => setPerformanceModalOpen(true)}
+                        className="flex items-center space-x-2 px-2 py-1 text-xs text-gray-900 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                      >
                         <Clock className="w-3 h-3" />
                         <span className="font-light">{responseTimeSeconds}s</span>
-                      </div>
+                      </button>
                     )}
                   </div>
                 </div>
@@ -652,7 +652,7 @@ export function QuestionAnswerCard({
       <PerformanceModal
         open={performanceModalOpen}
         onOpenChange={setPerformanceModalOpen}
-        performanceData={performanceData || { search_stats: { total_chunks_found: 0, embedding_time_ms: 0, search_time_ms: 0, generation_time_ms: 0, reliability_time_ms: 0, total_pipeline_time_ms: 0, cache_used: false, rate_limit_remaining: 0 } }}
+        performanceData={performanceData || { search_stats: { total_chunks_found: 0, embedding_time_ms: 0, search_time_ms: 0, generation_time_ms: 0, reliability_time_ms: 0, total_pipeline_time_ms: 0, cache_used: false, rate_limit_remaining: 0, low_confidence: false, confidence_threshold: 0, credits_waived: false } }}
         sourcesData={sourcesData}
       />
       

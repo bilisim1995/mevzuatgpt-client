@@ -1053,7 +1053,7 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
 
 
       {/* Ana İçerik */}
-      <main ref={mainScrollRef} className="max-w-5xl mx-auto px-6 pt-24 pb-40 h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain">
+      <main ref={mainScrollRef} className="max-w-5xl mx-auto px-6 pt-24 pb-40 h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain pl-10">
         {announcementsPanelOpen ? (
           <div className="relative bg-blue-50/10 dark:bg-blue-900/10 border border-blue-200/30 dark:border-blue-700/30 rounded-2xl p-8 flex flex-col shadow-lg">
             {closeButton}
