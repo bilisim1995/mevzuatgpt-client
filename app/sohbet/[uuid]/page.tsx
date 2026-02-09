@@ -1,11 +1,12 @@
 import { redirect } from 'next/navigation'
 
 interface SohbetPageProps {
-  params: {
+  params: Promise<{
     uuid: string
-  }
+  }>
 }
 
-export default function SohbetPage({ params }: SohbetPageProps) {
-  redirect(`/dashboard/sohbet/${params.uuid}`)
+export default async function SohbetPage({ params }: SohbetPageProps) {
+  const { uuid } = await params
+  redirect(`/dashboard/sohbet/${uuid}`)
 }
