@@ -307,7 +307,11 @@ export function SearchHistoryPanel() {
                               <div className="flex-1">
                                 {source.pdf_url ? (
                                   <button
-                                    onClick={() => window.open(source.pdf_url, '_blank')}
+                                    onClick={() => {
+                                      const pdfUrl = source.pdf_url
+                                      if (!pdfUrl) return
+                                      window.open(pdfUrl, '_blank')
+                                    }}
                                     className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 text-xs font-medium flex items-center transition-colors group"
                                   >
                                     <FileText className="w-3 h-3 mr-1" />

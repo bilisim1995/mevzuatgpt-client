@@ -29,9 +29,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSepara
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { buildApiUrl, API_CONFIG } from '@/lib/config'
 
-interface DashboardPageProps {
-  initialConversationId?: string
-}
 
 interface User {
   id: string
@@ -90,7 +87,15 @@ interface ConversationListItem {
   message_count: number
 }
 
-export default function DashboardPage({ initialConversationId }: DashboardPageProps) {
+const getConversationIdFromPathname = (path?: string | null) => {
+  if (!path) return null
+  const parts = path.split('/').filter(Boolean)
+  const sohbetIndex = parts.indexOf('sohbet')
+  if (sohbetIndex === -1) return null
+  return parts[sohbetIndex + 1] || null
+}
+
+export default function DashboardPage() {
   const router = useRouter()
   const pathname = usePathname()
   const { theme, setTheme, resolvedTheme } = useTheme()
@@ -105,7 +110,7 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
   const [questionAnswers, setQuestionAnswers] = useState<QuestionAnswer[]>([])
   const [isAsking, setIsAsking] = useState(false)
   const [isConversationLoading, setIsConversationLoading] = useState(false)
-  const [conversationId, setConversationId] = useState<string | null>(initialConversationId || null)
+  const [conversationId, setConversationId] = useState<string | null>(null)
   const [conversations, setConversations] = useState<ConversationListItem[]>([])
   const [conversationsLoading, setConversationsLoading] = useState(false)
   const [conversationSearch, setConversationSearch] = useState('')
@@ -155,10 +160,13 @@ export default function DashboardPage({ initialConversationId }: DashboardPagePr
   }, [])
 
   useEffect(() => {
-    if (!initialConversationId) return
+    const activeConversationId = getConversationIdFromPathname(pathname)
+    if (!activeConversationId) return
     if (!authService.isAuthenticated()) return
-    loadConversation(initialConversationId)
-  }, [initialConversationId])
+    if (conversationId === activeConversationId) return
+    setConversationId(activeConversationId)
+    loadConversation(activeConversationId)
+  }, [pathname, conversationId])
 
   useEffect(() => {
     if (!mainScrollRef.current) return
